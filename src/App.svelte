@@ -40,7 +40,7 @@
         justify-content: space-between;
         align-content: center;
 
-        --primary_color: #fb7bff;
+        --color-primary: #fb7bff;
     }
 
     .title {
@@ -48,7 +48,7 @@
     }
 
     .link {
-        color: var(--primary_color);
+        color: var(--color-primary);
         text-decoration: underline;
     }
 </style>
