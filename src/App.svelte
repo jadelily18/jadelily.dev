@@ -3,7 +3,6 @@
     let repo_slug = import.meta.env.VITE_VERCEL_GIT_REPO_SLUG
     let repo_branch = import.meta.env.VITE_VERCEL_GIT_COMMIT_REF
     let commit_sha = import.meta.env.VITE_VERCEL_GIT_COMMIT_SHA
-    let commit_sha_short = commit_sha.substring(0, 7)
 </script>
 
 <svelte:head>
@@ -19,7 +18,7 @@
     <p>is under construction...</p>
     <p>
         {repo_owner}/{repo_slug}
-        {repo_branch}@{commit_sha_short}
+        {repo_branch}@{commit_sha.substring(0, 7)}
     </p>
 </main>
 
