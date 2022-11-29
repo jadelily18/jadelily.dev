@@ -1,4 +1,7 @@
 <script lang="ts">
+    import Footer from "./lib/components/Footer.svelte";
+
+    let site_url = import.meta.env.VITE_VERCEL_URL
     let repo_owner = import.meta.env.VITE_VERCEL_GIT_REPO_OWNER
     let repo_slug = import.meta.env.VITE_VERCEL_GIT_REPO_SLUG
     let repo_branch = import.meta.env.VITE_VERCEL_GIT_COMMIT_REF
@@ -6,29 +9,16 @@
 </script>
 
 <svelte:head>
-    <title>Jade</title>
+    <title>Hiya! // {site_url} 💖</title>
 </svelte:head>
 <body>
-    <div />
+    <div>
+        {site_url}
+    </div>
     <main>
-        <a
-            href="https://github.com/jadelily18/jadelily.dev"
-            class="hover-underline-animation"
-        >
-            <h1 class="title">jadelily.dev</h1>
-        </a>
-        <p>is under construction...</p>
+        <p>placeholder text</p>
     </main>
-    <footer>
-        <p>
-            {repo_owner}/{repo_slug}
-            {repo_branch}@<a
-                class="link"
-                href="https://github.com/{repo_owner}/{repo_slug}/tree/{commit_sha}"
-                >{commit_sha.substring(0, 7)}</a
-            >
-        </p>
-    </footer>
+    <Footer />
 </body>
 
 <style lang="scss">
@@ -41,14 +31,5 @@
         align-content: center;
 
         --color-primary: #fb7bff;
-    }
-
-    .title {
-        margin: 0;
-    }
-
-    .link {
-        color: var(--color-primary);
-        text-decoration: underline;
     }
 </style>
