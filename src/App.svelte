@@ -9,27 +9,79 @@
 </script>
 
 <svelte:head>
-    <title>Hiya! // {site_url} 💖</title>
+    <title>Hiya! // {site_url}</title>
 </svelte:head>
+
 <body>
-    <div>
-        {site_url}
+
+<section class="page">
+    <div class="content">
+        <div class="title">
+            <h2>Hiya, I'm</h2>
+            <h1><span class="emphasized-text">Jade</span> Nash</h1>
+        </div>
+        <div>
+            I'm a 19-year-old Minecraft mod developer & web developer from Owensboro, KY, looking to create open-source
+            projects that I can be proud of. I'm also a queer, transgender woman, and use she/her pronouns, so please be
+            aware of that when mentioning me! If you’d like to know more about my gender identity, you can visit my
+            <a class="link" href="https://en.pronouns.page/@jadelily">pronouns.page</a>!
+        </div>
+
     </div>
-    <main>
-        <p>placeholder text</p>
-    </main>
-    <Footer />
+</section>
+<Footer/>
+
 </body>
 
 <style lang="scss">
-    body {
-        display: flex;
-        flex-direction: column;
-        width: 100vw;
-        text-align: center;
-        justify-content: space-between;
-        align-content: center;
+  body {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    align-content: center;
+  }
 
-        --color-primary: #fb7bff;
+  .page {
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    place-content: center;
+
+    max-width: 32rem;
+
+    @media (max-width: 576px) {
+      //max-width: 22rem;
+      padding: 1.2rem;
     }
+  }
+
+  .title {
+    h1 {
+      margin: 0.5rem 0 1.8rem;
+
+      font-size: 2.3rem;
+      font-weight: normal;
+    }
+
+    h2 {
+      margin: 0;
+
+      font-size: 1.35rem;
+      font-weight: normal;
+    }
+
+    .emphasized-text {
+      font-weight: bold;
+    }
+  }
+
+  p {
+    text-align: center;
+  }
 </style>
