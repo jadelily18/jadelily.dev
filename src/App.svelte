@@ -88,8 +88,4 @@
       font-weight: bold;
     }
   }
-
-  p {
-    text-align: center;
-  }
 </style>
