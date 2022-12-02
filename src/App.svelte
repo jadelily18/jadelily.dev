@@ -1,4 +1,7 @@
 <script lang="ts">
+    import Footer from "./lib/components/Footer.svelte";
+
+    let site_url = import.meta.env.VITE_VERCEL_URL
     let repo_owner = import.meta.env.VITE_VERCEL_GIT_REPO_OWNER
     let repo_slug = import.meta.env.VITE_VERCEL_GIT_REPO_SLUG
     let repo_branch = import.meta.env.VITE_VERCEL_GIT_COMMIT_REF
@@ -6,49 +9,93 @@
 </script>
 
 <svelte:head>
-    <title>Jade</title>
+    <title>Hiya! // {site_url}</title>
+
+    <!--SEO-->
+    <meta name="name" content="jadelily.dev"/>
+    <meta name="description" content="Hi, I'm Jade! I'm a queer software developer from Kentucky."/>
+    <meta name="keywords" content="jadelily, jade, lily, lilydev, nash, jade nash, jadenash"/>
+    <meta name="theme-color" content="#ee87f6"/>
+
+    <!--OpenGraph-->
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://{site_url}"/>
+    <meta property="og:locale" content="en_US"/>
+    <meta property="og:site_name" content="jadelily.dev"/>
+    <meta property="og:title" content="Jade Nash"/>
+    <meta property="og:description" content="Hi, I'm Jade! I'm a queer software developer from Kentucky."/>
 </svelte:head>
+
 <body>
-    <div />
-    <main>
-        <a
-            href="https://github.com/jadelily18/jadelily.dev"
-            class="hover-underline-animation"
-        >
-            <h1 class="title">jadelily.dev</h1>
-        </a>
-        <p>is under construction...</p>
-    </main>
-    <footer>
-        <p>
-            {repo_owner}/{repo_slug}
-            {repo_branch}@<a
-                class="link"
-                href="https://github.com/{repo_owner}/{repo_slug}/tree/{commit_sha}"
-                >{commit_sha.substring(0, 7)}</a
-            >
-        </p>
-    </footer>
+
+<section class="page">
+    <div class="content">
+        <div class="title">
+            <h2>Hiya, I'm</h2>
+            <h1><span class="emphasized-text">Jade</span> Nash</h1>
+        </div>
+        <div>
+            I'm a 19-year-old Minecraft mod developer & web developer from Owensboro, KY, looking to create open-source
+            projects that I can be proud of. I'm also a queer, transgender woman, and use she/her pronouns, so please be
+            aware of that when mentioning me! If you’d like to know more about my gender identity, you can visit my
+            <a class="link" href="https://en.pronouns.page/@jadelily">pronouns.page</a>!
+        </div>
+
+    </div>
+</section>
+<Footer/>
+
 </body>
 
 <style lang="scss">
-    body {
-        display: flex;
-        flex-direction: column;
-        width: 100vw;
-        text-align: center;
-        justify-content: space-between;
-        align-content: center;
+  body {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    align-content: center;
+  }
 
-        --color-primary: #fb7bff;
+  .page {
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    place-content: center;
+
+    max-width: 32rem;
+
+    @media (max-width: 576px) {
+      //max-width: 22rem;
+      padding: 1.2rem;
+    }
+  }
+
+  .title {
+    h1 {
+      margin: 0.5rem 0 1.8rem;
+
+      font-size: 2.3rem;
+      font-weight: normal;
     }
 
-    .title {
-        margin: 0;
+    h2 {
+      margin: 0;
+
+      font-size: 1.35rem;
+      font-weight: normal;
     }
 
-    .link {
-        color: var(--color-primary);
-        text-decoration: underline;
+    .emphasized-text {
+      font-weight: bold;
     }
+  }
+
+  p {
+    text-align: center;
+  }
 </style>

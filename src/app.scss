@@ -1,0 +1,95 @@
+:root {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 25px;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --color-primary: #ee87f6;
+  --color-primary-hover: #d861e3;
+
+  a {
+    text-decoration: none;
+  }
+
+  // Small tablets and large smartphones (landscape view)
+  $screen-sm-min: 576px;
+
+  // Small tablets (portrait view)
+  $screen-md-min: 768px;
+
+  // Tablets and small desktops
+  $screen-lg-min: 992px;
+
+  // Large tablets and desktops
+  $screen-xl-min: 1200px;
+
+
+  // Small devices
+  @mixin sm {
+    @media (min-width: #{$screen-sm-min}) {
+      @content;
+    }
+  }
+
+  // Medium devices
+  @mixin md {
+    @media (min-width: #{$screen-md-min}) {
+      @content;
+    }
+  }
+
+  // Large devices
+  @mixin lg {
+    @media (min-width: #{$screen-lg-min}) {
+      @content;
+    }
+  }
+
+  // Extra large devices
+  @mixin xl {
+    @media (min-width: #{$screen-xl-min}) {
+      @content;
+    }
+  }
+
+
+}
+
+body {
+  margin: 0;
+  display: flex;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+.emphasized-text {
+  color: var(--color-primary);
+}
+
+.link {
+  color: var(--color-primary);
+  text-decoration: underline !important;
+  transition: color 150ms;
+
+  &:hover {
+    color: var(--color-primary-hover);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+
+    --color-primary: #db64ea;
+    --color-primary-hover: #ac2bc0;
+  }
+}
