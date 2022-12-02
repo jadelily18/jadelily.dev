@@ -1,7 +1,7 @@
 <script lang="ts">
     import Footer from "./lib/components/Footer.svelte";
 
-    let site_url = import.meta.env.VITE_VERCEL_URL
+    let site_url = import.meta.env.SITE_URL
     let repo_owner = import.meta.env.VITE_VERCEL_GIT_REPO_OWNER
     let repo_slug = import.meta.env.VITE_VERCEL_GIT_REPO_SLUG
     let repo_branch = import.meta.env.VITE_VERCEL_GIT_COMMIT_REF
@@ -20,7 +20,6 @@
     <!--OpenGraph-->
     <meta property="og:type" content="website"/>
     <meta property="og:url" content="https://{site_url}"/>
-    <meta property="og:locale" content="en_US"/>
     <meta property="og:site_name" content="jadelily.dev"/>
     <meta property="og:title" content="Jade Nash"/>
     <meta property="og:description" content="Hi, I'm Jade! I'm a queer software developer from Kentucky."/>
