@@ -1,23 +1,14 @@
 <script lang="ts">
     import Footer from "./lib/components/Footer.svelte";
+
+    function getAgeFromDate(dateString) {
+        const ageInMs = new Date() - new Date(dateString);
+        return Math.floor(ageInMs / 1000 / 60 / 60 / 24 / 365)
+    }
 </script>
 
 <svelte:head>
     <title>Hiya! // jadelily.dev</title>
-
-    <!--SEO-->
-    <meta name="name" content="jadelily.dev">
-    <meta name="description" content="Hi, I'm Jade! I'm a queer software developer from Kentucky.">
-    <meta name="keywords" content="jadelily, jade, lily, lilydev, nash, jade nash, jadenash">
-    <meta name="theme-color" content="#ee87f6">
-
-    <!--OpenGraph-->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://jadelily.dev">
-    <meta property="og:locale" content="en_US">
-    <meta property="og:site_name" content="jadelily.dev">
-    <meta property="og:title" content="Jade Nash">
-    <meta property="og:description" content="Hi, I'm Jade! I'm a queer software developer from Kentucky.">
 </svelte:head>
 
 <body>
@@ -29,7 +20,9 @@
             <h1><span class="emphasized-text">Jade</span> Nash</h1>
         </div>
         <div>
-            I'm a 19-year-old Minecraft mod developer & web developer from Owensboro, KY, looking to create open-source
+            I'm a {getAgeFromDate("2003-08-18")}-year-old Minecraft mod developer & web developer
+            from Owensboro,
+            KY, looking to create open-source
             projects that I can be proud of. I'm also a queer, transgender woman, and use she/her pronouns, so please be
             aware of that when mentioning me! If you’d like to know more about my gender identity, you can visit my
             <a class="link" href="https://en.pronouns.page/@jadelily">pronouns.page</a>!
