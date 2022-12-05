@@ -9,20 +9,6 @@
 
 <svelte:head>
     <title>Hiya! // jadelily.dev</title>
-
-    <!--SEO-->
-    <meta name="name" content="jadelily.dev">
-    <meta name="description" content="Hi, I'm Jade! I'm a queer software developer from Kentucky.">
-    <meta name="keywords" content="jadelily, jade, lily, lilydev, nash, jade nash, jadenash">
-    <meta name="theme-color" content="#ee87f6">
-
-    <!--OpenGraph-->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://jadelily.dev">
-    <meta property="og:locale" content="en_US">
-    <meta property="og:site_name" content="jadelily.dev">
-    <meta property="og:title" content="Jade Nash">
-    <meta property="og:description" content="Hi, I'm Jade! I'm a queer software developer from Kentucky.">
 </svelte:head>
 
 <body>
