@@ -20,6 +20,8 @@
     "vite": "^3.2.3"
   },
   "dependencies": {
+    "@icons-pack/svelte-simple-icons": "^3.0.0",
+    "lucide-svelte": "^0.104.0",
     "sass": "^1.56.1"
   }
 }
