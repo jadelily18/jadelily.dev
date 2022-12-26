@@ -54,7 +54,7 @@
                     </a>
                 </div>
                 <div class="tooltip tip-top" data-tip="Mastodon (blobfox.coffee)">
-                    <a class="btn-icon" href="https://blobfox.coffee/@jade">
+                    <a class="btn-icon" href="https://blobfox.coffee/@jade" rel="me">
                         <Mastodon size={iconSize - 2}/>
                     </a>
                 </div>
