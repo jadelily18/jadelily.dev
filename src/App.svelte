@@ -44,7 +44,7 @@
             </div>
             <div class="social">
                 <div class="tooltip tip-top" data-tip="pronouns.page">
-                    <a class="btn-icon" href="https://en.pronouns.page">
+                    <a class="btn-icon" href="https://en.pronouns.page/@jadelily">
                         <Link size="{iconSize - 2}"/>
                     </a>
                 </div>
