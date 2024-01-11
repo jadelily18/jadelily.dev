@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+	.btn-nav {
+		@apply flex justify-center place-items-center pt-1 pb-2 px-2 rounded-md;
+		@apply hover:bg-zinc-800 scale-100 active:scale-95;
+		@apply transition-all;
+	}
+}
