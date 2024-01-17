@@ -6,7 +6,7 @@
 
 	import { darkMode } from '$lib/stores/theme';
 
-	let contextMenuOpen: boolean = true;
+	let contextMenuOpen: boolean = false;
 
 	let buttonStyles =
 		'shadow-none dark:shadow-none bg-transparent dark:bg-transparent hover:bg-gray-300 hover:dark:bg-zinc-800';
