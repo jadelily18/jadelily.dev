@@ -6,7 +6,7 @@ function createTitle() {
 	return {
 		subscribe,
 		set: (value: string) => {
-			set(`${value} | jadelily.dev`);
+			set(`${value} // jadelily.dev`);
 		},
 		clear: () => {
 			set(`jadelily.dev`);

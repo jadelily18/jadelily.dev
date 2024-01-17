@@ -1,3 +1,3 @@
 import { persisted } from 'svelte-persisted-store';
 
-export const theme = persisted('theme', 'dark');
+export const darkMode = persisted('darkMode', true);
