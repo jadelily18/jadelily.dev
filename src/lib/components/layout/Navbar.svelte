@@ -7,16 +7,23 @@
 	import { darkMode } from '$lib/stores/theme';
 
 	let contextMenuOpen: boolean = false;
+
+	let screenHeight: number;
+	let screenWidth: number;
 </script>
+
+<svelte:window bind:innerHeight={screenHeight} bind:innerWidth={screenWidth} />
 
 <div class="flex justify-between place-items-center">
 	<Button class=" btn text-xl font-semibold w-auto px-3" href="/">jadelily.dev</Button>
-	<div class="flex justify-center w-full gap-3">
-		<Button class="btn w-24" href="/">About</Button>
-		<Button class="btn w-24" href="/social">Socials</Button>
-		<Button class="btn w-24" href="/portfolio">Portfolio</Button>
-		<Button class="btn w-24" href="/blog">Blog</Button>
-	</div>
+	{#if screenWidth >= 960}
+		<div class="flex justify-center w-full gap-3">
+			<Button class="btn w-24" href="/">About</Button>
+			<Button class="btn w-24" href="/social">Socials</Button>
+			<Button class="btn w-24" href="/portfolio">Portfolio</Button>
+			<Button class="btn w-24" href="/blog">Blog</Button>
+		</div>
+	{/if}
 	<div class="relative">
 		<Button class="btn" on:click={() => (contextMenuOpen = !contextMenuOpen)}>
 			<Menu />
@@ -33,23 +40,36 @@
 				"
 				transition:slide={{ duration: 200 }}
 			>
-				<div class="flex whitespace-nowrap gap-4 mb-1.5">
+				{#if screenWidth < 960}
+					<div class="flex place-items-center gap-2">
+						<div class="divider"></div>
+						<p class="text-sm font-semibold text-zinc-500 dark:text-zinc-600">
+							Navigation
+						</p>
+						<div class="divider"></div>
+					</div>
+					<Button class="btn-dropdown !justify-start" href="/">About</Button>
+					<Button class="btn-dropdown !justify-start" href="/social">Socials</Button>
+					<Button class="btn-dropdown !justify-start" href="/portfolio">Portfolio</Button>
+					<Button class="btn-dropdown !justify-start" href="/blog">Blog</Button>
+					<div class="flex place-items-center gap-2">
+						<div class="divider"></div>
+						<p class="text-sm font-semibold text-zinc-500 dark:text-zinc-600">Other</p>
+						<div class="divider"></div>
+					</div>
+				{/if}
+				<div class="flex whitespace-nowrap gap-4 my-1.5 {screenWidth < 960 ? 'mx-2' : ''}">
 					Dark Mode
 					<Toggle id="dark_toggle" bind:value={$darkMode} />
 				</div>
-				<div
-					class="w-full border-t border-zinc-400 dark:border-zinc-600 transition-colors duration-500"
-				></div>
-				<a
-					class="
-						btn flex justify-center place-items-center gap-2
-						py-1 px-2 rounded-md transition-colors
-					"
+				<!-- <div class="divider"></div> -->
+				<Button
+					class="btn-dropdown !justify-start"
 					href="https://github.com/jadelily18/jadelily.dev"
 				>
 					<Github size="19" />
 					Source code
-				</a>
+				</Button>
 			</ul>
 		{/if}
 	</div>
