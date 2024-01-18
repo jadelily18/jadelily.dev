@@ -62,7 +62,6 @@
 					Dark Mode
 					<Toggle id="dark_toggle" bind:value={$darkMode} />
 				</div>
-				<!-- <div class="divider"></div> -->
 				<Button
 					class="btn-dropdown !justify-start"
 					href="https://github.com/jadelily18/jadelily.dev"

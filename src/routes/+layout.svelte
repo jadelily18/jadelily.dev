@@ -1,6 +1,8 @@
 <script lang="ts">
 	import '../app.css';
 
+	import { MetaTags } from 'svelte-meta-tags';
+
 	import { darkMode } from '$lib/stores/theme';
 	import { title } from '$lib/stores/title';
 
@@ -10,6 +12,27 @@
 <svelte:head>
 	<title>{$title}</title>
 </svelte:head>
+
+<MetaTags
+	title={$title}
+	openGraph={{
+		url: 'https://jadelily.dev',
+		title: $title,
+		siteName: 'jadelily.dev',
+		images: [
+			{
+				url: 'https://avatars.githubusercontent.com/u/74706690?v=4',
+				alt: "Jade's GitHub avatar"
+			}
+		]
+	}}
+	additionalMetaTags={[
+		{
+			name: 'theme-color',
+			content: '#f5c2e7'
+		}
+	]}
+/>
 
 <div class={$darkMode ? 'dark' : 'light'}>
 	<div

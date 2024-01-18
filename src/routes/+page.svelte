@@ -7,24 +7,16 @@
 </script>
 
 <MetaTags
-	title={$title}
 	description="Hi, I'm Jade! I'm a software developer working on lots of cool open source projects!"
 	openGraph={{
-		url: 'https://jadelily.dev',
-		title: $title,
 		description:
-			"Hi, I'm Jade! I'm a software developer working on lots of cool open source projects!",
-		siteName: 'jadelily.dev'
+			"Hi, I'm Jade! I'm a software developer working on lots of cool open source projects!"
 	}}
-	additionalMetaTags={[
-		{
-			name: 'theme-color',
-			content: '#f5c2e7'
-		}
-	]}
 />
 
 <div class="flex flex-col w-full place-items-center place-self-center">
-	<h1>Welcome to SvelteKit</h1>
-	<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+	<div class="flex flex-col text-center gap-2">
+		<h1 class="text-4xl font-bold">Under construction...</h1>
+		<p class="text-lg">Come back later!</p>
+	</div>
 </div>
