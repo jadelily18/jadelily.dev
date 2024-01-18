@@ -26,12 +26,6 @@
 			}
 		]
 	}}
-	additionalMetaTags={[
-		{
-			name: 'theme-color',
-			content: '#f5c2e7'
-		}
-	]}
 />
 
 <div class={$darkMode ? 'dark' : 'light'}>
