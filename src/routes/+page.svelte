@@ -3,12 +3,16 @@
 
 	import { title } from '$lib/stores/title';
 
-	title.set('home');
+	let pageTitle = 'home';
+
+	title.set(pageTitle);
 </script>
 
 <MetaTags
+	title={pageTitle}
 	description="Hi, I'm Jade! I'm a software developer working on lots of cool open source projects!"
 	openGraph={{
+		title: pageTitle,
 		description:
 			"Hi, I'm Jade! I'm a software developer working on lots of cool open source projects!"
 	}}
