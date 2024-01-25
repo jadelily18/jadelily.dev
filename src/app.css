@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+	.link {
+		@apply text-primary underline transition-colors duration-500;
+	}
+}
+
 @layer components {
 	.btn {
 		@apply shadow-none dark:shadow-none bg-transparent dark:bg-transparent hover:bg-gray-300 hover:dark:bg-zinc-800 !important;

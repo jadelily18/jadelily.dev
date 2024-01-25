@@ -60,7 +60,7 @@
 				{/if}
 				<div class="flex whitespace-nowrap gap-4 my-1.5 {screenWidth < 960 ? 'mx-2' : ''}">
 					Dark Mode
-					<Toggle id="dark_toggle" bind:value={$darkMode} />
+					<Toggle id="dark_toggle" class="checked:!bg-[#ea76cb]" bind:value={$darkMode} />
 				</div>
 				<Button
 					class="btn-dropdown !justify-start"
