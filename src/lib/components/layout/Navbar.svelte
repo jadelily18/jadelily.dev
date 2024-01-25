@@ -2,7 +2,7 @@
 	import { Button, Github, Toggle } from '@lilydev/ui';
 	import { Menu } from 'lucide-svelte';
 
-	import { slide, fade } from 'svelte/transition';
+	import { slide } from 'svelte/transition';
 
 	import { darkMode } from '$lib/stores/theme';
 
@@ -17,7 +17,7 @@
 <div class="flex justify-between place-items-center">
 	<Button class=" btn text-xl font-semibold w-auto px-3" href="/">jadelily.dev</Button>
 	{#if screenWidth >= 960}
-		<div class="flex justify-center w-full gap-3" transition:fade>
+		<div class="flex justify-center w-full gap-3">
 			<Button class="btn w-24" href="/">About</Button>
 			<Button class="btn w-24" href="/social">Socials</Button>
 			<Button class="btn w-24" href="/portfolio">Portfolio</Button>

@@ -1,3 +1,22 @@
+<script lang="ts">
+	import { MetaTags } from 'svelte-meta-tags';
+
+	import { title } from '$lib/stores/title';
+
+	let pageTitle = 'socials';
+
+	title.set(pageTitle);
+</script>
+
+<MetaTags
+	title={pageTitle}
+	description="Jade's social media links."
+	openGraph={{
+		title: pageTitle,
+		description: "Jade's social media links."
+	}}
+/>
+
 <div class="flex flex-col w-full place-items-center place-self-center">
 	<div class="flex flex-col text-center gap-2">
 		<h1 class="text-4xl font-bold">Under construction...</h1>
