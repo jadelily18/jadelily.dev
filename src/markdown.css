@@ -1,0 +1,26 @@
+.prose {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		@apply font-semibold;
+	}
+}
+
+.prose h1 {
+	@apply text-3xl my-3;
+}
+
+.prose h2 {
+	@apply text-2xl my-2;
+}
+
+.prose p {
+	@apply py-1.5;
+}
+
+.prose a {
+	@apply link;
+}

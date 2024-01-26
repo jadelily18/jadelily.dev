@@ -16,10 +16,12 @@ export default {
 	plugins: [
 		createThemes({
 			light: {
-				primary: '#ea76cb'
+				primary: '#ea76cb',
+				'primary-hover': '#f27ed3'
 			},
 			dark: {
-				primary: '#f9a8d4'
+				primary: '#f9a8d4',
+				'primary-hover': '#f7b0d7'
 			}
 		})
 	]

@@ -8,7 +8,7 @@
 <div class="flex flex-col w-full place-items-center place-self-center gap-2">
 	{#if $page.status === 404}
 		<p
-			class="text-2xl font-mono bg-zinc-300 dark:bg-zinc-800 py-2 px-3 rounded-lg mb-1 transition-colors duration-500"
+			class="text-xl sm:text-2xl font-mono bg-zinc-300 dark:bg-zinc-800 py-2 px-3 rounded-lg mb-1 transition-colors duration-500"
 		>
 			{$page.url.pathname}
 		</p>

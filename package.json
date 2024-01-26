@@ -38,6 +38,7 @@
 	"type": "module",
 	"dependencies": {
 		"@lilydev/ui": "^0.0.3",
+		"dayjs": "^1.11.10",
 		"lucide-svelte": "^0.309.0",
 		"svelte-persisted-store": "^0.9.0"
 	}

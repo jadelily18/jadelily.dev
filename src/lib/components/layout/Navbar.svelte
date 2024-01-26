@@ -36,7 +36,7 @@
 					border border-zinc-400 dark:border-zinc-700
 					bg-gray-200 dark:bg-zinc-900
 					transition-colors duration-500
-					gap-1.5
+					gap-1.5 z-10
 				"
 				transition:slide={{ duration: 200 }}
 			>
