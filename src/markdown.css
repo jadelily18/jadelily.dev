@@ -21,18 +21,30 @@
 	}
 
 	h2 {
-		@apply text-2xl my-3;
+		@apply text-[1.75rem] leading-[2rem]  my-3;
 	}
 
 	h3 {
 		@apply text-xl my-2;
 	}
 
+	h4 {
+		@apply text-lg my-2;
+	}
+
 	p {
-		@apply py-1.5;
+		@apply py-[0.5em];
 	}
 
 	a {
 		@apply link;
+	}
+
+	pre > code {
+		@apply block rounded-lg my-2 p-4;
+	}
+
+	code {
+		@apply dark:bg-zinc-700 rounded-md px-1.5 py-0.5;
 	}
 }

@@ -233,7 +233,9 @@ to be indented _twice_ -- 8 spaces or two tabs:
 
 -   A list item with a code block:
 
-        <code goes here>
+    ```
+    	<code goes here>
+    ```
 
 ### Code Blocks
 
@@ -264,15 +266,17 @@ easy to include example HTML source code using Markdown -- just paste
 it and indent it, and Markdown will handle the hassle of encoding the
 ampersands and angle brackets. For example, this:
 
-    <div class="footer">
-        &copy; 2004 Foo Corporation
-    </div>
+```
+<div class="footer">
+	&copy; 2004 Foo Corporation
+</div>
+```
 
 Regular Markdown syntax is not processed within code blocks. E.g.,
 asterisks are just literal asterisks within a code block. This means
 it's also easy to use Markdown to write about Markdown's own syntax.
 
-```
+```text
 tell application "Foo"
     beep
 end tell
@@ -305,6 +309,8 @@ Markdown treats asterisks (`*`) and underscores (`_`) as indicators of
 emphasis. Text wrapped with one `*` or `_` will be wrapped with an
 HTML `<em>` tag; double `*`'s or `_`'s will be wrapped with an HTML
 `<strong>` tag. E.g., this input:
+
+#### Examples
 
 _single asterisks_
 
