@@ -16,7 +16,7 @@ export default {
 	plugins: [
 		createThemes({
 			light: {
-				primary: '#ea76cb',
+				primary: '#c744a4',
 				'primary-hover': '#f27ed3'
 			},
 			dark: {

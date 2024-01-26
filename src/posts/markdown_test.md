@@ -278,6 +278,10 @@ tell application "Foo"
 end tell
 ```
 
+```html
+<div class="footer">&copy; 2004 Foo Corporation</div>
+```
+
 ## Span Elements
 
 ### Links

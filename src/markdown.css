@@ -5,16 +5,28 @@
 	h4,
 	h5,
 	h6 {
-		@apply font-semibold;
+		@apply flex place-items-center gap-2 font-semibold;
+
+		a:has(.header-content) {
+			@apply text-current no-underline hover:text-primary;
+
+			.header-content {
+				@apply duration-200 text-zinc-600 dark:text-zinc-600;
+			}
+		}
 	}
 }
 
 .prose h1 {
-	@apply text-3xl my-3;
+	@apply text-3xl my-4;
 }
 
 .prose h2 {
-	@apply text-2xl my-2;
+	@apply text-2xl my-3;
+}
+
+.prose h3 {
+	@apply text-xl my-2;
 }
 
 .prose p {

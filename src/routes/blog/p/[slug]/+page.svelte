@@ -18,8 +18,8 @@
 	}}
 />
 
-<article class="flex flex-col gap-3 mt-5">
-	<div class="flex flex-col my-3 gap-3">
+<article class="flex flex-col gap-3 mt-5 w-full">
+	<hgroup class="flex flex-col my-3 gap-3">
 		<h1 class="text-5xl font-extrabold">{data.meta.title}</h1>
 		<p class="text-lg">{data.meta.description}</p>
 		<p class="text-sm mt-1.5">
@@ -27,7 +27,7 @@
 				>{dayjs.unix(data.meta.timestamp).format('MMM DD, YYYY')}</span
 			>
 		</p>
-	</div>
+	</hgroup>
 
 	<div class="divider"></div>
 
