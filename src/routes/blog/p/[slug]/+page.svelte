@@ -9,7 +9,7 @@
 </script>
 
 <MetaTags
-	title={$title}
+	title="{data.meta.title} // blog"
 	description={data.meta.description}
 	openGraph={{
 		title: $title,
