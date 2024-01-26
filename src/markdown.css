@@ -15,24 +15,24 @@
 			}
 		}
 	}
-}
 
-.prose h1 {
-	@apply text-3xl my-4;
-}
+	h1 {
+		@apply text-3xl my-4;
+	}
 
-.prose h2 {
-	@apply text-2xl my-3;
-}
+	h2 {
+		@apply text-2xl my-3;
+	}
 
-.prose h3 {
-	@apply text-xl my-2;
-}
+	h3 {
+		@apply text-xl my-2;
+	}
 
-.prose p {
-	@apply py-1.5;
-}
+	p {
+		@apply py-1.5;
+	}
 
-.prose a {
-	@apply link;
+	a {
+		@apply link;
+	}
 }
