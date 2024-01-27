@@ -55,7 +55,7 @@
 						flex flex-col w-full p-5 rounded-lg border
 						border-zinc-400 dark:border-zinc-600 hover:bg-zinc-800 transition-colors
 					"
-					href="/blog/p/{post.slug}"
+					href="/blog/{post.slug}"
 				>
 					<div class="flex justify-between">
 						<p class="text-xl font-semibold">{post.title}</p>
@@ -68,7 +68,6 @@
 							</p>
 						</Tooltip>
 					</div>
-					<!-- <div class="divider my-1"></div> -->
 					<p class="text-zinc-700 dark:text-zinc-200 duration-500 mb-3 mt-1">
 						{post.description}
 					</p>
