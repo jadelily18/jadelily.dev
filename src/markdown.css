@@ -8,10 +8,11 @@
 		@apply flex place-items-center gap-2 font-semibold;
 
 		a:has(.header-content) {
-			@apply text-current no-underline hover:text-primary;
+			@apply no-underline;
 
 			.header-content {
-				@apply duration-200 text-zinc-600 dark:text-zinc-600;
+				@apply duration-150 text-zinc-600 dark:text-zinc-600;
+				@apply hover:text-primary hover:dark:text-primary;
 			}
 		}
 	}
@@ -58,11 +59,41 @@
 			margin-right: 1.5rem;
 			display: inline-block;
 			text-align: right;
-			@apply dark:text-zinc-500 text-zinc-500;
+			@apply text-zinc-500 dark:text-zinc-500;
 		}
 	}
 
 	code {
 		@apply bg-zinc-300 dark:bg-zinc-700 rounded-md px-1.5 py-0.5;
+	}
+
+	ul {
+		@apply ml-10 list-disc;
+	}
+
+	ol {
+		@apply ml-10 list-decimal;
+	}
+
+	blockquote {
+		@apply pl-8 my-2 border-l-4 border-zinc-500 dark:border-zinc-500;
+		@apply rounded-md;
+	}
+
+	/* Very WIP styling, but I don't plan on using tables anyway */
+	table {
+		@apply border border-zinc-500 dark:border-zinc-500;
+		@apply border-separate border-spacing-0 py-3 px-4 rounded-lg;
+
+		tbody > tr {
+			td {
+				@apply py-1 px-2;
+			}
+
+			&:nth-child(even) {
+				@apply bg-zinc-500 dark:bg-zinc-700;
+				@apply rounded;
+			}
+		}
 	}
 }

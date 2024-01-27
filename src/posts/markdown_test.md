@@ -33,6 +33,7 @@ published: true
 
 **Note:** This document is itself written using Markdown; you
 can [see the source for it by adding '.text' to the URL](/projects/markdown/syntax.text).
+(no you can't)
 
 ---
 
@@ -121,7 +122,9 @@ and code blocks:
 >
 > Here's some example code:
 >
->     return shell_exec("echo $input | $markdown_script");
+> ```bash
+> return shell_exec("echo $input | $markdown_script");
+> ```
 
 Any decent text editor should make email-style quoting easy. For
 example, with BBEdit, you can make a selection and choose Increase
@@ -234,7 +237,7 @@ to be indented _twice_ -- 8 spaces or two tabs:
 -   A list item with a code block:
 
     ```
-    	<code goes here>
+    <code goes here>
     ```
 
 ### Code Blocks
@@ -249,13 +252,17 @@ block by at least 4 spaces or 1 tab.
 
 This is a normal paragraph:
 
-    This is a code block.
+```
+This is a code block.
+```
 
 Here is an example of AppleScript:
 
-    tell application "Foo"
-        beep
-    end tell
+```applescript
+tell application "Foo"
+	beep
+end tell
+```
 
 A code block continues until it reaches a line that is not indented
 (or the end of the article).
@@ -327,3 +334,12 @@ Unlike a pre-formatted code block, a code span indicates code within a
 normal paragraph. For example:
 
 Use the `printf()` function.
+
+## Tables
+
+| Item              | In Stock | Price |
+| :---------------- | :------: | ----: |
+| Python Hat        |   True   | 23.99 |
+| SQL Hat           |   True   | 23.99 |
+| Codecademy Tee    |  False   | 19.99 |
+| Codecademy Hoodie |  False   | 42.99 |
