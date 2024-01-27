@@ -47,7 +47,7 @@
 
 	pre > code {
 		@apply block my-2 p-4 bg-current overflow-hidden !important;
-		@apply bg-zinc-800 !important;
+		@apply bg-zinc-800 overflow-scroll !important;
 
 		counter-reset: step;
 		counter-increment: step 0;
