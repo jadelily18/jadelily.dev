@@ -53,7 +53,7 @@
 				<a
 					class="
 						flex flex-col w-full p-5 rounded-lg border
-						border-zinc-400 dark:border-zinc-600 hover:bg-zinc-800 transition-colors
+						border-zinc-400 dark:border-zinc-600 hover:bg-zinc-300 hover:dark:bg-zinc-800 transition-colors
 					"
 					href="/blog/{post.slug}"
 				>
