@@ -5,9 +5,9 @@
 import adapter from '@sveltejs/adapter-auto';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
-import { mdsvex } from 'mdsvex';
+import { escapeSvelte, mdsvex } from 'mdsvex';
+import shiki from 'shiki';
 
-import { h } from 'hastscript';
 import { fromHtmlIsomorphic } from 'hast-util-from-html-isomorphic';
 
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
@@ -33,7 +33,14 @@ const mdsvexOptions = {
 					)
 			}
 		]
-	]
+	],
+	highlight: {
+		highlighter: async (code, lang = 'text') => {
+			const highlighter = await shiki.getHighlighter({ themes: { dark: 'poimandres' } });
+			const html = escapeSvelte(highlighter.codeToHtml(code, { lang }));
+			return `{@html \`${html}\` }`;
+		}
+	}
 };
 
 /** @type {import('@sveltejs/kit').Config} */
