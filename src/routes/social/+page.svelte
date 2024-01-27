@@ -54,25 +54,4 @@
 			</a>
 		</Tooltip>
 	</div>
-	<!-- <a
-		class="flex gap-3 border border-zinc-500 rounded-lg px-8 py-3 hover:bg-zinc-300 hover:dark:bg-zinc-800 w-56"
-		href="https://github.com/jadelily18"
-	>
-		<Github />
-		jadelily18
-	</a>
-	<a
-		class="flex gap-3 border border-zinc-500 rounded-lg px-8 py-3 hover:bg-zinc-300 hover:dark:bg-zinc-800 w-56"
-		href="https://github.com/jadelily18"
-	>
-		<Modrinth />
-		jade
-	</a>
-	<a
-		class="flex gap-3 border border-zinc-500 rounded-lg px-8 py-3 hover:bg-zinc-300 hover:dark:bg-zinc-800 w-56"
-		href="https://bsky.app/profile/jadelily.dev"
-	>
-		<Bluesky />
-		@jadelily.dev
-	</a> -->
 </div>
