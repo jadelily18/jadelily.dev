@@ -71,7 +71,7 @@
 					<p class="text-zinc-700 dark:text-zinc-200 duration-500 mb-3 mt-1">
 						{post.description}
 					</p>
-					<div class="flex gap-1">
+					<div class="flex gap-1 overflow-scroll">
 						{#each post.tags as tag}
 							<a
 								class="px-2 pt-0.5 pb-1 rounded-full bg-primary hover:bg-primary-hover transition-colors w-min text-xs text-zinc-900"
