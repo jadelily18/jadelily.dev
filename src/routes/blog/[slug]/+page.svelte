@@ -18,7 +18,7 @@
 	}}
 />
 
-<article class="flex flex-col gap-3 mt-5 w-full">
+<article class="flex flex-col gap-3 mt-5">
 	<hgroup class="flex flex-col my-3 gap-3">
 		<h1 class="text-5xl font-extrabold">{data.meta.title}</h1>
 		<p class="text-lg mt-1.5">{data.meta.description}</p>

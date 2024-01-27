@@ -22,7 +22,7 @@
 	}
 
 	h2 {
-		@apply text-[1.75rem] leading-[2rem]  my-3;
+		@apply text-[1.75rem] leading-[2rem] my-3;
 	}
 
 	h3 {
@@ -47,7 +47,7 @@
 
 	pre > code {
 		@apply block my-2 p-4 bg-current overflow-hidden !important;
-		@apply bg-zinc-800 overflow-scroll !important;
+		@apply bg-zinc-800 overflow-x-auto !important;
 
 		counter-reset: step;
 		counter-increment: step 0;
