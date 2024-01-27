@@ -25,7 +25,11 @@
 		</div>
 	{/if}
 	<div class="relative">
-		<Button class="btn" on:click={() => (contextMenuOpen = !contextMenuOpen)}>
+		<Button
+			class="btn"
+			on:click={() => (contextMenuOpen = !contextMenuOpen)}
+			aria-label="Navigation/Settings"
+		>
 			<Menu />
 		</Button>
 		{#if contextMenuOpen}
