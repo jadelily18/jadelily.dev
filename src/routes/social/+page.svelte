@@ -2,7 +2,7 @@
 	import { MetaTags } from 'svelte-meta-tags';
 
 	import { title } from '$lib/stores/title';
-	import { Bluesky, Button, Github, Mastodon, Modrinth, Tooltip } from '@lilydev/ui';
+	import { Bluesky, Github, Mastodon, Modrinth, Tooltip } from '@lilydev/ui';
 
 	let pageTitle = 'socials';
 
