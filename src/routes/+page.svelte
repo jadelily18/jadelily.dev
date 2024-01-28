@@ -19,8 +19,19 @@
 />
 
 <div class="flex flex-col w-full place-items-center place-self-center">
-	<div class="flex flex-col text-center gap-2">
-		<h1 class="text-4xl font-bold">Under construction...</h1>
-		<p class="text-lg">Come back later!</p>
+	<div class="flex flex-col text-center gap-2 sm:max-w-[40rem] md:max-w-96">
+		<h1 class="text-5xl font-semibold">
+			<span class="text-primary font-bold">Jade </span>
+			Nash
+		</h1>
+		<div class="divider mt-2 mb-1.5"></div>
+		<p class="text-lg">
+			Hello! I'm a web and general software devloper from <span class="font-semibold"
+				>Owensboro, KY</span
+			>, working on lots of different open source projects. You can find some of these
+			featured on my
+			<a class="link font-semibold" href="/portfolio">portfolio</a>
+			or my GitHub from my <a class="link font-semibold" href="/social">socials</a> page!
+		</p>
 	</div>
 </div>
