@@ -17,11 +17,13 @@ export default {
 		createThemes({
 			light: {
 				primary: '#c744a4',
-				'primary-hover': '#f27ed3'
+				'primary-hover': '#f27ed3',
+				'primary-raised': '#c97bb4'
 			},
 			dark: {
 				primary: '#f9a8d4',
-				'primary-hover': '#f7b0d7'
+				'primary-hover': '#f7b0d7',
+				'primary-raised': '#b36d94'
 			}
 		})
 	]

@@ -4,8 +4,8 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-	width: 100%;
+::selection {
+	@apply text-zinc-900 bg-primary-raised;
 }
 
 @layer base {
