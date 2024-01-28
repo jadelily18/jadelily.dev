@@ -14,17 +14,17 @@
 
 <svelte:window bind:innerHeight={screenHeight} bind:innerWidth={screenWidth} />
 
-<div class="flex justify-between place-items-center">
-	<Button class=" btn text-xl font-semibold w-auto px-3" href="/">jadelily.dev</Button>
+<div class="grid grid-flow-col {screenWidth >= 960 ? 'grid-cols-3' : 'grid-cols-2'}">
+	<Button class="btn text-xl font-semibold px-4 w-min" href="/">jadelily.dev</Button>
 	{#if screenWidth >= 960}
-		<div class="flex justify-center w-full gap-3">
-			<Button class="btn w-24" href="/">About</Button>
-			<Button class="btn w-24" href="/social">Socials</Button>
-			<Button class="btn w-24" href="/portfolio">Portfolio</Button>
-			<Button class="btn w-24" href="/blog">Blog</Button>
+		<div class="flex justify-center justify-self-center w-full gap-3">
+			<Button class="btn w-28" href="/">About</Button>
+			<Button class="btn w-28" href="/social">Socials</Button>
+			<Button class="btn w-28" href="/portfolio">Portfolio</Button>
+			<Button class="btn w-28" href="/blog">Blog</Button>
 		</div>
 	{/if}
-	<div class="relative">
+	<div class="relative justify-self-end">
 		<Button
 			class="btn"
 			on:click={() => (contextMenuOpen = !contextMenuOpen)}
