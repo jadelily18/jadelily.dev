@@ -49,40 +49,44 @@
 		</div>
 
 		<div class="flex flex-col place-items-center w-full gap-3">
-			{#each posts as post}
-				<a
-					class="
+			{#if posts.length > 0}
+				{#each posts as post}
+					<a
+						class="
 						flex flex-col w-full p-5 rounded-lg border
 						border-zinc-400 dark:border-zinc-600 hover:bg-zinc-300 hover:dark:bg-zinc-800 transition-colors
 					"
-					href="/blog/{post.slug}"
-				>
-					<div class="flex justify-between">
-						<p class="text-xl font-semibold">{post.title}</p>
-						<Tooltip
-							align="left"
-							tooltip={dayjs.unix(post.timestamp).format('MMM DD, YYYY h:ma')}
-						>
-							<p class="text-right">
-								{dayjs.unix(post.timestamp).format('MMM DD, YYYY')}
-							</p>
-						</Tooltip>
-					</div>
-					<p class="text-zinc-700 dark:text-zinc-200 duration-500 mb-3 mt-1">
-						{post.description}
-					</p>
-					<div class="flex gap-1">
-						{#each post.tags as tag}
-							<a
-								class="px-2 pt-0.5 pb-1 rounded-full bg-primary hover:bg-primary-hover transition-colors w-min text-xs text-zinc-900"
-								href="?categories=[{tag}]"
+						href="/blog/{post.slug}"
+					>
+						<div class="flex justify-between">
+							<p class="text-xl font-semibold">{post.title}</p>
+							<Tooltip
+								align="left"
+								tooltip={dayjs.unix(post.timestamp).format('MMM DD, YYYY h:ma')}
 							>
-								#{tag}
-							</a>
-						{/each}
-					</div>
-				</a>
-			{/each}
+								<p class="text-right">
+									{dayjs.unix(post.timestamp).format('MMM DD, YYYY')}
+								</p>
+							</Tooltip>
+						</div>
+						<p class="text-zinc-700 dark:text-zinc-200 duration-500 mb-3 mt-1">
+							{post.description}
+						</p>
+						<div class="flex gap-1">
+							{#each post.tags as tag}
+								<a
+									class="px-2 pt-0.5 pb-1 rounded-full bg-primary hover:bg-primary-hover transition-colors w-min text-xs text-zinc-900"
+									href="?categories=[{tag}]"
+								>
+									#{tag}
+								</a>
+							{/each}
+						</div>
+					</a>
+				{/each}
+			{:else}
+				<p class="flex text-lg">No blog posts found.</p>
+			{/if}
 		</div>
 	</div>
 </div>
