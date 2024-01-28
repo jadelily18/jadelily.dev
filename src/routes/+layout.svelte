@@ -36,7 +36,7 @@
 <div class={$darkMode ? 'dark' : 'light'}>
 	<div
 		class="
-			flex flex-col w-screen min-h-screen py-4 px-6 md:px-24 transition-colors duration-500
+			flex flex-col w-screen max-w-[100%] min-h-[100svh] py-4 px-6 md:px-24 transition-colors duration-500
 			text-zinc-900 dark:text-gray-200 bg-gray-200 dark:bg-zinc-900
 		"
 	>

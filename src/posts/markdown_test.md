@@ -293,6 +293,12 @@ end tell
 <div class="footer">&copy; 2004 Foo Corporation</div>
 ```
 
+```cpp
+result = (value1 + value2 * value3 - (value4/value5)) % value6 + function1() + function2(param1, param2, param3) + function3(value7, value8)
+```
+
+**_Really long line of code!_**
+
 ## Span Elements
 
 ### Links

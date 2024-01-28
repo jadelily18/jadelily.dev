@@ -18,10 +18,10 @@
 	}}
 />
 
-<article class="flex flex-col gap-3 mt-5">
+<article class="flex flex-col gap-3 mt-5 w-full">
 	<hgroup class="flex flex-col my-3 gap-3">
 		<h1 class="text-5xl font-extrabold">{data.meta.title}</h1>
-		<p class="text-lg mt-1.5">{data.meta.description}</p>
+		<p class="text-lg mt-1.5 text-wrap">{data.meta.description}</p>
 		<p class="text-sm mt-1.5">
 			Published on <span class="font-semibold italic"
 				>{dayjs.unix(data.meta.timestamp).format('MMM DD, YYYY')}</span

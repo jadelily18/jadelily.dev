@@ -4,6 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+	width: 100%;
+}
+
 @layer base {
 	.link {
 		@apply text-primary underline transition-colors duration-500;
