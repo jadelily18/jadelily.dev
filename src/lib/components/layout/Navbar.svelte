@@ -16,31 +16,32 @@
 
 <div class="grid grid-flow-col {screenWidth >= 960 ? 'grid-cols-3' : 'grid-cols-2'}">
 	<a
-		class="btn-sm text-xl font-semibold hover:variant-soft-primary rounded-lg transition-colors w-min"
+		class="btn-sm text-xl font-semibold hover:variant-soft-primary hover:shadow-sm dark:hover:shadow-none rounded-lg transition-colors w-min"
 		href="/">jadelily.dev</a
 	>
 	{#if screenWidth >= 960}
 		<div class="flex justify-center justify-self-center place-self-center w-full gap-3">
-			<a class="btn-sm h-min hover:variant-soft-primary rounded-lg transition-colors" href="/"
-				>About</a
+			<a
+				class="btn-sm h-min hover:variant-soft-primary hover:shadow-sm dark:hover:shadow-none rounded-lg transition-colors"
+				href="/">About</a
 			>
 			<a
-				class="btn-sm h-min hover:variant-soft-primary rounded-lg transition-colors"
+				class="btn-sm h-min hover:variant-soft-primary hover:shadow-sm dark:hover:shadow-none rounded-lg transition-colors"
 				href="/social">Socials</a
 			>
 			<a
-				class="btn-sm h-min hover:variant-soft-primary rounded-lg transition-colors"
+				class="btn-sm h-min hover:variant-soft-primary hover:shadow-sm dark:hover:shadow-none rounded-lg transition-colors"
 				href="/portfolio">Portfolio</a
 			>
 			<a
-				class="btn-sm h-min hover:variant-soft-primary rounded-lg transition-colors"
+				class="btn-sm h-min hover:variant-soft-primary hover:shadow-sm dark:hover:shadow-none rounded-lg transition-colors"
 				href="/blog">Blog</a
 			>
 		</div>
 	{/if}
 	<div class="relative justify-self-end">
 		<button
-			class="btn-icon hover:variant-soft-primary rounded-lg transition-colors"
+			class="btn-icon hover:variant-soft-primary hover:shadow-sm dark:hover:shadow-none rounded-lg transition-colors"
 			on:click={() => (contextMenuOpen = !contextMenuOpen)}
 			aria-label="Navigation/Settings"
 		>
@@ -52,7 +53,7 @@
 					flex flex-col absolute
 					top-[110%] right-0 py-4 px-5 rounded-lg
 					border border-zinc-400 dark:border-zinc-700
-					bg-gray-200 dark:bg-zinc-900
+					bg-surface-50 dark:bg-surface-900
 					transition-colors duration-500
 					gap-1.5 z-10
 				"
@@ -67,19 +68,19 @@
 						<div class="divider"></div>
 					</div>
 					<a
-						class="btn-sm hover:variant-soft-primary rounded-lg transition-colors !justify-start"
+						class="btn-sm hover:variant-soft-primary hover:shadow-sm dark:hover:shadow-none rounded-lg transition-colors !justify-start"
 						href="/">About</a
 					>
 					<a
-						class="btn-sm hover:variant-soft-primary rounded-lg transition-colors !justify-start"
+						class="btn-sm hover:variant-soft-primary hover:shadow-sm dark:hover:shadow-none rounded-lg transition-colors !justify-start"
 						href="/social">Socials</a
 					>
 					<a
-						class="btn-sm hover:variant-soft-primary rounded-lg transition-colors !justify-start"
+						class="btn-sm hover:variant-soft-primary hover:shadow-sm dark:hover:shadow-none rounded-lg transition-colors !justify-start"
 						href="/portfolio">Portfolio</a
 					>
 					<a
-						class="btn-sm hover:variant-soft-primary rounded-lg transition-colors !justify-start"
+						class="btn-sm hover:variant-soft-primary hover:shadow-sm dark:hover:shadow-none rounded-lg transition-colors !justify-start"
 						href="/blog">Blog</a
 					>
 					<div class="flex place-items-center gap-2">
