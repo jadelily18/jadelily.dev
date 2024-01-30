@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { MetaTags } from 'svelte-meta-tags';
-	import { Select, Tooltip } from '@lilydev/ui';
+	import { Tooltip } from '@lilydev/ui';
+	import Select from '$lib/components/base/Select.svelte';
 
 	import { title } from '$lib/stores/title';
 	import dayjs from 'dayjs';
@@ -44,7 +45,7 @@
 				placeholder="Sort order..."
 				id="blog_order_select"
 				bind:value={sortOrder}
-				class="w-48 duration-500"
+				globalClass="w-52"
 			/>
 		</div>
 
