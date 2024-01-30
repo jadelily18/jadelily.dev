@@ -7,5 +7,5 @@ charset = utf-8
 indent_style = tab
 indent_size = 4
 
-[{tailwind.config.js,postcss.config.js}]
+[*.config{.js,.ts}]
 indent_size = 2

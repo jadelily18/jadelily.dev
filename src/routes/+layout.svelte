@@ -33,7 +33,7 @@
 	]}
 />
 
-<div class={$darkMode ? 'dark' : 'light'}>
+<div class={$darkMode ? 'dark' : 'light'} data-theme="lily">
 	<div
 		class="
 			flex flex-col w-screen max-w-[100%] min-h-[100svh] py-4 px-6 md:px-24 transition-colors duration-500

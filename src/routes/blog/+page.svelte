@@ -75,7 +75,7 @@
 						<div class="flex gap-1">
 							{#each post.tags as tag}
 								<a
-									class="px-2 pt-0.5 pb-1 rounded-full bg-primary hover:bg-primary-hover transition-colors w-min text-xs text-zinc-900"
+									class="px-2 pt-0.5 pb-1 rounded-full bg-primary-500 hover:bg-primary-700 transition-colors w-min text-xs text-zinc-900"
 									href="?categories=[{tag}]"
 								>
 									#{tag}

@@ -15,23 +15,37 @@
 <svelte:window bind:innerHeight={screenHeight} bind:innerWidth={screenWidth} />
 
 <div class="grid grid-flow-col {screenWidth >= 960 ? 'grid-cols-3' : 'grid-cols-2'}">
-	<Button class="btn text-xl font-semibold px-4 w-min" href="/">jadelily.dev</Button>
+	<a
+		class="btn-sm text-xl font-semibold hover:variant-soft-primary rounded-lg transition-colors w-min"
+		href="/">jadelily.dev</a
+	>
 	{#if screenWidth >= 960}
-		<div class="flex justify-center justify-self-center w-full gap-3">
-			<Button class="btn w-28" href="/">About</Button>
-			<Button class="btn w-28" href="/social">Socials</Button>
-			<Button class="btn w-28" href="/portfolio">Portfolio</Button>
-			<Button class="btn w-28" href="/blog">Blog</Button>
+		<div class="flex justify-center justify-self-center place-self-center w-full gap-3">
+			<a class="btn-sm h-min hover:variant-soft-primary rounded-lg transition-colors" href="/"
+				>About</a
+			>
+			<a
+				class="btn-sm h-min hover:variant-soft-primary rounded-lg transition-colors"
+				href="/social">Socials</a
+			>
+			<a
+				class="btn-sm h-min hover:variant-soft-primary rounded-lg transition-colors"
+				href="/portfolio">Portfolio</a
+			>
+			<a
+				class="btn-sm h-min hover:variant-soft-primary rounded-lg transition-colors"
+				href="/blog">Blog</a
+			>
 		</div>
 	{/if}
 	<div class="relative justify-self-end">
-		<Button
-			class="btn"
+		<button
+			class="btn-icon hover:variant-soft-primary rounded-lg transition-colors"
 			on:click={() => (contextMenuOpen = !contextMenuOpen)}
 			aria-label="Navigation/Settings"
 		>
 			<Menu />
-		</Button>
+		</button>
 		{#if contextMenuOpen}
 			<ul
 				class="
@@ -52,10 +66,22 @@
 						</p>
 						<div class="divider"></div>
 					</div>
-					<Button class="btn-dropdown !justify-start" href="/">About</Button>
-					<Button class="btn-dropdown !justify-start" href="/social">Socials</Button>
-					<Button class="btn-dropdown !justify-start" href="/portfolio">Portfolio</Button>
-					<Button class="btn-dropdown !justify-start" href="/blog">Blog</Button>
+					<a
+						class="btn-sm hover:variant-soft-primary rounded-lg transition-colors !justify-start"
+						href="/">About</a
+					>
+					<a
+						class="btn-sm hover:variant-soft-primary rounded-lg transition-colors !justify-start"
+						href="/social">Socials</a
+					>
+					<a
+						class="btn-sm hover:variant-soft-primary rounded-lg transition-colors !justify-start"
+						href="/portfolio">Portfolio</a
+					>
+					<a
+						class="btn-sm hover:variant-soft-primary rounded-lg transition-colors !justify-start"
+						href="/blog">Blog</a
+					>
 					<div class="flex place-items-center gap-2">
 						<div class="divider"></div>
 						<p class="text-sm font-semibold text-zinc-500 dark:text-zinc-600">Other</p>
@@ -66,13 +92,13 @@
 					Dark Mode
 					<Toggle id="dark_toggle" class="checked:!bg-[#ea76cb]" bind:value={$darkMode} />
 				</div>
-				<Button
-					class="btn-dropdown !justify-start"
+				<a
+					class="btn flex gap-2 hover:bg-primary-500/35 dark:hover:bg-primary-500/20 rounded-lg transition-colors !justify-start"
 					href="https://github.com/jadelily18/jadelily.dev"
 				>
 					<Github size="19" />
 					Source code
-				</Button>
+				</a>
 			</ul>
 		{/if}
 	</div>

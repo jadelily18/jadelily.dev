@@ -12,7 +12,7 @@
 
 			.header-content {
 				@apply duration-150 text-zinc-600 dark:text-zinc-600;
-				@apply hover:text-primary hover:dark:text-primary;
+				@apply hover:text-primary-500 hover:dark:text-primary-700;
 			}
 		}
 	}
