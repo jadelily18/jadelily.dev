@@ -5,6 +5,7 @@
 	import { slide } from 'svelte/transition';
 
 	import { darkMode } from '$lib/stores/theme';
+	import { SlideToggle } from '@skeletonlabs/skeleton';
 
 	let contextMenuOpen: boolean = false;
 
@@ -30,7 +31,7 @@
 				href="/social">Socials</a
 			>
 			<a
-				class="btn-sm h-min hover:variant-soft-primary hover:shadow-sm dark:hover:shadow-none rounded-lg transition-colors"
+				class="btn-sm line-through h-min hover:variant-soft-surface hover:shadow-sm dark:hover:shadow-none rounded-lg transition-colors"
 				href="/portfolio">Portfolio</a
 			>
 			<a
@@ -76,7 +77,7 @@
 						href="/social">Socials</a
 					>
 					<a
-						class="btn-sm hover:variant-soft-primary hover:shadow-sm dark:hover:shadow-none rounded-lg transition-colors !justify-start"
+						class="btn-sm line-through hover:variant-soft-surface hover:shadow-sm dark:hover:shadow-none rounded-lg transition-colors !justify-start"
 						href="/portfolio">Portfolio</a
 					>
 					<a
@@ -89,9 +90,20 @@
 						<div class="divider"></div>
 					</div>
 				{/if}
-				<div class="flex whitespace-nowrap gap-4 my-1.5 {screenWidth < 960 ? 'mx-2' : ''}">
+				<div
+					class="flex justify-center whitespace-nowrap gap-4 my-1.5 {screenWidth < 960
+						? 'mx-2'
+						: ''}"
+				>
 					Dark Mode
-					<Toggle id="dark_toggle" class="checked:!bg-[#ea76cb]" bind:value={$darkMode} />
+					<!-- <Toggle id="dark_toggle" class="checked:!bg-[#ea76cb]" bind:value={$darkMode} /> -->
+					<SlideToggle
+						background="bg-surface-200"
+						active="bg-primary-500"
+						name="dark_toggle"
+						bind:checked={$darkMode}
+						size="sm"
+					/>
 				</div>
 				<a
 					class="btn flex gap-2 hover:bg-primary-500/35 dark:hover:bg-primary-500/20 rounded-lg transition-colors !justify-start"

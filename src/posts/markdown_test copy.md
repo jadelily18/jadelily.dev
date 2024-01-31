@@ -4,7 +4,7 @@ description: 'This is a Markdown test that includes lots of different elements t
 timestamp: 1706256992
 tags:
     - programming
-published: true
+published: false
 ---
 
 <!-- from https://github.com/mxstbr/markdown-test-file/blob/master/TEST.md -->
@@ -36,6 +36,13 @@ can [see the source for it by adding '.text' to the URL](/projects/markdown/synt
 (no you can't)
 
 ---
+
+<script>
+	import { CodeBlock } from "@skeletonlabs/skeleton";
+
+	let code = "let test = 5;"
+
+</script>
 
 ## Overview
 
@@ -298,6 +305,8 @@ result = (value1 + value2 * value3 - (value4/value5)) % value6 + function1() + f
 ```
 
 **_Really long line of code!_**
+
+<CodeBlock language="rust" {code} lineNumbers />
 
 ## Span Elements
 

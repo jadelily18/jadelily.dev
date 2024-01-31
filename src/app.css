@@ -15,20 +15,6 @@
 }
 
 @layer components {
-	/* .btn {
-		@apply shadow-none dark:shadow-none bg-transparent dark:bg-transparent hover:bg-gray-300 hover:dark:bg-zinc-800 !important;
-	}
-
-	.btn-nav {
-		@apply flex justify-center place-items-center pt-1 pb-2 px-2 rounded-md;
-		@apply hover:bg-zinc-800 scale-100 active:scale-95;
-		@apply transition-all;
-	}
-
-	.btn-dropdown {
-		@apply btn flex justify-center place-items-center gap-2 py-1 px-2 rounded-md transition-colors !important;
-	} */
-
 	.divider {
 		@apply w-full border-t border-zinc-400 dark:border-zinc-600 transition-colors duration-500;
 	}

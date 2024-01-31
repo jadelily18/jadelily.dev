@@ -32,8 +32,7 @@
 	<ListBox
 		rounded="rounded-full"
 		active="
-			!bg-primary-500/55
-			dark:!bg-surface-500 dark:!text-zinc-100
+			bg-primary-500/55 dark:variant-filled-primary dark:!text-zinc-100
 		"
 	>
 		{#each items as item}
@@ -52,8 +51,8 @@
 <button
 	{...$$restProps}
 	class="
-		btn flex flex-row variant-filled justify-between rounded-lg
-		dark:!bg-surface-600 dark:!text-zinc-100
+		btn flex flex-row variant-filled dark:bg-surface-700/75 dark:text-zinc-200
+		justify-between rounded-lg transition-all dark:shadow-xl
 		{$$restProps.class} {globalClass}
 	"
 	use:popup={popupSettings}
