@@ -1,0 +1,87 @@
+.prose {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		@apply flex place-items-center gap-2 font-semibold;
+
+		a:has(.header-content) {
+			@apply no-underline;
+
+			.header-content {
+				@apply duration-150 text-zinc-600 dark:text-zinc-600;
+				@apply hover:text-primary-500 hover:dark:text-primary-700;
+			}
+		}
+	}
+
+	h1 {
+		@apply text-3xl my-4;
+	}
+
+	h2 {
+		@apply text-[1.75rem] leading-[2rem] my-3;
+	}
+
+	h3 {
+		@apply text-xl my-2;
+	}
+
+	h4 {
+		@apply text-lg my-2;
+	}
+
+	p {
+		@apply py-[0.5em];
+	}
+
+	a {
+		@apply link;
+	}
+
+	pre:has(code) {
+		@apply rounded-lg;
+	}
+
+	pre > code {
+		@apply block my-2 p-4 bg-current overflow-hidden !important;
+		@apply bg-surface-700/75 overflow-x-auto !important;
+
+		counter-reset: step;
+		counter-increment: step 0;
+
+		.line::before {
+			content: counter(step);
+			counter-increment: step;
+			width: 1rem;
+			margin-right: 1.5rem;
+			display: inline-block;
+			text-align: right;
+			@apply text-zinc-500 dark:text-zinc-500;
+		}
+	}
+
+	code {
+		@apply variant-soft-primary bg-primary-700/20 shadow-sm dark:shadow-xl rounded-md px-1.5 py-0.5;
+	}
+
+	ul {
+		@apply ml-10 list-disc;
+	}
+
+	ol {
+		@apply ml-10 list-decimal;
+	}
+
+	blockquote {
+		@apply pl-8 my-2 border-l-4 border-zinc-500 dark:border-zinc-500;
+		@apply rounded-md;
+	}
+
+	/* Very WIP styling, but I don't plan on using tables anyway */
+	table {
+		@apply table table-hover;
+	}
+}
