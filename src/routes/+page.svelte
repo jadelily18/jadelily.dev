@@ -29,8 +29,10 @@
 			Hello! I'm a web and general software devloper from <span class="font-semibold"
 				>Owensboro, KY</span
 			>, working on lots of different open source projects. You can find some of these
-			featured on my
-			<a class="link font-semibold" href="/portfolio">portfolio</a>
+			<span class="line-through"
+				>featured on my
+				<a class="link font-semibold" href="/portfolio">portfolio</a></span
+			>
 			or my GitHub from my <a class="link font-semibold" href="/social">socials</a> page!
 		</p>
 	</div>
