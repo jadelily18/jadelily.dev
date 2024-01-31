@@ -12,10 +12,13 @@
 		"format": "prettier --write ."
 	},
 	"devDependencies": {
+		"@skeletonlabs/skeleton": "^2.7.1",
+		"@skeletonlabs/tw-plugin": "^0.3.1",
 		"@sveltejs/adapter-auto": "^3.1.0",
 		"@sveltejs/kit": "^2.3.3",
 		"@sveltejs/vite-plugin-svelte": "^3.0.1",
 		"@types/eslint": "8.56.0",
+		"@types/node": "^20.11.10",
 		"@typescript-eslint/eslint-plugin": "^6.19.0",
 		"@typescript-eslint/parser": "^6.19.0",
 		"autoprefixer": "^10.4.16",
@@ -31,16 +34,17 @@
 		"svelte-meta-tags": "^3.1.0",
 		"tailwindcss": "^3.4.1",
 		"tslib": "^2.6.2",
-		"tw-colors": "^3.3.1",
 		"typescript": "^5.3.3",
 		"vite": "^5.0.11"
 	},
 	"type": "module",
 	"dependencies": {
+		"@floating-ui/dom": "^1.6.1",
 		"@lilydev/ui": "^0.0.3",
 		"dayjs": "^1.11.10",
 		"hast-util-from-html-isomorphic": "^2.0.0",
 		"hastscript": "^9.0.0",
+		"highlight.js": "^11.9.0",
 		"lucide-svelte": "^0.309.0",
 		"rehype-autolink-headings": "^7.1.0",
 		"rehype-slug": "^6.0.0",

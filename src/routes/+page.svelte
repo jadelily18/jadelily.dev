@@ -21,7 +21,7 @@
 <div class="flex flex-col w-full place-items-center place-self-center">
 	<div class="flex flex-col text-center gap-2 sm:max-w-[40rem] md:max-w-[30rem]">
 		<h1 class="text-5xl font-semibold">
-			<span class="text-primary font-bold">Jade </span>
+			<span class="text-primary-700 dark:text-primary-500 font-bold">Jade </span>
 			Nash
 		</h1>
 		<div class="divider mt-2 mb-1.5"></div>

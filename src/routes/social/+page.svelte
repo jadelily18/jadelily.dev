@@ -3,10 +3,34 @@
 
 	import { title } from '$lib/stores/title';
 	import { Bluesky, Github, Mastodon, Modrinth, Tooltip } from '@lilydev/ui';
+	import { popup, type PopupSettings } from '@skeletonlabs/skeleton';
 
 	let pageTitle = 'socials';
 
 	title.set(pageTitle);
+
+	let popupContentStyle = '';
+
+	const githubPopup: PopupSettings = {
+		event: 'hover',
+		target: 'githubTooltip',
+		placement: 'top'
+	};
+	const modrinthPopup: PopupSettings = {
+		event: 'hover',
+		target: 'modrinthTooltip',
+		placement: 'top'
+	};
+	const blueskyPopup: PopupSettings = {
+		event: 'hover',
+		target: 'blueskyTooltip',
+		placement: 'top'
+	};
+	const mastodonPopup: PopupSettings = {
+		event: 'hover',
+		target: 'mastodonTooltip',
+		placement: 'top'
+	};
 </script>
 
 <MetaTags
@@ -18,43 +42,56 @@
 	}}
 />
 
+<div class="card p-2 variant-filled-surface rounded-lg shadow-xl" data-popup="githubTooltip">
+	<p>GitHub</p>
+	<div class="arrow variant-filled-surface"></div>
+</div>
+<div class="card p-2 variant-filled-surface rounded-lg shadow-xl" data-popup="modrinthTooltip">
+	<p>Modrinth</p>
+	<div class="arrow variant-filled-surface"></div>
+</div>
+<div class="card p-2 variant-filled-surface rounded-lg shadow-xl" data-popup="blueskyTooltip">
+	<p>Bluesky</p>
+	<div class="arrow variant-filled-surface"></div>
+</div>
+<div class="card p-2 variant-filled-surface rounded-lg shadow-xl" data-popup="mastodonTooltip">
+	<p>Mastodon</p>
+	<div class="arrow variant-filled-surface"></div>
+</div>
+
 <div class="flex flex-col w-full place-items-center place-self-center md:px-12 my-12">
 	<div class="flex flex-col place-items-center">
 		<h1 class="text-5xl font-bold">Socials</h1>
 		<div class="divider mt-3 mb-1"></div>
-		<div class="flex">
-			<Tooltip tooltip="GitHub" align="top">
-				<a
-					class="flex p-2.5 rounded-full hover:bg-gray-300 hover:dark:bg-zinc-800 transition-colors duration-200"
-					href="https://github.com/jadelily18"
-				>
-					<Github size="36" />
-				</a>
-			</Tooltip>
-			<Tooltip tooltip="Modrinth" align="top">
-				<a
-					class="flex p-2.5 rounded-full hover:bg-gray-300 hover:dark:bg-zinc-800 transition-colors duration-200"
-					href="https://modrinth.com/user/jade"
-				>
-					<Modrinth size="36" />
-				</a>
-			</Tooltip>
-			<Tooltip tooltip="Bluesky" align="top">
-				<a
-					class="flex p-2.5 rounded-full hover:bg-gray-300 hover:dark:bg-zinc-800 transition-colors duration-200"
-					href="https://bsky.app/profile/jadelily.dev"
-				>
-					<Bluesky size="36" />
-				</a>
-			</Tooltip>
-			<Tooltip tooltip="Mastodon" align="top">
-				<a
-					class="flex p-2.5 rounded-full hover:bg-gray-300 hover:dark:bg-zinc-800 transition-colors duration-200"
-					href="https://blobfox.coffee/@jade"
-				>
-					<Mastodon size="36" />
-				</a>
-			</Tooltip>
+		<div class="flex gap-1">
+			<a
+				class="btn-icon btn-icon-lg dark:hover:bg-surface-700"
+				href="https://github.com/jadelily18"
+				use:popup={githubPopup}
+			>
+				<Github size="36" />
+			</a>
+			<a
+				class="btn-icon btn-icon-lg dark:hover:bg-surface-700"
+				href="https://modrinth.com/user/jade"
+				use:popup={modrinthPopup}
+			>
+				<Modrinth size="36" />
+			</a>
+			<a
+				class="btn-icon btn-icon-lg dark:hover:bg-surface-700"
+				href="https://bsky.app/profile/jadelily.dev"
+				use:popup={blueskyPopup}
+			>
+				<Bluesky size="36" />
+			</a>
+			<a
+				class="btn-icon btn-icon-lg dark:hover:bg-surface-700"
+				href="https://blobfox.coffee/@jade"
+				use:popup={mastodonPopup}
+			>
+				<Mastodon size="36" />
+			</a>
 		</div>
 	</div>
 </div>

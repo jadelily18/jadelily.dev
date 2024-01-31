@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { MetaTags } from 'svelte-meta-tags';
-	import { Select, Tooltip } from '@lilydev/ui';
+	import { Tooltip } from '@lilydev/ui';
+	import Select from '$lib/components/base/Select.svelte';
 
 	import { title } from '$lib/stores/title';
 	import dayjs from 'dayjs';
@@ -44,7 +45,7 @@
 				placeholder="Sort order..."
 				id="blog_order_select"
 				bind:value={sortOrder}
-				class="w-48 duration-500"
+				globalClass="w-52"
 			/>
 		</div>
 
@@ -54,7 +55,7 @@
 					<a
 						class="
 						flex flex-col w-full p-5 rounded-lg border
-						border-zinc-400 dark:border-zinc-600 hover:bg-zinc-300 hover:dark:bg-zinc-800 transition-colors
+						border-zinc-400 dark:border-zinc-600 hover:bg-surface-100 dark:hover:bg-surface-800 transition-colors
 					"
 						href="/blog/{post.slug}"
 					>
@@ -75,7 +76,7 @@
 						<div class="flex gap-1">
 							{#each post.tags as tag}
 								<a
-									class="px-2 pt-0.5 pb-1 rounded-full bg-primary hover:bg-primary-hover transition-colors w-min text-xs text-zinc-900"
+									class="px-2 pt-0.5 pb-1 rounded-full bg-primary-500 hover:bg-primary-700 transition-colors w-min text-xs text-zinc-900"
 									href="?categories=[{tag}]"
 								>
 									#{tag}
