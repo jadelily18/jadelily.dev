@@ -1,0 +1,21 @@
+@import url('markdown.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+::selection {
+	@apply text-zinc-900 bg-primary-700;
+}
+
+@layer base {
+	.link {
+		@apply text-primary-700 dark:text-primary-500 underline transition-colors duration-500;
+	}
+}
+
+@layer components {
+	.divider {
+		@apply w-full border-t border-zinc-400 dark:border-zinc-600 transition-colors duration-500;
+	}
+}
