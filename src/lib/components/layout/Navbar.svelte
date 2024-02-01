@@ -28,7 +28,7 @@
 			>
 			<a
 				class="btn-sm h-min hover:variant-soft-primary hover:shadow-sm dark:hover:shadow-none rounded-lg transition-colors"
-				href="/social">Socials</a
+				href="/contact">Contact</a
 			>
 			<a
 				class="btn-sm line-through h-min hover:variant-soft-surface hover:shadow-sm dark:hover:shadow-none rounded-lg transition-colors"
@@ -74,7 +74,7 @@
 					>
 					<a
 						class="btn-sm hover:variant-soft-primary hover:shadow-sm dark:hover:shadow-none rounded-lg transition-colors !justify-start"
-						href="/social">Socials</a
+						href="/contact">Contact</a
 					>
 					<a
 						class="btn-sm line-through hover:variant-soft-surface hover:shadow-sm dark:hover:shadow-none rounded-lg transition-colors !justify-start"

@@ -2,8 +2,9 @@
 	import { MetaTags } from 'svelte-meta-tags';
 
 	import { title } from '$lib/stores/title';
-	import { Bluesky, Github, Mastodon, Modrinth, Tooltip } from '@lilydev/ui';
+	import { Bluesky, Discord, Github, Mastodon, Modrinth, Tooltip } from '@lilydev/ui';
 	import { popup, type PopupSettings } from '@skeletonlabs/skeleton';
+	import { Mail } from 'lucide-svelte';
 
 	let pageTitle = 'socials';
 
@@ -60,9 +61,26 @@
 </div>
 
 <div class="flex flex-col w-full place-items-center place-self-center md:px-12 my-12">
-	<div class="flex flex-col place-items-center">
-		<h1 class="text-5xl font-bold">Socials</h1>
-		<div class="divider mt-3 mb-1"></div>
+	<div class="flex flex-col place-items-center gap-2">
+		<h1 class="text-5xl font-bold">Contact</h1>
+		<hr class="w-full" />
+		<div class="flex mt-1.5">
+			<a
+				class="btn-sm flex place-items-center hover:variant-soft-primary rounded-lg gap-2 transition-all"
+				href="mailto:jade@lilydev.com"
+			>
+				<Mail size="24" />
+				<span class="text-lg">jade@lilydev.com</span>
+			</a>
+			<a
+				class="btn-sm flex place-items-center hover:variant-soft-primary rounded-lg gap-2 transition-all"
+				href="https://discord.com/users/175371646515937281"
+			>
+				<Discord size="24" />
+				<span class="text-lg">jadelily.</span>
+			</a>
+		</div>
+		<!-- <hr class="w-full" /> -->
 		<div class="flex gap-1">
 			<a
 				class="btn-icon btn-icon-lg dark:hover:bg-surface-700"
