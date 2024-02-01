@@ -34,6 +34,8 @@
 				<a class="link font-semibold" href="/portfolio">portfolio</a></span
 			>
 			or my GitHub from my <a class="link font-semibold" href="/contact">contact</a> page!
+			Feel free to read more about me in
+			<a class="link font-semibold" href="/blog/about_me">this blog post!</a>
 		</p>
 	</div>
 </div>

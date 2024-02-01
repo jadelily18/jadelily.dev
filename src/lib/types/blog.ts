@@ -1,4 +1,4 @@
-export type Tag = 'programming' | 'politics';
+export type Tag = 'programming' | 'politics' | 'personal';
 
 export type BlogPost = {
 	title: string;
