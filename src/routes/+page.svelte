@@ -33,7 +33,7 @@
 				>featured on my
 				<a class="link font-semibold" href="/portfolio">portfolio</a></span
 			>
-			or my GitHub from my <a class="link font-semibold" href="/social">socials</a> page!
+			or my GitHub from my <a class="link font-semibold" href="/contact">contact</a> page!
 		</p>
 	</div>
 </div>
