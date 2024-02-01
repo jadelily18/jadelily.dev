@@ -29,10 +29,8 @@
 			Hello! I'm a web and general software devloper from <span class="font-semibold"
 				>Owensboro, KY</span
 			>, working on lots of different open source projects. You can find some of these
-			<span class="line-through"
-				>featured on my
-				<a class="link font-semibold" href="/portfolio">portfolio</a></span
-			>
+			featured on my
+			<a class="link font-semibold" href="/portfolio">portfolio</a>
 			or my GitHub from my <a class="link font-semibold" href="/contact">contact</a> page!
 			Feel free to read more about me in
 			<a class="link font-semibold" href="/blog/about_me">this blog post!</a>
