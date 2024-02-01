@@ -24,7 +24,7 @@
 			<span class="text-primary-700 dark:text-primary-500 font-bold">Jade </span>
 			Nash
 		</h1>
-		<div class="divider mt-2 mb-1.5"></div>
+		<hr />
 		<p class="text-lg">
 			Hello! I'm a web and general software devloper from <span class="font-semibold"
 				>Owensboro, KY</span

@@ -29,7 +29,7 @@
 		</p>
 	</hgroup>
 
-	<div class="divider"></div>
+	<hr />
 
 	<div class="prose mb-6">
 		<svelte:component this={data.content} />
