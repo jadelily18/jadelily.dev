@@ -12,7 +12,7 @@ export const lilyTheme: CustomThemeConfig = {
 		'--theme-font-family-heading': `system-ui`,
 		'--theme-font-color-base': '0 0 0',
 		'--theme-font-color-dark': '255 255 255',
-		'--theme-rounded-base': '9999px',
+		'--theme-rounded-base': '0.5rem',
 		'--theme-rounded-container': '8px',
 		'--theme-border-base': '1px',
 		// =~= Theme On-X Colors =~=
