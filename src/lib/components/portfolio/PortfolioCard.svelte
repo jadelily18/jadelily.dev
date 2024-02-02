@@ -13,7 +13,9 @@
 	export let githubUrl: string | undefined = undefined;
 </script>
 
-<div class="card w-full flex flex-col sm:flex-row gap-3 px-3 py-3.5 h-fit sm:h-[175px]">
+<div
+	class="card w-full flex flex-col sm:flex-row gap-3 px-3 py-3.5 h-fit sm:h-[215px] lg:h-[175px]"
+>
 	{#if img}
 		<div>
 			<img

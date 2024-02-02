@@ -5,9 +5,8 @@
 	import type { SelectItem } from '$lib/types/base';
 
 	export let value: any | undefined;
-	export let placeholder: string;
 	export let id: string;
-	export let align: 'top' | 'bottom' = 'top';
+	export let align: 'top' | 'bottom' | 'left' | 'right' = 'top';
 	export let globalClass: string | undefined = undefined;
 
 	export let items: SelectItem[];
@@ -21,18 +20,18 @@
 
 	let label: string;
 
-	$: items.forEach((item) => {
-		if (value === item.value) {
-			label = item.label;
-		}
-	});
+	// $: items.forEach((item) => {
+	// 	if (value === item.value) {
+	// 		label = item.label;
+	// 	}
+	// });
 </script>
 
 <div class="card rounded-lg py-2 px-1.5 {globalClass}" data-popup={id}>
 	<ListBox
 		rounded="rounded-full"
 		active="
-			bg-primary-500/55 dark:variant-filled-primary dark:!text-zinc-100
+			bg-primary-500/35 dark:variant-soft-primary dark:!text-zinc-100
 		"
 	>
 		{#each items as item}
@@ -51,13 +50,12 @@
 <button
 	{...$$restProps}
 	class="
-		btn flex flex-row variant-filled dark:bg-surface-700/75 dark:text-zinc-200
-		justify-between rounded-lg transition-all dark:shadow-xl
+		btn-icon hover:variant-soft-primary
+		hover:shadow-sm dark:hover:shadow-none rounded-lg transition-colors
 		{$$restProps.class} {globalClass}
 	"
 	use:popup={popupSettings}
 	{id}
 >
-	<span>{value === undefined ? placeholder : label}</span>
-	<ChevronDown size="22" />
+	<slot name="icon" />
 </button>
