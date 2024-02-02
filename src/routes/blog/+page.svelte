@@ -5,6 +5,8 @@
 
 	import { title } from '$lib/stores/title';
 	import dayjs from 'dayjs';
+	import { ArrowDownWideNarrow, ArrowUpWideNarrow } from 'lucide-svelte';
+	import PostCard from '$lib/components/blog/PostCard.svelte';
 
 	let pageTitle = 'blog';
 
@@ -33,9 +35,9 @@
 	}}
 />
 
-<div class="flex flex-col w-full md:px-12 my-12 gap-6">
-	<div class="flex flex-col w-full max-w-[75rem] place-self-center gap-6">
-		<div class="flex justify-between w-full">
+<div class="flex flex-col w-full md:px-12 my-12 place-items-center place-self-center">
+	<div class="flex flex-col w-full max-w-[65rem] place-self-center gap-6">
+		<div class="flex justify-center gap-2">
 			<h1 class="text-4xl font-bold">Blog</h1>
 			<Select
 				items={[
@@ -44,46 +46,26 @@
 				]}
 				placeholder="Sort order..."
 				id="blog_order_select"
+				align="right"
 				bind:value={sortOrder}
-				globalClass="w-52"
-			/>
+				globalClass=""
+			>
+				<svelte:fragment slot="icon">
+					{#if sortOrder === 'descending'}
+						<ArrowDownWideNarrow />
+					{:else}
+						<ArrowUpWideNarrow />
+					{/if}
+				</svelte:fragment>
+			</Select>
 		</div>
 
-		<div class="flex flex-col place-items-center w-full gap-3">
+		<hr class="w-full" />
+
+		<div class="flex flex-col place-items-center gap-3">
 			{#if posts.length > 0}
 				{#each posts as post}
-					<a
-						class="
-						flex flex-col w-full p-5 rounded-lg border
-						border-zinc-400 dark:border-zinc-600 hover:bg-surface-100 dark:hover:bg-surface-800 transition-colors
-					"
-						href="/blog/{post.slug}"
-					>
-						<div class="flex justify-between">
-							<p class="text-xl font-semibold">{post.title}</p>
-							<Tooltip
-								align="left"
-								tooltip={dayjs.unix(post.timestamp).format('MMM DD, YYYY h:ma')}
-							>
-								<p class="text-right">
-									{dayjs.unix(post.timestamp).format('MMM DD, YYYY')}
-								</p>
-							</Tooltip>
-						</div>
-						<p class="text-zinc-700 dark:text-zinc-200 duration-500 mb-3 mt-1">
-							{post.description}
-						</p>
-						<div class="flex gap-1">
-							{#each post.tags as tag}
-								<a
-									class="px-2 pt-0.5 pb-1 rounded-full bg-primary-500 hover:bg-primary-700 transition-colors w-min text-xs text-zinc-900"
-									href="?categories=[{tag}]"
-								>
-									#{tag}
-								</a>
-							{/each}
-						</div>
-					</a>
+					<PostCard {post} />
 				{/each}
 			{:else}
 				<p class="flex text-lg">No blog posts found.</p>
