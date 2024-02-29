@@ -7,5 +7,5 @@ tags:
 published: false
 ---
 
-> **NOTE:**  
+> [!WARNING]  
 > Under construction! this blog post isn't fully written yet!

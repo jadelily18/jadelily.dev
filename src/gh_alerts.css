@@ -1,0 +1,83 @@
+:root {
+	--github-alert-default-color: rgb(175, 184, 193);
+	--github-alert-note-color: rgb(41, 117, 204);
+	--github-alert-tip-color: rgb(24, 117, 44);
+	--github-alert-important-color: rgb(130, 80, 223);
+	--github-alert-warning-color: rgb(141, 99, 16);
+	--github-alert-caution-color: rgb(204, 46, 41);
+
+	--github-alert-default-color-dark: rgb(175, 184, 193);
+	--github-alert-note-color-dark: rgb(80, 147, 223);
+	--github-alert-tip-color-dark: rgb(79, 228, 111);
+	--github-alert-important-color-dark: rgb(164, 116, 255);
+	--github-alert-warning-color-dark: rgb(218, 152, 20);
+	--github-alert-caution-color-dark: rgb(255, 62, 56);
+}
+
+.markdown-alert {
+	@apply pl-8 my-2 border-l-4 border-[var(--github-alert-default-color)] dark:border-[var(--github-alert-default-color-dark)];
+	@apply rounded-md;
+
+	.markdown-alert-title {
+		@apply pb-0;
+
+		p {
+			@apply drop-shadow-sm dark:drop-shadow-none;
+		}
+	}
+}
+
+.markdown-alert-note {
+	@apply border-l-[var(--github-alert-note-color)] dark:border-[var(--github-alert-note-color-dark)];
+
+	.markdown-alert-title {
+		@apply text-[var(--github-alert-note-color)] dark:text-[var(--github-alert-note-color-dark)];
+	}
+}
+
+.markdown-alert-tip {
+	@apply border-l-[var(--github-alert-tip-color)] dark:border-[var(--github-alert-tip-color-dark)];
+
+	.markdown-alert-title {
+		@apply text-[var(--github-alert-tip-color)] dark:text-[var(--github-alert-tip-color-dark)];
+	}
+}
+
+.markdown-alert-important {
+	@apply border-l-[var(--github-alert-important-color)] dark:border-[var(--github-alert-important-color-dark)];
+
+	.markdown-alert-title {
+		@apply text-[var(--github-alert-important-color)] dark:text-[var(--github-alert-important-color-dark)];
+	}
+}
+
+.markdown-alert-warning {
+	@apply border-l-[var(--github-alert-warning-color)] dark:border-[var(--github-alert-warning-color-dark)];
+
+	.markdown-alert-title {
+		@apply text-[var(--github-alert-warning-color)] dark:text-[var(--github-alert-warning-color-dark)];
+	}
+}
+
+.markdown-alert-caution {
+	@apply border-l-[var(--github-alert-caution-color)] dark:border-[var(--github-alert-caution-color-dark)];
+
+	.markdown-alert-title {
+		@apply text-[var(--github-alert-caution-color)] dark:text-[var(--github-alert-caution-color-dark)];
+	}
+}
+
+.markdown-alert-header {
+	display: inline-flex;
+	margin-bottom: 4px;
+	align-items: center;
+}
+
+.markdown-alert-title {
+	display: flex;
+	align-items: center;
+
+	svg {
+		margin-right: 8px;
+	}
+}

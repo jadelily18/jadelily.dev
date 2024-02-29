@@ -1,4 +1,5 @@
 @import url('markdown.css');
+@import url('gh_alerts.css');
 
 @tailwind base;
 @tailwind components;
