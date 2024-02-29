@@ -77,7 +77,7 @@
 				href="https://discord.com/users/175371646515937281"
 			>
 				<Discord size="24" />
-				<span class="text-lg">jadelily.</span>
+				<span class="text-lg">jade.gay</span>
 			</a>
 		</div>
 		<!-- <hr class="w-full" /> -->
