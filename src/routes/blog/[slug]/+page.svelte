@@ -27,7 +27,12 @@
 	let { data } = $props();
 </script>
 
-<div class="flex flex-col px-30 gap-4">
+<svelte:head>
+	<title>{data.post.title} — Blog</title>
+</svelte:head>
+
+<!-- <div class="flex flex-col sm:px-16 md:px-20 xl:px-40 gap-4"> -->
+<div class="flex flex-col gap-4">
 	<h1 class="text-3xl font-bold">{data.post.title}</h1>
 	<p class="text-lg text-muted-foreground">{data.post.summary}</p>
 	<Separator />

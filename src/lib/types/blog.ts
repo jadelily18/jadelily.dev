@@ -5,6 +5,8 @@ interface Post {
 	timestamp: number;
 	tags?: string[];
 	content: string;
+	coverImg?: string;
+	coverAlt?: string;
 }
 
 export type { Post };

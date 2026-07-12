@@ -23,6 +23,8 @@ function getPosts(): Post[] {
 			summary: data.summary,
 			timestamp: data.timestamp,
 			tags: data.tags,
+			coverImg: data.coverImg,
+			coverAlt: data.coverAlt,
 		} satisfies Post;
 	});
 

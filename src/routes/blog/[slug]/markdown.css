@@ -3,11 +3,12 @@
 .prose {
 	p {
 		&:has(img) {
-			@apply flex justify-center;
+			/* @apply flex justify-center; */
+			@apply flex justify-center xl:justify-start xl:pl-6;
 		}
 
 		img {
-			@apply max-h-120 overflow-hidden rounded-lg border border-border shadow-md;
+			@apply max-h-120 overflow-hidden rounded-lg shadow-md outline outline-border;
 		}
 	}
 

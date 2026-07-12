@@ -78,10 +78,10 @@
 	</Nav.Link>
 {/snippet}
 
-<div transition:fade>
+<div class="sticky top-0 z-10" transition:fade>
 	<Nav.Root
 		viewport={isMobile.current}
-		class="px-2 sm:px-20 2xl:px-80 py-4 max-w-full *:w-full sticky"
+		class="px-2 sm:px-20 2xl:px-80 py-4 max-w-full *:w-full backdrop-blur-sm"
 	>
 		<Nav.List class="flex justify-between">
 			<Nav.Item>

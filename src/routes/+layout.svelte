@@ -14,8 +14,13 @@
 <ModeWatcher />
 <main class="flex flex-col w-screen min-h-screen">
 	<Navbar />
-	<div class="px-4 sm:px-20 2xl:px-80 grow py-2 sm:py-10">
-		{@render children()}
+	<div class="flex justify-center w-full">
+		<div
+			// class="flex justify-center w-full md:w-200 px-4 sm:px-20 2xl:px-80 grow py-2 sm:py-10"
+			class="flex w-full px-2 sm:px-20 lg:px-0 md:max-w-200 grow py-2 sm:py-10"
+		>
+			{@render children()}
+		</div>
 	</div>
 	<Footer />
 </main>
