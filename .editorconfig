@@ -1,0 +1,3 @@
+[*.{svelte,js,ts,json,css}]
+indent_style = tab
+tab_width = 4

@@ -1,0 +1,22 @@
+@reference "../../layout.css";
+
+.prose {
+	p {
+		&:has(img) {
+			@apply flex justify-center;
+		}
+
+		img {
+			@apply max-h-120 overflow-hidden rounded-lg border border-border shadow-md;
+		}
+	}
+
+	pre {
+		@apply rounded-lg border border-border shadow-lg;
+	}
+
+	:not(pre) > code {
+		@apply before:content-[''] after:content-[''];
+		@apply rounded bg-foreground/15 px-1.5 dark:bg-foreground/20;
+	}
+}
