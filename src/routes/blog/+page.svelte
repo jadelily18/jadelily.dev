@@ -144,7 +144,7 @@
 			</div>
 		{:else}
 			<span class="self-center text-sm text-muted-foreground"
-				>No more posts :(</span
+				>{"No more posts :("}</span
 			>
 		{/if}
 	{:else}

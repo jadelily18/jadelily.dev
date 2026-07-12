@@ -11,7 +11,7 @@
 	import * as Dropdown from "@uilib/dropdown-menu";
 	import * as Nav from "@uilib/navigation-menu";
 
-	import PawPrint from "$lib/assets/icons/pawprint.svg?component";
+	import PawPrint from "$lib/assets/icons/flaticon/pawprint.svg?component";
 
 	import { page } from "$app/state";
 	import { ThemeSwitcher } from "@components/app";
