@@ -4,7 +4,7 @@
 	p {
 		&:has(img) {
 			/* @apply flex justify-center; */
-			@apply flex justify-center xl:justify-start xl:pl-6;
+			@apply flex justify-center;
 		}
 
 		img {

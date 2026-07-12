@@ -12,11 +12,15 @@ function getPosts(): Post[] {
 		import: "default",
 	}) as Record<string, string>;
 
-	const posts = Object.entries(files).map(([path, raw]) => {
-		const { data, content } = matter(raw);
+	let posts: Post[] = [];
+
+	for (let path in files) {
+		const { data, content } = matter(files[path]);
+		// if (!data.published) continue;
+
 		const slug = path.split("/").pop()!.replace(".md", "");
 
-		return {
+		const post = {
 			slug,
 			content,
 			title: data.title,
@@ -25,8 +29,11 @@ function getPosts(): Post[] {
 			tags: data.tags,
 			coverImg: data.coverImg,
 			coverAlt: data.coverAlt,
+			published: data.published,
 		} satisfies Post;
-	});
+
+		posts.push(post);
+	}
 
 	return posts.sort((a, b) => b.timestamp - a.timestamp);
 }

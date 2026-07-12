@@ -7,6 +7,7 @@ interface Post {
 	content: string;
 	coverImg?: string;
 	coverAlt?: string;
+	published?: boolean;
 }
 
 export type { Post };

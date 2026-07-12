@@ -4,7 +4,7 @@ import { error } from "@sveltejs/kit";
 export function load({ params }) {
 	const post = getPost(params.slug);
 
-	if (post) {
+	if (post && post.published) {
 		return {
 			post,
 		};
