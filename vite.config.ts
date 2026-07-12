@@ -6,6 +6,19 @@ import svg from "@poppanator/sveltekit-svg";
 
 import { defineConfig } from "vite";
 
+import { execSync } from "child_process";
+
+function gitInfo(cmd: string, fallback = "unknown") {
+	try {
+		return execSync(cmd).toString().trim();
+	} catch {
+		return fallback;
+	}
+}
+
+const commitSha = gitInfo("git rev-parse HEAD");
+const branch = gitInfo("git rev-parse --abbrev-ref HEAD");
+
 export default defineConfig({
 	plugins: [
 		tailwindcss(),
@@ -30,4 +43,8 @@ export default defineConfig({
 		}),
 		svg({ includePaths: ["./src/lib/assets/icons"] }),
 	],
+	define: {
+		__GIT_COMMIT_SHA__: JSON.stringify(commitSha),
+		__GIT_BRANCH__: JSON.stringify(branch),
+	},
 });

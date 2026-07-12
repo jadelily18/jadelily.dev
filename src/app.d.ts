@@ -10,6 +10,9 @@ declare global {
 		// interface PageState {}
 		// interface Platform {}
 	}
+
+	declare const __GIT_COMMIT_SHA__: string;
+	declare const __GIT_BRANCH__: string;
 }
 
 export {};

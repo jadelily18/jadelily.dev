@@ -14,12 +14,17 @@
 	import type { Post } from "$types/blog";
 
 	import dayjs from "dayjs";
+	import { formatPageTitle } from "$lib/utils";
 
 	let { data } = $props();
 
 	const cardImgFallbackStyles =
 		"transition-colors text-muted-foreground bg-pink-950/15 hover:bg-pink-950/5 dark:bg-pink-500/10 dark:hover:bg-pink-500/15";
 </script>
+
+<svelte:head>
+	<title>{formatPageTitle("Blog")}</title>
+</svelte:head>
 
 {#snippet cardImgOverlay(post: Post)}
 	<span

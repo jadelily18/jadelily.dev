@@ -12,6 +12,7 @@
 
 	import { ProseHeader } from "@components/blog";
 	import dayjs from "dayjs";
+	import { formatPageTitle } from "$lib/utils";
 
 	const comarkPlugins = [
 		highlight({
@@ -30,7 +31,7 @@
 </script>
 
 <svelte:head>
-	<title>{data.post.title} — Blog</title>
+	<title>{formatPageTitle(data.post.title, "Blog")}</title>
 </svelte:head>
 
 <div class="flex flex-col gap-8">
