@@ -1,8 +1,5 @@
 <script lang="ts">
-	import { HeartIcon } from "@lucide/svelte";
-
 	import PawPrint from "$lib/assets/icons/flaticon/pawprint.svg?component";
-	import { Button } from "@uilib/button";
 
 	const gitBaseUrl = "https://github.com/jadelily18/jadelily.dev";
 	const gitSha = __GIT_COMMIT_SHA__.slice(0, 8);
@@ -15,7 +12,6 @@
 <div
 	class="flex flex-col w-full justify-center items-center py-4 text-muted-foreground text-sm gap-1"
 >
-	<!-- <HeartIcon size="18" /> -->
 	<span class="inline-flex gap-1">
 		made with
 		<button
