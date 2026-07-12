@@ -5,12 +5,13 @@
 	import { IsMobile } from "$lib/shadcn/hooks/is-mobile.svelte";
 	import { cn } from "$lib/shadcn/utils";
 
-	import { EllipsisVerticalIcon, PawPrintIcon } from "@lucide/svelte";
+	import { EllipsisVerticalIcon } from "@lucide/svelte";
 
-	import * as Nav from "@uilib/navigation-menu";
 	import { Button } from "@uilib/button";
-	// import * as Popover from "@uilib/popover";
 	import * as Dropdown from "@uilib/dropdown-menu";
+	import * as Nav from "@uilib/navigation-menu";
+
+	import PawPrint from "$lib/assets/icons/pawprint.svg?component";
 
 	import { page } from "$app/state";
 	import { ThemeSwitcher } from "@components/app";
@@ -91,8 +92,7 @@
 							href="/"
 							class={cn(itemBaseStyles, "p-2 rounded-full")}
 						>
-							<!-- temporary; i hate this icon -->
-							<PawPrintIcon />
+							<PawPrint width="24" height="24" />
 						</a>
 					{/snippet}
 				</Nav.Link>

@@ -1,6 +1,9 @@
-import tailwindcss from "@tailwindcss/vite";
 import adapter from "@sveltejs/adapter-auto";
+
+import tailwindcss from "@tailwindcss/vite";
 import { sveltekit } from "@sveltejs/kit/vite";
+import svg from "@poppanator/sveltekit-svg";
+
 import { defineConfig } from "vite";
 
 export default defineConfig({
@@ -25,5 +28,6 @@ export default defineConfig({
 				$types: "src/lib/types",
 			},
 		}),
+		svg({ includePaths: ["./src/lib/assets/icons"] }),
 	],
 });
