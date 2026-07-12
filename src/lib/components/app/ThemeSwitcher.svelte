@@ -26,11 +26,12 @@
 {#snippet groupItem(props: ItemProps)}
 	<Label for="{props.value}-mode">
 		<div
-			class="flex justify-between items-center w-full rounded-lg border border-border p-2"
+			data-selected={userPrefersMode.current === props.value}
+			class="flex justify-between items-center w-full rounded-lg border border-border p-2 group/radio-item bg-transparent data-[selected=true]:bg-accent transition-colors duration-100"
 		>
 			<div class={classFromTheme(props.value)}>
 				<div
-					class="flex flex-col gap-1 w-16 p-2 bg-background rounded-lg border border-border"
+					class="flex flex-col gap-1 w-16 p-2 bg-background rounded-sm border border-border"
 				>
 					<div
 						class="w-[70%] h-2 rounded-full bg-muted-foreground"
@@ -41,7 +42,10 @@
 				</div>
 			</div>
 			<div class="flex gap-2">
-				<span>{props.label}</span>
+				<span
+					class="text-muted-foreground group-data-[selected=true]/radio-item:text-foreground"
+					>{props.label}</span
+				>
 				<RadioGroup.Item id="{props.value}-mode" value={props.value} />
 			</div>
 		</div>

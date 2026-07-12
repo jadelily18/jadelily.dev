@@ -8,6 +8,7 @@
 	import { EllipsisVerticalIcon } from "@lucide/svelte";
 
 	import { Button } from "@uilib/button";
+	import * as Drawer from "@uilib/drawer";
 	import * as Dropdown from "@uilib/dropdown-menu";
 	import * as Nav from "@uilib/navigation-menu";
 
@@ -79,6 +80,12 @@
 	</Nav.Link>
 {/snippet}
 
+{#snippet overflowTrigger(props: Record<string, unknown>)}
+	<Button variant="ghost" size="icon" {...props}>
+		<EllipsisVerticalIcon />
+	</Button>
+{/snippet}
+
 <div class="sticky top-0 z-10" transition:fade>
 	<Nav.Root
 		viewport={isMobile.current}
@@ -104,23 +111,39 @@
 					</Nav.Item>
 				{/each}
 
-				<Dropdown.Root>
-					<Dropdown.Trigger>
-						{#snippet child({ props })}
-							<Button variant="ghost" size="icon" {...props}>
-								<EllipsisVerticalIcon />
-							</Button>
-						{/snippet}
-					</Dropdown.Trigger>
-					<Dropdown.Content align="end">
-						<Dropdown.Group>
-							<Dropdown.Label>Theme</Dropdown.Label>
-							<div class="px-2 pb-2">
+				{#if isMobile.current}
+					<Drawer.Root>
+						<Drawer.Trigger>
+							{#snippet child({ props })}
+								{@render overflowTrigger(props)}
+							{/snippet}
+						</Drawer.Trigger>
+						<Drawer.Content>
+							<Drawer.Header>
+								<Drawer.Title>Theme</Drawer.Title>
+							</Drawer.Header>
+							<div class="p-2">
 								<ThemeSwitcher />
 							</div>
-						</Dropdown.Group>
-					</Dropdown.Content>
-				</Dropdown.Root>
+						</Drawer.Content>
+					</Drawer.Root>
+				{:else}
+					<Dropdown.Root>
+						<Dropdown.Trigger>
+							{#snippet child({ props })}
+								{@render overflowTrigger(props)}
+							{/snippet}
+						</Dropdown.Trigger>
+						<Dropdown.Content align="end">
+							<Dropdown.Group>
+								<Dropdown.Label>Theme</Dropdown.Label>
+								<div class="px-2 pb-2">
+									<ThemeSwitcher />
+								</div>
+							</Dropdown.Group>
+						</Dropdown.Content>
+					</Dropdown.Root>
+				{/if}
 			</div>
 		</Nav.List>
 	</Nav.Root>
