@@ -12,7 +12,8 @@
 	import * as Dropdown from "@uilib/dropdown-menu";
 	import * as Nav from "@uilib/navigation-menu";
 
-	import PawPrint from "$lib/assets/icons/flaticon/pawprint.svg?component";
+	// import PawPrint from "$lib/assets/icons/flaticon/pawprint.svg?component";
+	import { Icon, GenericIcon } from "@components/icon";
 
 	import { page } from "$app/state";
 	import { ThemeSwitcher } from "@components/app";
@@ -35,6 +36,10 @@
 		{
 			title: "Blog",
 			href: "/blog",
+		},
+		{
+			title: "Work",
+			href: "/work",
 		},
 		{
 			title: "Art",
@@ -81,7 +86,7 @@
 {/snippet}
 
 {#snippet overflowTrigger(props: Record<string, unknown>)}
-	<Button variant="ghost" size="icon" {...props}>
+	<Button class="cursor-pointer" variant="ghost" size="icon" {...props}>
 		<EllipsisVerticalIcon />
 	</Button>
 {/snippet}
@@ -99,7 +104,7 @@
 							href="/"
 							class={cn(itemBaseStyles, "p-2 rounded-full")}
 						>
-							<PawPrint width="24" height="24" />
+							<Icon icon={GenericIcon.PawPrint} />
 						</a>
 					{/snippet}
 				</Nav.Link>

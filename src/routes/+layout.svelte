@@ -6,6 +6,18 @@
 
 	import { Navbar } from "@components/layout";
 	import Footer from "@components/layout/Footer.svelte";
+	import { onNavigate } from "$app/navigation";
+
+	onNavigate((navigation) => {
+		if (!document.startViewTransition) return;
+
+		return new Promise((resolve) => {
+			document.startViewTransition(async () => {
+				resolve();
+				await navigation.complete;
+			});
+		});
+	});
 
 	let { children } = $props();
 </script>

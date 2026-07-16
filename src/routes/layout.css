@@ -3,6 +3,8 @@
 @import "shadcn-svelte/tailwind.css";
 @import "@fontsource-variable/inter";
 
+@import "./animations.css";
+
 @custom-variant dark (&:is(.dark *));
 @plugin "@tailwindcss/typography";
 

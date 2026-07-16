@@ -14,9 +14,12 @@
 
 <div class="flex flex-col justify-center items-center gap-4 grow">
 	<div class="flex flex-col items-center">
-		<span class="inline-flex items-center text-4xl font-bold gap-1">
+		<span
+			class="inline-flex items-center text-4xl font-bold gap-1"
+			aria-label="404 error"
+		>
 			{#if page.status === 404}
-				4<PawPrint class="size-8" />4
+				4<PawPrint class="size-8" aria-hidden="true" />4
 			{:else}
 				{page.status}
 			{/if}
