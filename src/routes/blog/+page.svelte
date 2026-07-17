@@ -1,21 +1,16 @@
 <script lang="ts">
-	import {
-		CameraOffIcon,
-		FileIcon,
-		HashIcon,
-		StarIcon,
-	} from "@lucide/svelte";
+	import { StickyNoteXIcon, ImageOffIcon, StarIcon } from "@lucide/svelte";
 
 	import * as Empty from "@uilib/empty";
 	import { Separator } from "@uilib/separator";
 	import { cn } from "$lib/shadcn/utils";
 
-	import { Tag } from "@components/blog";
-	import type { Post } from "$types/blog";
+	import { BlogPostCard, Tag } from "@components/blog";
 
 	import dayjs from "dayjs";
 	import { formatPageTitle } from "$lib/utils";
 	import { Skeleton } from "@uilib/skeleton";
+	import { GenericIcon, Icon } from "@components/icon";
 
 	let { data } = $props();
 
@@ -27,38 +22,6 @@
 	<title>{formatPageTitle("Blog")}</title>
 </svelte:head>
 
-{#snippet cardImgOverlay(post: Post)}
-	<span
-		class="inline-flex gap-0.5 items-center left-0 bottom-0 absolute text-xs text-muted-foreground p-1 pr-2 bg-background rounded-tr-sm"
-	>
-		<HashIcon size="12" />
-		tags
-	</span>
-	<span
-		class="right-0 bottom-0 absolute text-xs text-muted-foreground font-semibold p-1 pl-2 bg-background rounded-tl-sm"
-	>
-		{dayjs(new Date(post.timestamp * 1000)).format("MMM D, YYYY")}
-	</span>
-{/snippet}
-
-{#snippet cardImg(post: Post)}
-	{#if post.coverImg}
-		<div class="relative h-36 w-full">
-			<img
-				class="absolute w-full h-full object-cover"
-				src={post.coverImg}
-				alt={post.coverAlt || ""}
-			/>
-			{@render cardImgOverlay(post)}
-		</div>
-	{:else}
-		<div class={cn("relative h-36 w-full", cardImgFallbackStyles)}>
-			<CameraOffIcon class="absolute left-1/2 top-1/2 -translate-1/2" />
-			{@render cardImgOverlay(post)}
-		</div>
-	{/if}
-{/snippet}
-
 <div class="flex flex-col w-full h-full grow gap-6">
 	<h1 class="text-4xl font-bold">Blog</h1>
 
@@ -66,7 +29,11 @@
 		<div
 			class="flex flex-wrap md:flex-nowrap w-full min-h-50 rounded-2xl md:gap-4 border-border border overflow-hidden divide-sidebar-border"
 		>
-			<div class="min-w-full md:min-w-80 h-50 p-2 md:pr-0">
+			<div class="relative min-w-full md:min-w-80 h-50 p-2 md:pr-0">
+				<Icon
+					class="absolute left-1/2 top-1/2 -translate-1/2 animate-pulse"
+					icon={GenericIcon.PawPrint}
+				/>
 				<Skeleton class="h-full" />
 			</div>
 			<div
@@ -90,7 +57,6 @@
 						<Skeleton class="h-5 w-16" />
 					</div>
 				</div>
-				<!-- <Skeleton class="h-4 w-48" /> -->
 			</div>
 		</div>
 	{:then posts}
@@ -115,7 +81,7 @@
 								cardImgFallbackStyles,
 							)}
 						>
-							<CameraOffIcon />
+							<ImageOffIcon />
 						</div>
 					{/if}
 				</a>
@@ -159,27 +125,7 @@
 				>
 					{#each posts as post}
 						{#if post !== posts[0]}
-							<div
-								class="rounded-xl border border-border overflow-hidden"
-							>
-								<a
-									class="w-full transition-[filter] hover:brightness-110"
-									href="/blog/{post.slug}"
-								>
-									{@render cardImg(post)}
-								</a>
-								<div class="flex flex-col p-3 gap-1">
-									<a
-										class="hover:underline font-semibold"
-										href="/blog/{post.slug}"
-									>
-										{post.title}
-									</a>
-									<span class="text-muted-foreground text-sm"
-										>{post.summary}</span
-									>
-								</div>
-							</div>
+							<BlogPostCard {post} />
 						{/if}
 					{/each}
 				</div>
@@ -195,7 +141,7 @@
 				<Empty.Root>
 					<Empty.Header>
 						<Empty.Media variant="icon">
-							<FileIcon />
+							<StickyNoteXIcon />
 						</Empty.Media>
 						<Empty.Title>No blog posts!</Empty.Title>
 					</Empty.Header>

@@ -2,10 +2,8 @@
 	"files.associations": {
 		"*.css": "tailwindcss"
 	},
-	"typescript.preferences.autoImportSpecifierExcludeRegexes": [
-		"^\\$lib/shadcn/components/ui"
-	],
-	"javascript.preferences.autoImportSpecifierExcludeRegexes": [
+	"js/ts.preferences.importModuleSpecifierEnding": "minimal",
+	"js/ts.preferences.autoImportSpecifierExcludeRegexes": [
 		"^\\$lib/shadcn/components/ui"
 	],
 	"tailwindCSS.classAttributes": [
