@@ -1,6 +1,4 @@
 <script lang="ts">
-	import "./markdown.css";
-
 	import * as Bread from "@uilib/breadcrumb";
 	import { Separator } from "@uilib/separator";
 

@@ -38,8 +38,8 @@
 			href: "/blog",
 		},
 		{
-			title: "Work",
-			href: "/work",
+			title: "Resume",
+			href: "/resume",
 		},
 		{
 			title: "Art",

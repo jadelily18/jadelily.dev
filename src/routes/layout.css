@@ -4,6 +4,7 @@
 @import "@fontsource-variable/inter";
 
 @import "./animations.css";
+@import "./markdown.css";
 
 @custom-variant dark (&:is(.dark *));
 @plugin "@tailwindcss/typography";
