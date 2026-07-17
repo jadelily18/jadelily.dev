@@ -79,7 +79,7 @@
 							href="https://vgen.co/painic"
 							target="_blank"
 						>
-							Drawn by @painic
+							Art by @painic
 						</a>
 					{/snippet}
 				</Attribution>
