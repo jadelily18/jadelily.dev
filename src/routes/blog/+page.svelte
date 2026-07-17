@@ -15,6 +15,7 @@
 
 	import dayjs from "dayjs";
 	import { formatPageTitle } from "$lib/utils";
+	import { Skeleton } from "@uilib/skeleton";
 
 	let { data } = $props();
 
@@ -59,112 +60,150 @@
 {/snippet}
 
 <div class="flex flex-col w-full h-full grow gap-6">
-	{#if data.posts.length > 0}
-		<h1 class="text-4xl font-bold">Blog</h1>
+	<h1 class="text-4xl font-bold">Blog</h1>
+
+	{#await data.posts}
 		<div
-			class="flex flex-wrap md:flex-nowrap w-full *:h-50 rounded-2xl border-border border overflow-hidden divide-sidebar-border"
+			class="flex flex-wrap md:flex-nowrap w-full min-h-50 rounded-2xl md:gap-4 border-border border overflow-hidden divide-sidebar-border"
 		>
-			<a
-				class="w-full min-w-80 md:w-80 transition-[filter] hover:brightness-110"
-				href="/blog/{data.posts[0].slug}"
+			<div class="min-w-full md:min-w-80 h-50 p-2 md:pr-0">
+				<Skeleton class="h-full" />
+			</div>
+			<div
+				class="flex flex-col justify-between w-full min-h-50 gap-6 p-4 md:pl-0"
 			>
-				{#if data.posts[0].coverImg}
-					<div class="relative h-48 w-full">
-						<img
-							class="absolute w-full h-full object-cover"
-							src={data.posts[0].coverImg}
-							alt={data.posts[0].coverAlt || ""}
-						/>
+				<div class="flex flex-col gap-2.5">
+					<div class="flex flex-col w-full gap-2">
+						<Skeleton class="h-4 w-30" />
+						<Skeleton class="h-7 w-64" />
 					</div>
-				{:else}
-					<div
-						class={cn(
-							"flex justify-center items-center h-full w-full",
-							cardImgFallbackStyles,
-						)}
-					>
-						<CameraOffIcon />
+					<div class="flex flex-col w-full gap-2">
+						<Skeleton class="h-4.5 w-[90%]" />
+						<Skeleton class="h-4.5 w-[69%]" />
 					</div>
-				{/if}
-			</a>
-			<div class="flex flex-col w-full gap-1 p-4">
-				<span
-					class="inline-flex items-center font-semibold text-muted-foreground gap-1 text-sm"
-				>
-					<StarIcon size="14" />
-					Featured
-				</span>
-				<a
-					class="text-2xl font-bold hover:underline"
-					href="/blog/{data.posts[0].slug}">{data.posts[0].title}</a
-				>
-				<span class="text-muted-foreground grow">
-					{data.posts[0].summary}
-				</span>
-				<div class="flex items-center justify-between">
-					<span class="text-muted-foreground text-sm"
-						>{dayjs(
-							new Date(data.posts[0].timestamp * 1000),
-						).format("MMM D, YYYY")}</span
-					>
+				</div>
+				<div class="flex flex-wrap gap-2 items-center justify-between">
+					<Skeleton class="h-4 w-32" />
 					<div class="flex gap-1">
-						{#each data.posts[0].tags as tag}
-							<Tag name={tag} />
-						{/each}
+						<Skeleton class="h-5 w-18" />
+						<Skeleton class="h-5 w-24" />
+						<Skeleton class="h-5 w-16" />
+					</div>
+				</div>
+				<!-- <Skeleton class="h-4 w-48" /> -->
+			</div>
+		</div>
+	{:then posts}
+		{#if posts.length > 0}
+			<div
+				class="flex flex-wrap md:flex-nowrap w-full min-h-50 rounded-2xl border-border border overflow-hidden divide-sidebar-border"
+			>
+				<a
+					class="w-full min-w-80 md:w-80 transition-[filter] hover:brightness-110"
+					href="/blog/{posts[0].slug}"
+				>
+					{#if posts[0].coverImg}
+						<img
+							class="w-full h-full object-cover"
+							src={posts[0].coverImg}
+							alt={posts[0].coverAlt || ""}
+						/>
+					{:else}
+						<div
+							class={cn(
+								"flex justify-center items-center h-full w-full",
+								cardImgFallbackStyles,
+							)}
+						>
+							<CameraOffIcon />
+						</div>
+					{/if}
+				</a>
+				<div class="flex flex-col justify-between gap-4 p-4">
+					<div class="flex flex-col w-full gap-1">
+						<span
+							class="inline-flex items-center font-semibold text-muted-foreground gap-1 text-sm"
+						>
+							<StarIcon size="14" />
+							Featured
+						</span>
+						<a
+							class="text-2xl font-bold hover:underline"
+							href="/blog/{posts[0].slug}">{posts[0].title}</a
+						>
+						<span class="text-muted-foreground grow">
+							{posts[0].summary}
+						</span>
+					</div>
+					<div
+						class="flex flex-wrap items-center justify-between gap-2"
+					>
+						<span class="text-muted-foreground text-sm"
+							>{dayjs(new Date(posts[0].timestamp * 1000)).format(
+								"MMM D, YYYY",
+							)}</span
+						>
+						<div class="flex flex-wrap gap-1">
+							{#each posts[0].tags as tag}
+								<Tag name={tag} />
+							{/each}
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		{#if data.posts.length > 1}
-			<Separator />
-			<h2 class="font-semibold text-muted-foreground">More posts</h2>
-			<div
-				class="grid grid-cols-auto md:grid-cols-2 lg:grid-cols-3 gap-4"
-			>
-				{#each data.posts as post}
-					{#if post !== data.posts[0]}
-						<div
-							class="rounded-xl border border-border overflow-hidden"
-						>
-							<a
-								class="w-full transition-[filter] hover:brightness-110"
-								href="/blog/{post.slug}"
+			{#if posts.length > 1}
+				<Separator />
+				<h2 class="font-semibold text-muted-foreground">More posts</h2>
+				<div
+					class="grid grid-cols-auto md:grid-cols-2 lg:grid-cols-3 gap-4"
+				>
+					{#each posts as post}
+						{#if post !== posts[0]}
+							<div
+								class="rounded-xl border border-border overflow-hidden"
 							>
-								{@render cardImg(post)}
-							</a>
-							<div class="flex flex-col p-3 gap-1">
 								<a
-									class="hover:underline font-semibold"
+									class="w-full transition-[filter] hover:brightness-110"
 									href="/blog/{post.slug}"
 								>
-									{post.title}
+									{@render cardImg(post)}
 								</a>
-								<span class="text-muted-foreground text-sm"
-									>{post.summary}</span
-								>
+								<div class="flex flex-col p-3 gap-1">
+									<a
+										class="hover:underline font-semibold"
+										href="/blog/{post.slug}"
+									>
+										{post.title}
+									</a>
+									<span class="text-muted-foreground text-sm"
+										>{post.summary}</span
+									>
+								</div>
 							</div>
-						</div>
-					{/if}
-				{/each}
-			</div>
+						{/if}
+					{/each}
+				</div>
+			{:else}
+				<span class="self-center text-sm text-muted-foreground"
+					>{"No more posts :("}</span
+				>
+			{/if}
 		{:else}
-			<span class="self-center text-sm text-muted-foreground"
-				>{"No more posts :("}</span
+			<div
+				class="flex w-full h-full grow mb-16 justify-center items-center"
 			>
+				<Empty.Root>
+					<Empty.Header>
+						<Empty.Media variant="icon">
+							<FileIcon />
+						</Empty.Media>
+						<Empty.Title>No blog posts!</Empty.Title>
+					</Empty.Header>
+					<Empty.Description>
+						{"I haven't made a blog post yet :("}
+					</Empty.Description>
+				</Empty.Root>
+			</div>
 		{/if}
-	{:else}
-		<div class="flex w-full h-full grow mb-16 justify-center items-center">
-			<Empty.Root>
-				<Empty.Header>
-					<Empty.Media variant="icon">
-						<FileIcon />
-					</Empty.Media>
-					<Empty.Title>No blog posts!</Empty.Title>
-				</Empty.Header>
-				<Empty.Description>
-					{"I haven't made a blog post yet :("}
-				</Empty.Description>
-			</Empty.Root>
-		</div>
-	{/if}
+	{/await}
 </div>
