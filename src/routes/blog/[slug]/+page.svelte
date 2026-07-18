@@ -11,6 +11,8 @@
 	import { ProseHeader } from "@components/blog";
 	import dayjs from "dayjs";
 	import { formatPageTitle } from "$lib/utils";
+	import { Skeleton } from "@uilib/skeleton";
+	import type { Post } from "$types/blog";
 
 	const comarkPlugins = [
 		highlight({
@@ -26,10 +28,21 @@
 	});
 
 	let { data } = $props();
+
+	let pageTitle = $state<string | undefined>(undefined);
+
+	let pagePost = $state<Post | undefined>(undefined);
+
+	$effect(() => {
+		data.post.then((post) => {
+			if (post) pageTitle = post.title;
+			if (post) pagePost = post;
+		});
+	});
 </script>
 
 <svelte:head>
-	<title>{formatPageTitle(data.post.title, "Blog")}</title>
+	<title>{formatPageTitle("Blog", pageTitle)}</title>
 </svelte:head>
 
 <div class="flex flex-col gap-8">
@@ -40,33 +53,45 @@
 			</Bread.Item>
 			<Bread.Separator />
 			<Bread.Item>
-				<Bread.Page>{data.post.title}</Bread.Page>
+				<Bread.Page>
+					{#if pagePost}
+						{pageTitle}
+					{:else}
+						<Skeleton class="h-4 w-24" />
+					{/if}
+				</Bread.Page>
 			</Bread.Item>
 		</Bread.List>
 	</Bread.Root>
-	<div class="flex flex-col gap-4">
-		<h1 class="text-4xl font-bold">{data.post.title}</h1>
-		<p class="text-lg text-muted-foreground">{data.post.summary}</p>
-		<span class="text-sm text-muted-foreground"
-			>{dayjs(new Date(data.post.timestamp * 1000)).format(
-				"MMMM D, YYYY",
-			)}</span
-		>
-		<Separator />
-	</div>
-	{#if data.post.coverImg}
-		<img
-			class="w-full max-h-120 rounded-lg shadow-md outline outline-border mb-10"
-			src={data.post.coverImg}
-			alt={data.post.coverAlt || ""}
-		/>
-	{/if}
-	<div class="flex justify-center">
-		<Comark
-			class="prose dark:prose-invert w-full max-w-full!"
-			markdown={data.post.content}
-			{components}
-			plugins={comarkPlugins}
-		/>
-	</div>
+	{#await data.post}
+		<!--  -->
+	{:then post}
+		{#if post}
+			<div class="flex flex-col gap-4">
+				<h1 class="text-4xl font-bold">{post.title}</h1>
+				<p class="text-lg text-muted-foreground">{post.summary}</p>
+				<span class="text-sm text-muted-foreground"
+					>{dayjs(new Date(post.timestamp * 1000)).format(
+						"MMMM D, YYYY",
+					)}</span
+				>
+				<Separator />
+			</div>
+			{#if post.coverImg}
+				<img
+					class="w-full max-h-120 rounded-lg shadow-md outline outline-border mb-10 object-cover"
+					src={post.coverImg}
+					alt={post.coverAlt || ""}
+				/>
+			{/if}
+			<div class="flex justify-center">
+				<Comark
+					class="prose dark:prose-invert w-full max-w-full!"
+					markdown={post.content}
+					{components}
+					plugins={comarkPlugins}
+				/>
+			</div>
+		{/if}
+	{/await}
 </div>

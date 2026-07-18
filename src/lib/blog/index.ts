@@ -3,7 +3,9 @@ import matter from "gray-matter";
 
 async function getPost(slug: string): Promise<Post | undefined> {
 	let posts = await getPosts();
-	return posts.find((p) => p.slug === slug);
+	let post = posts.find((p) => p.slug === slug);
+	if (!post?.published) return undefined;
+	return post;
 }
 
 async function getPosts(): Promise<Post[]> {

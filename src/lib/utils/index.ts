@@ -1,6 +1,6 @@
 export function formatPageTitle(page: string, subPage?: string): string {
 	const siteTitle = "jadelily.dev";
-	const formattedTitle = `${page}${subPage ? ` / ${subPage}` : ""} — ${siteTitle}`;
+	const formattedTitle = `${subPage ? `${subPage} / ${page}` : page} — ${siteTitle}`;
 
 	return formattedTitle;
 }

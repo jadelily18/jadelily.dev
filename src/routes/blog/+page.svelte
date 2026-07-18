@@ -34,7 +34,7 @@
 					class="absolute left-1/2 top-1/2 -translate-1/2 animate-pulse"
 					icon={GenericIcon.PawPrint}
 				/>
-				<Skeleton class="h-full" />
+				<div class="h-full w-full bg-accent rounded-xl"></div>
 			</div>
 			<div
 				class="flex flex-col justify-between w-full min-h-50 gap-6 p-4 md:pl-0"
@@ -65,7 +65,7 @@
 				class="flex flex-wrap md:flex-nowrap w-full min-h-50 rounded-2xl border-border border overflow-hidden divide-sidebar-border"
 			>
 				<a
-					class="w-full min-w-80 md:w-80 transition-[filter] hover:brightness-110"
+					class="w-full min-w-80 md:w-80 max-h-50 transition-[filter] hover:brightness-110"
 					href="/blog/{posts[0].slug}"
 				>
 					{#if posts[0].coverImg}
@@ -85,7 +85,7 @@
 						</div>
 					{/if}
 				</a>
-				<div class="flex flex-col justify-between gap-4 p-4">
+				<div class="flex flex-col justify-between w-full gap-4 p-4">
 					<div class="flex flex-col w-full gap-1">
 						<span
 							class="inline-flex items-center font-semibold text-muted-foreground gap-1 text-sm"

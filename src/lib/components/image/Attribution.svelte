@@ -17,12 +17,39 @@
 		triggerStyles,
 		contentStyles,
 	}: Props = $props();
+
+	let expanded = $state(false);
+	let container: HTMLDivElement;
+
+	function toggle(e: MouseEvent) {
+		e.stopPropagation();
+		expanded = !expanded;
+	}
+
+	function handleClickOutside(e: MouseEvent) {
+		if (expanded && container && !container.contains(e.target as Node)) {
+			expanded = false;
+		}
+	}
+
+	$effect(() => {
+		if (expanded) {
+			document.addEventListener("click", handleClickOutside);
+			return () =>
+				document.removeEventListener("click", handleClickOutside);
+		}
+	});
 </script>
 
 <div
+	bind:this={container}
 	transition:fade
+	onclick={toggle}
+	role="button"
+	tabindex="0"
+	onkeydown={(e) => e.key === "Enter" && toggle(e as any)}
 	class={cn(
-		"absolute bottom-0 right-0 h-8 w-max flex flex-row-reverse justify-center items-center text-muted-foreground bg-background border border-border shadow-md rounded-full overflow-hidden",
+		"absolute bottom-0 right-0 h-8 w-max flex flex-row-reverse justify-center items-center text-muted-foreground bg-background border border-border shadow-md rounded-full overflow-hidden cursor-pointer",
 		className,
 	)}
 >
@@ -34,10 +61,10 @@
 	>
 		<PaintbrushIcon size="18" class="shrink-0" />
 	</div>
-
 	<div
 		class={cn(
-			"grid justify-center items-center group-hover/attribution:pl-2.5 transition-[grid-template-columns] duration-300 grid-cols-[0fr] group-hover/attribution:grid-cols-[1fr]",
+			"grid justify-center items-center transition-[grid-template-columns] duration-300 grid-cols-[0fr] group-hover/attribution:grid-cols-[1fr] group-hover/attribution:pl-2.5",
+			expanded && "grid-cols-[1fr] pl-2.5",
 			contentStyles,
 		)}
 	>
