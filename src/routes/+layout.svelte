@@ -7,6 +7,8 @@
 	import { Navbar } from "@components/layout";
 	import Footer from "@components/layout/Footer.svelte";
 	import { onNavigate } from "$app/navigation";
+	import { navigating } from "$app/stores";
+	import { fade } from "svelte/transition";
 
 	onNavigate((navigation) => {
 		if (!document.startViewTransition) return;
@@ -20,11 +22,29 @@
 	});
 
 	let { children } = $props();
+
+	let showLoadingBar = $state(false);
+	let timeout: ReturnType<typeof setTimeout>;
+
+	$effect(() => {
+		if ($navigating) {
+			timeout = setTimeout(() => (showLoadingBar = true), 100);
+		} else {
+			clearTimeout(timeout);
+			showLoadingBar = false;
+		}
+	});
 </script>
 
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
 <ModeWatcher />
 <main class="flex flex-col w-screen min-h-screen">
+	{#if showLoadingBar}
+		<div
+			transition:fade
+			class="absolute top-0 z-20 h-1 w-full bg-pink-200 animate-loading-bar"
+		></div>
+	{/if}
 	<Navbar />
 	<div class="flex flex-col items-center grow w-full">
 		<div
