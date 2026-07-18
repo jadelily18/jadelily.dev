@@ -12,6 +12,7 @@
 
 	import emImage from "$lib/assets/images/art/em-pawlaxy-icon.png";
 	import { Attribution } from "@components/image";
+	import { Meta } from "@components/app";
 
 	type SocialLink = {
 		tooltip: string;
@@ -43,9 +44,7 @@
 	let avatarLoadingStatus = $state<AvatarImageLoadingStatus>("loading");
 </script>
 
-<svelte:head>
-	<title>{formatPageTitle("Home")}</title>
-</svelte:head>
+<Meta title={formatPageTitle("Home")} />
 
 <div class="flex justify-center items-center grow">
 	<div
@@ -99,22 +98,20 @@
 					>About me</Button
 				>
 				{#each socialLinks as link}
-					<Tooltip.Provider>
-						<Tooltip.Root>
-							<Tooltip.Trigger>
-								<Button
-									class="cursor-pointer"
-									size="icon"
-									variant="outline"
-									href={link.url}
-									target="_blank"
-								>
-									<Icon icon={link.icon} />
-								</Button>
-							</Tooltip.Trigger>
-							<Tooltip.Content>{link.tooltip}</Tooltip.Content>
-						</Tooltip.Root>
-					</Tooltip.Provider>
+					<Tooltip.Root>
+						<Tooltip.Trigger>
+							<Button
+								class="cursor-pointer"
+								size="icon"
+								variant="outline"
+								href={link.url}
+								target="_blank"
+							>
+								<Icon icon={link.icon} />
+							</Button>
+						</Tooltip.Trigger>
+						<Tooltip.Content>{link.tooltip}</Tooltip.Content>
+					</Tooltip.Root>
 				{/each}
 			</div>
 		</div>

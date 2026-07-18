@@ -21,6 +21,8 @@
 :root {
 	color-scheme: light;
 
+	--brand: #f3a9d5;
+
 	--background: light-dark(oklch(1 0 0), oklch(0.145 0.008 326));
 	--foreground: light-dark(oklch(0.145 0.008 326), oklch(0.985 0 0));
 	--card: light-dark(oklch(1 0 0), oklch(0.212 0.019 322.12));
@@ -84,9 +86,13 @@
 
 .dark {
 	color-scheme: dark;
+
+	--brand: #f3a9d5;
 }
 
 @theme inline {
+	--color-brand: var(--brand);
+
 	--font-sans: "Inter Variable", sans-serif;
 	--color-sidebar-ring: var(--sidebar-ring);
 	--color-sidebar-border: var(--sidebar-border);

@@ -4,8 +4,11 @@
 
 	import { ModeWatcher } from "mode-watcher";
 
+	import * as Tooltip from "@uilib/tooltip";
+
 	import { Navbar } from "@components/layout";
 	import Footer from "@components/layout/Footer.svelte";
+
 	import { onNavigate } from "$app/navigation";
 	import { navigating } from "$app/state";
 	import { fade } from "svelte/transition";
@@ -43,21 +46,23 @@
 
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
 <ModeWatcher />
-<main class="flex flex-col w-screen min-h-screen">
-	{#if showLoadingBar}
-		<div
-			transition:fade
-			class="absolute top-0 z-20 h-1 w-full bg-pink-200 animate-loading-bar"
-		></div>
-	{/if}
-	<Navbar />
-	<div class="flex flex-col items-center grow w-full">
-		<div
-			// class="flex justify-center w-full md:w-200 px-4 sm:px-20 2xl:px-80 grow py-2 sm:py-10"
-			class="flex flex-col w-full h-full grow px-6 sm:px-20 lg:px-0 md:max-w-200 py-6 sm:py-10"
-		>
-			{@render children()}
+<Tooltip.Provider>
+	<main class="flex flex-col w-screen min-h-screen">
+		{#if showLoadingBar}
+			<div
+				transition:fade
+				class="absolute top-0 z-20 h-1 w-full bg-pink-200 animate-loading-bar"
+			></div>
+		{/if}
+		<Navbar />
+		<div class="flex flex-col items-center grow w-full">
+			<div
+				// class="flex justify-center w-full md:w-200 px-4 sm:px-20 2xl:px-80 grow py-2 sm:py-10"
+				class="flex flex-col w-full h-full grow px-6 sm:px-20 lg:px-0 md:max-w-200 py-6 sm:py-10"
+			>
+				{@render children()}
+			</div>
 		</div>
-	</div>
-	<Footer />
-</main>
+		<Footer />
+	</main>
+</Tooltip.Provider>

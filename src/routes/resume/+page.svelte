@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { formatPageTitle } from "$lib/utils";
+	import { Meta } from "@components/app";
 
 	import { ResumeCard } from "@components/resume";
 	import { Skeleton } from "@uilib/skeleton";
@@ -7,9 +8,7 @@
 	let { data } = $props();
 </script>
 
-<svelte:head>
-	<title>{formatPageTitle("Resume")}</title>
-</svelte:head>
+<Meta title={formatPageTitle("Resume")} />
 
 <div class="flex flex-col w-full h-full grow gap-6">
 	<h1 class="text-4xl font-bold">Resume</h1>

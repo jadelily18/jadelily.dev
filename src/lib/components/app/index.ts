@@ -1,3 +1,4 @@
+import Meta from "./Meta.svelte";
 import ThemeSwitcher from "./ThemeSwitcher.svelte";
 
-export { ThemeSwitcher };
+export { Meta, ThemeSwitcher };

@@ -1,16 +1,20 @@
 <script lang="ts">
-	import * as Bread from "@uilib/breadcrumb";
-	import { Separator } from "@uilib/separator";
-
 	import dayjs from "dayjs";
 	import { formatPageTitle } from "$lib/utils";
 	import { AspectRatio } from "@uilib/aspect-ratio";
 
 	import { Markdown } from "@components/markdown";
-	import { Button } from "@uilib/button";
 	import { ChevronUpIcon } from "@lucide/svelte";
 	import { IsMobile } from "$lib/shadcn/hooks/is-mobile.svelte";
 	import { fade } from "svelte/transition";
+
+	import * as Avatar from "@uilib/avatar";
+	import * as Bread from "@uilib/breadcrumb";
+	import { Button } from "@uilib/button";
+	import { Separator } from "@uilib/separator";
+	import * as Tooltip from "@uilib/tooltip";
+
+	import { Meta } from "@components/app";
 
 	const isMobile = new IsMobile();
 
@@ -44,9 +48,15 @@
 
 <svelte:window bind:scrollY />
 
-<svelte:head>
-	<title>{formatPageTitle("Blog", data.post.title)}</title>
-</svelte:head>
+<Meta
+	title={formatPageTitle("Blog", data.post.title)}
+	titleMeta={data.post.title}
+	type="article.content"
+	author="Jade"
+	description={data.post.summary}
+	image={data.post.coverImg}
+	publishedTime={dayjs(new Date(data.post.timestamp * 1000)).toISOString()}
+/>
 
 {#if showScrollUp}
 	<div
@@ -83,9 +93,36 @@
 	<div class="flex flex-col gap-4">
 		<h1 class="text-4xl font-bold">{data.post.title}</h1>
 		<p class="text-lg text-muted-foreground">{data.post.summary}</p>
-		<span class="text-sm text-muted-foreground">
-			{dayjs(new Date(data.post.timestamp * 1000)).format("MMMM D, YYYY")}
-		</span>
+		<p class="inline-flex items-center gap-1 text-sm text-muted-foreground">
+			<Avatar.Root class="size-6 mr-0.5">
+				<Avatar.Image src="/art/em-pawlaxy-icon.png" />
+				<Avatar.Fallback>J</Avatar.Fallback>
+			</Avatar.Root>
+			jade •
+			<Tooltip.Root>
+				<Tooltip.Trigger>
+					{#snippet child({ props })}
+						<span {...props}>
+							Published
+							<time
+								datetime={dayjs(
+									data.post.timestamp * 1000,
+								).format("YYYY-MM-DD")}
+							>
+								{dayjs(data.post.timestamp * 1000).format(
+									"MMM D, YYYY",
+								)}
+							</time>
+						</span>
+					{/snippet}
+				</Tooltip.Trigger>
+				<Tooltip.Content>
+					{dayjs(data.post.timestamp * 1000).format(
+						"MMM D, YYYY, h:mm a",
+					)}
+				</Tooltip.Content>
+			</Tooltip.Root>
+		</p>
 		<Separator />
 	</div>
 	{#if data.post.coverImg}
@@ -100,12 +137,12 @@
 			/>
 		</AspectRatio>
 	{/if}
-	<div class="flex justify-center">
+	<article class="flex justify-center">
 		<Markdown
 			class="prose dark:prose-invert w-full max-w-full!"
 			markdown={data.post.content}
 			withHeaders
 			withHighlight
 		/>
-	</div>
+	</article>
 </div>

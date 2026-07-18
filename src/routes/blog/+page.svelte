@@ -14,6 +14,7 @@
 	import { page } from "$app/state";
 	import { goto } from "$app/navigation";
 	import type { Post } from "$types/blog";
+	import { Meta } from "@components/app";
 
 	let { data } = $props();
 
@@ -59,9 +60,7 @@
 	}
 </script>
 
-<svelte:head>
-	<title>{formatPageTitle("Blog")}</title>
-</svelte:head>
+<Meta title={formatPageTitle("Blog")} />
 
 <div class="flex flex-col w-full h-full grow gap-6">
 	<h1 class="text-4xl font-bold">Blog</h1>
