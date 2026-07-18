@@ -7,15 +7,59 @@
 	import { AspectRatio } from "@uilib/aspect-ratio";
 
 	import { Markdown } from "@components/markdown";
+	import { Button } from "@uilib/button";
+	import { ChevronUpIcon } from "@lucide/svelte";
+	import { IsMobile } from "$lib/shadcn/hooks/is-mobile.svelte";
+	import { fade } from "svelte/transition";
+
+	const isMobile = new IsMobile();
+
+	let scrollY = $state<number | undefined>(undefined);
+
+	let showScrollUp = $derived(scrollY && scrollY > 400);
+
+	let contentElement: HTMLElement;
+	let rightOffset = $state(24); // 1.5rem
+
+	function updateOffset() {
+		if (!contentElement) return;
+		const rect = contentElement.getBoundingClientRect();
+		const gap = 72;
+		const distanceFromRight = window.innerWidth - rect.right;
+		rightOffset = Math.max(24, distanceFromRight - gap);
+	}
+
+	function scrollToTop() {
+		window.scrollTo({ top: 0, behavior: "smooth" });
+	}
 
 	let { data } = $props();
+
+	$effect(() => {
+		updateOffset();
+		window.addEventListener("resize", updateOffset);
+		return () => window.removeEventListener("resize", updateOffset);
+	});
 </script>
+
+<svelte:window bind:scrollY />
 
 <svelte:head>
 	<title>{formatPageTitle("Blog", data.post.title)}</title>
 </svelte:head>
 
-<div class="flex flex-col gap-8">
+{#if showScrollUp}
+	<div
+		transition:fade={{ duration: 100 }}
+		class="fixed bottom-6 md:bottom-8 z-10"
+		style="right: {isMobile.current ? '24' : rightOffset}px"
+	>
+		<Button size="icon-lg" onclick={scrollToTop}>
+			<ChevronUpIcon />
+		</Button>
+	</div>
+{/if}
+<div bind:this={contentElement} class="relative flex flex-col gap-8">
 	<Bread.Root>
 		<Bread.List>
 			<Bread.Item>
