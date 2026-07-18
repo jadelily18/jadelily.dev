@@ -11,11 +11,52 @@
 	import { formatPageTitle } from "$lib/utils";
 	import { Skeleton } from "@uilib/skeleton";
 	import { GenericIcon, Icon } from "@components/icon";
+	import { page } from "$app/state";
+	import { goto } from "$app/navigation";
+	import type { Post } from "$types/blog";
 
 	let { data } = $props();
 
 	const cardImgFallbackStyles =
 		"transition-colors text-muted-foreground bg-pink-950/15 hover:bg-pink-950/5 dark:bg-pink-500/10 dark:hover:bg-pink-500/15";
+
+	let filteredTags = $derived(page.url.searchParams.getAll("tags"));
+
+	function setArrayParam(key: string, values: string[]): void {
+		const url = new URL(page.url);
+		url.searchParams.delete(key);
+		for (const value of values) {
+			url.searchParams.append(key, value);
+		}
+		goto(`?${url.searchParams.toString()}`, {
+			replaceState: true,
+			keepFocus: true,
+			noScroll: true,
+		});
+	}
+
+	function addTag(tag: string): void {
+		if (filteredTags.find((t) => t === tag)) return;
+		setArrayParam("tags", [...filteredTags, tag]);
+	}
+
+	function removeTag(tag: string): void {
+		setArrayParam(
+			"tags",
+			filteredTags.filter((t) => t !== tag),
+		);
+	}
+
+	function filterPosts(p: Post) {
+		const tags = p.tags ?? [];
+
+		let includePost = true;
+		for (let tag of filteredTags) {
+			if (!tags.includes(tag)) includePost = false;
+		}
+
+		return includePost;
+	}
 </script>
 
 <svelte:head>
@@ -111,7 +152,11 @@
 						>
 						<div class="flex flex-wrap gap-1">
 							{#each posts[0].tags as tag}
-								<Tag name={tag} />
+								<Tag
+									name={tag}
+									state="add"
+									onAdd={() => addTag(tag)}
+								/>
 							{/each}
 						</div>
 					</div>
@@ -119,11 +164,24 @@
 			</div>
 			{#if posts.length > 1}
 				<Separator />
-				<h2 class="font-semibold text-muted-foreground">More posts</h2>
+				<div class="flex justify-between items-center">
+					<h2 class="font-semibold text-muted-foreground">
+						More posts
+					</h2>
+					<div class="flex gap-1">
+						{#each filteredTags as tag}
+							<Tag
+								name={tag}
+								state="remove"
+								onRemove={() => removeTag(tag)}
+							/>
+						{/each}
+					</div>
+				</div>
 				<div
 					class="grid grid-cols-auto md:grid-cols-2 lg:grid-cols-3 gap-4"
 				>
-					{#each posts as post}
+					{#each posts.filter(filterPosts) as post}
 						{#if post !== posts[0]}
 							<BlogPostCard {post} />
 						{/if}

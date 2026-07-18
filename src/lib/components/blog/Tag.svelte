@@ -1,19 +1,44 @@
 <script lang="ts">
-	import { HashIcon } from "@lucide/svelte";
+	import { HashIcon, XIcon } from "@lucide/svelte";
 	import { Badge, type BadgeVariant } from "@uilib/badge";
+
+	import type { HTMLButtonAttributes } from "svelte/elements";
 
 	type Props = {
 		name: string;
-		variant?: BadgeVariant;
-	};
+		state?: "add" | "remove";
+		onAdd?: () => void;
+		onRemove?: () => void;
+	} & HTMLButtonAttributes;
 
-	let { name, variant = "default", ...restProps }: Props = $props();
+	let {
+		name,
+		state = $bindable("add"),
+		onAdd,
+		onRemove,
+		...restProps
+	}: Props = $props();
+
+	function handleClick(e: MouseEvent) {
+		e.preventDefault();
+
+		switch (state) {
+			case "add":
+				onAdd?.();
+			case "remove":
+				onRemove?.();
+		}
+	}
 </script>
 
-<!-- TODO: filter -->
-<a href="/#">
-	<Badge class="flex items-center gap-0" {...restProps}>
-		<HashIcon size="14" />
-		{name}
-	</Badge>
-</a>
+<button
+	onclick={handleClick}
+	class="flex justify-center items-center cursor-pointer gap-0 text-xs bg-foreground text-background rounded-full px-2"
+	{...restProps}
+>
+	<HashIcon size="12" />
+	{name}
+	{#if state === "remove"}
+		<XIcon class="ml-1" size="14" />
+	{/if}
+</button>
