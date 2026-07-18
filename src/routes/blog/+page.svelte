@@ -178,15 +178,23 @@
 						{/each}
 					</div>
 				</div>
-				<div
-					class="grid grid-cols-auto md:grid-cols-2 lg:grid-cols-3 gap-4"
-				>
-					{#each posts.filter(filterPosts) as post}
-						{#if post !== posts[0]}
-							<BlogPostCard {post} />
-						{/if}
-					{/each}
-				</div>
+				{#if posts.slice(1).filter(filterPosts).length > 0}
+					<div
+						class="grid grid-cols-auto md:grid-cols-2 lg:grid-cols-3 gap-4"
+					>
+						{#each posts.filter(filterPosts) as post}
+							{#if post !== posts[0]}
+								<BlogPostCard {post} />
+							{/if}
+						{/each}
+					</div>
+				{:else}
+					<div class="flex justify-center">
+						<span class="text-sm text-muted-foreground"
+							>{"No posts matching filter :("}</span
+						>
+					</div>
+				{/if}
 			{:else}
 				<span class="self-center text-sm text-muted-foreground"
 					>{"No more posts :("}</span
