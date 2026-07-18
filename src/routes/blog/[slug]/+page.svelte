@@ -54,7 +54,7 @@
 		class="fixed bottom-6 md:bottom-8 z-10"
 		style="right: {isMobile.current ? '24' : rightOffset}px"
 	>
-		<Button size="icon-lg" onclick={scrollToTop}>
+		<Button class="cursor-pointer" size="icon-lg" onclick={scrollToTop}>
 			<ChevronUpIcon />
 		</Button>
 	</div>
