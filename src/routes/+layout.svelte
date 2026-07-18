@@ -32,7 +32,7 @@
 	let timeout: ReturnType<typeof setTimeout>;
 
 	$effect(() => {
-		if (navigating) {
+		if (navigating.to) {
 			timeout = setTimeout(() => (showLoadingBar = true), 100);
 		} else {
 			clearTimeout(timeout);
