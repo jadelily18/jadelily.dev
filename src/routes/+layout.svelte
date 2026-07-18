@@ -7,10 +7,15 @@
 	import { Navbar } from "@components/layout";
 	import Footer from "@components/layout/Footer.svelte";
 	import { onNavigate } from "$app/navigation";
-	import { navigating } from "$app/stores";
+	import { navigating } from "$app/state";
 	import { fade } from "svelte/transition";
 
 	onNavigate((navigation) => {
+		// avoid fuckass view transitions when tag filtering in blog
+		if (navigation.from?.url.pathname === navigation.to?.url.pathname) {
+			return;
+		}
+
 		if (!document.startViewTransition) return;
 
 		return new Promise((resolve) => {
@@ -27,7 +32,7 @@
 	let timeout: ReturnType<typeof setTimeout>;
 
 	$effect(() => {
-		if ($navigating) {
+		if (navigating) {
 			timeout = setTimeout(() => (showLoadingBar = true), 100);
 		} else {
 			clearTimeout(timeout);

@@ -25,8 +25,10 @@
 		switch (state) {
 			case "add":
 				onAdd?.();
+				break;
 			case "remove":
 				onRemove?.();
+				break;
 		}
 	}
 </script>
