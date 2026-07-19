@@ -28,7 +28,7 @@
 	<AlertDialog.Content>
 		<AlertDialog.Header>
 			<AlertDialog.Title
-				class="inline-flex items-center gap-2 text-destructive"
+				class="inline-flex items-center gap-2 text-red-700 dark:text-destructive"
 			>
 				<OctagonAlertIcon />
 				Content Warning
@@ -39,7 +39,7 @@
 		</AlertDialog.Header>
 		<div class="flex flex-col gap-4">
 			<span
-				class="text-destructive bg-destructive/20 rounded-lg outline outline-destructive p-4"
+				class="text-red-700 dark:text-destructive bg-red-700/10 dark:bg-destructive/20 rounded-lg outline outline-destructive p-4"
 			>
 				{contentWarning}
 			</span>
@@ -63,7 +63,11 @@
 			<Button variant="default" onclick={() => history.back()}
 				>Go back</Button
 			>
-			<AlertDialog.Action variant="destructive" onclick={acceptWarning}>
+			<AlertDialog.Action
+				class="text-red-700 dark:text-destructive"
+				variant="destructive"
+				onclick={acceptWarning}
+			>
 				Continue
 			</AlertDialog.Action>
 		</AlertDialog.Footer>

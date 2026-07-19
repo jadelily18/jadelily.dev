@@ -2,7 +2,7 @@
 	import { MonitorIcon, MoonIcon, SunIcon } from "@lucide/svelte";
 	import { Label } from "@uilib/label";
 	import * as RadioGroup from "@uilib/radio-group";
-	import { setMode, userPrefersMode } from "mode-watcher";
+	import { setMode, systemPrefersMode, userPrefersMode } from "mode-watcher";
 
 	type Theme = "system" | "dark" | "light";
 
@@ -14,7 +14,8 @@
 	function classFromTheme(theme: Theme): string {
 		switch (theme) {
 			case "system":
-				return "";
+				if (!systemPrefersMode.current) return "";
+				return `force-${systemPrefersMode.current}`;
 			case "dark":
 				return "force-dark";
 			case "light":
