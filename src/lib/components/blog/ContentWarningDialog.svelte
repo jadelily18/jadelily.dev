@@ -25,26 +25,27 @@
 </script>
 
 <AlertDialog.Root {open}>
-	<AlertDialog.Content>
-		<AlertDialog.Header>
+	<AlertDialog.Content class="gap-5">
+		<AlertDialog.Header class="place-items-start">
 			<AlertDialog.Title
 				class="inline-flex items-center gap-2 text-red-700 dark:text-destructive"
 			>
 				<OctagonAlertIcon />
 				Content Warning
 			</AlertDialog.Title>
-			<AlertDialog.Description>
+			<AlertDialog.Description class="text-left">
 				This blog post contains a content warning - see below.
 			</AlertDialog.Description>
 		</AlertDialog.Header>
 		<div class="flex flex-col gap-4">
 			<span
-				class="text-red-700 dark:text-destructive bg-red-700/10 dark:bg-destructive/20 rounded-lg outline outline-destructive p-4"
+				class="text-red-700 dark:text-destructive bg-red-700/15 dark:bg-destructive/20 rounded-lg outline outline-destructive p-4"
 			>
 				{contentWarning}
 			</span>
 			<Label
-				class="flex gap-2 items-start p-4 rounded-lg outline outline-border "
+				data-checked={hideForever}
+				class="flex gap-2 items-start p-4 rounded-lg outline outline-border transition-colors duration-100 data-checked:bg-accent"
 			>
 				<Checkbox
 					class="bg-accent shadow-lg"
@@ -64,7 +65,7 @@
 				>Go back</Button
 			>
 			<AlertDialog.Action
-				class="text-red-700 dark:text-destructive"
+				class="text-red-700 dark:text-destructive not-dark:bg-red-700/15 not-dark:hover:bg-red-600/20 dark:bg-destructive/20"
 				variant="destructive"
 				onclick={acceptWarning}
 			>
