@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { ImageOffIcon } from "@lucide/svelte";
 
+	import * as Tooltip from "@uilib/tooltip";
+
 	import type { Post } from "$types/blog";
 
 	import dayjs from "dayjs";
@@ -37,9 +39,22 @@
 		</a>
 		<span class="text-muted-foreground text-sm h-full">{post.summary}</span>
 		<div class="flex flex-wrap justify-between items-center gap-1 mt-2">
-			<span class="text-xs text-muted-foreground"
-				>{dayjs(post.timestamp * 1000).format("MMM D, YYYY")}</span
-			>
+			<Tooltip.Root>
+				<Tooltip.Trigger>
+					{#snippet child({ props })}
+						<span {...props} class="text-xs text-muted-foreground"
+							>{dayjs(post.timestamp * 1000).format(
+								"MMM D, YYYY",
+							)}</span
+						>
+					{/snippet}
+				</Tooltip.Trigger>
+				<Tooltip.Content
+					>{dayjs(post.timestamp * 1000).format(
+						"MMMM D, YYYY, h:mm a",
+					)}</Tooltip.Content
+				>
+			</Tooltip.Root>
 			<!-- {#if post.tags && post.tags.length > 0}
 				<div class="flex flex-wrap gap-1">
 					{#each post.tags as tag}

@@ -4,7 +4,7 @@
 	import { AspectRatio } from "@uilib/aspect-ratio";
 
 	import { Markdown } from "@components/markdown";
-	import { ChevronUpIcon } from "@lucide/svelte";
+	import { AlertTriangleIcon, ChevronUpIcon } from "@lucide/svelte";
 	import { IsMobile } from "$lib/shadcn/hooks/is-mobile.svelte";
 	import { fade } from "svelte/transition";
 
@@ -19,6 +19,8 @@
 	import { cn } from "$lib/shadcn/utils";
 
 	import emImg from "$lib/assets/images/art/em-pawlaxy-icon.png";
+	import { ContentWarningDialog } from "@components/blog";
+	import { ignoreContentWarnings } from "$lib/state/warning.svelte";
 
 	const isMobile = new IsMobile();
 
@@ -26,7 +28,7 @@
 
 	let showScrollUp = $derived(scrollY && scrollY > 400);
 
-	let contentElement: HTMLElement;
+	let contentElement = $state<HTMLElement | undefined>(undefined);
 	let rightOffset = $state(24); // 1.5rem
 
 	function updateOffset() {
@@ -42,6 +44,8 @@
 	}
 
 	let { data } = $props();
+
+	let showContentWarning = $state<boolean>(true);
 
 	$effect(() => {
 		updateOffset();
@@ -62,110 +66,119 @@
 	publishedTime={dayjs(new Date(data.post.timestamp * 1000)).toISOString()}
 />
 
-{#if showScrollUp}
-	<div
-		transition:fade={{ duration: 100 }}
-		class="fixed bottom-6 md:bottom-8 z-10"
-		style="right: {isMobile.current ? '24' : rightOffset}px"
-	>
-		<Button
-			class="cursor-pointer"
-			size="icon-lg"
-			onclick={scrollToTop}
-			aria-label="Scroll to top"
+{#if !ignoreContentWarnings.value && data.post.contentWarning && showContentWarning}
+	<ContentWarningDialog
+		bind:open={showContentWarning}
+		contentWarning={data.post.contentWarning}
+	/>
+{:else}
+	{#if showScrollUp}
+		<div
+			transition:fade={{ duration: 100 }}
+			class="fixed bottom-6 md:bottom-8 z-10"
+			style="right: {isMobile.current ? '24' : rightOffset}px"
 		>
-			<ChevronUpIcon />
-		</Button>
+			<Button
+				class="cursor-pointer"
+				size="icon-lg"
+				onclick={scrollToTop}
+				aria-label="Scroll to top"
+			>
+				<ChevronUpIcon />
+			</Button>
+		</div>
+	{/if}
+	<div bind:this={contentElement} class="relative flex flex-col gap-8">
+		<Bread.Root>
+			<Bread.List>
+				<Bread.Item>
+					<Bread.Link href="/blog">Blog</Bread.Link>
+				</Bread.Item>
+				<Bread.Separator />
+				<Bread.Item>
+					<Bread.Page>
+						{data.post.title}
+					</Bread.Page>
+				</Bread.Item>
+			</Bread.List>
+		</Bread.Root>
+
+		<!--  -->
+		<div class="flex flex-col gap-4">
+			<h1 class="text-4xl font-bold">{data.post.title}</h1>
+			<p class="text-lg text-muted-foreground">{data.post.summary}</p>
+			<p
+				class="inline-flex items-center gap-1 text-sm text-muted-foreground"
+			>
+				<Avatar.Root class="size-6 mr-0.5">
+					<Avatar.Image src={emImg} />
+					<Avatar.Fallback>J</Avatar.Fallback>
+				</Avatar.Root>
+				jade •
+				<Tooltip.Root>
+					<Tooltip.Trigger>
+						{#snippet child({ props })}
+							<span {...props}>
+								Published
+								<time
+									datetime={dayjs(
+										data.post.timestamp * 1000,
+									).format("YYYY-MM-DD")}
+								>
+									{dayjs(data.post.timestamp * 1000).format(
+										"MMM D, YYYY",
+									)}
+								</time>
+							</span>
+						{/snippet}
+					</Tooltip.Trigger>
+					<Tooltip.Content>
+						{dayjs(data.post.timestamp * 1000).format(
+							"MMM D, YYYY, h:mm a",
+						)}
+					</Tooltip.Content>
+				</Tooltip.Root>
+			</p>
+			<Separator />
+		</div>
+		{#if data.post.coverImg}
+			<AspectRatio
+				ratio={16 / 9}
+				class="rounded-lg shadow-md outline outline-border overflow-hidden md:mx-4 group/attribution"
+			>
+				{#if data.post.attribution}
+					<Attribution expanded class="z-10 right-2 bottom-2">
+						{#snippet content(contentStyles)}
+							{#if data.post.attributionLink}
+								<a
+									class={cn("hover:underline", contentStyles)}
+									href={data.post.attributionLink}
+									target="_blank"
+								>
+									{data.post.attribution}
+								</a>
+							{:else}
+								<span class={contentStyles}>
+									{data.post.attribution}
+								</span>
+							{/if}
+						{/snippet}
+					</Attribution>
+				{/if}
+				<img
+					class="w-full h-full object-cover"
+					src={data.post.coverImg}
+					alt={data.post.coverAlt || ""}
+				/>
+			</AspectRatio>
+		{/if}
+		<article class="flex justify-center">
+			<Markdown
+				class="prose dark:prose-invert w-full max-w-full!"
+				markdown={data.post.content}
+				withHeaders
+				withHighlight
+			/>
+		</article>
 	</div>
 {/if}
-<div bind:this={contentElement} class="relative flex flex-col gap-8">
-	<Bread.Root>
-		<Bread.List>
-			<Bread.Item>
-				<Bread.Link href="/blog">Blog</Bread.Link>
-			</Bread.Item>
-			<Bread.Separator />
-			<Bread.Item>
-				<Bread.Page>
-					{data.post.title}
-				</Bread.Page>
-			</Bread.Item>
-		</Bread.List>
-	</Bread.Root>
-
-	<!--  -->
-	<div class="flex flex-col gap-4">
-		<h1 class="text-4xl font-bold">{data.post.title}</h1>
-		<p class="text-lg text-muted-foreground">{data.post.summary}</p>
-		<p class="inline-flex items-center gap-1 text-sm text-muted-foreground">
-			<Avatar.Root class="size-6 mr-0.5">
-				<Avatar.Image src={emImg} />
-				<Avatar.Fallback>J</Avatar.Fallback>
-			</Avatar.Root>
-			jade •
-			<Tooltip.Root>
-				<Tooltip.Trigger>
-					{#snippet child({ props })}
-						<span {...props}>
-							Published
-							<time
-								datetime={dayjs(
-									data.post.timestamp * 1000,
-								).format("YYYY-MM-DD")}
-							>
-								{dayjs(data.post.timestamp * 1000).format(
-									"MMM D, YYYY",
-								)}
-							</time>
-						</span>
-					{/snippet}
-				</Tooltip.Trigger>
-				<Tooltip.Content>
-					{dayjs(data.post.timestamp * 1000).format(
-						"MMM D, YYYY, h:mm a",
-					)}
-				</Tooltip.Content>
-			</Tooltip.Root>
-		</p>
-		<Separator />
-	</div>
-	{#if data.post.coverImg}
-		<AspectRatio
-			ratio={16 / 9}
-			class="rounded-lg shadow-md outline outline-border overflow-hidden md:mx-4 group/attribution"
-		>
-			{#if data.post.attribution}
-				<Attribution expanded class="z-10 right-2 bottom-2">
-					{#snippet content(contentStyles)}
-						{#if data.post.attributionLink}
-							<a
-								class={cn("hover:underline", contentStyles)}
-								href={data.post.attributionLink}
-								target="_blank"
-							>
-								{data.post.attribution}
-							</a>
-						{:else}
-							<span class={contentStyles}>
-								{data.post.attribution}
-							</span>
-						{/if}
-					{/snippet}
-				</Attribution>
-			{/if}
-			<img
-				class="w-full h-full object-cover"
-				src={data.post.coverImg}
-				alt={data.post.coverAlt || ""}
-			/>
-		</AspectRatio>
-	{/if}
-	<article class="flex justify-center">
-		<Markdown
-			class="prose dark:prose-invert w-full max-w-full!"
-			markdown={data.post.content}
-			withHeaders
-			withHighlight
-		/>
-	</article>
-</div>

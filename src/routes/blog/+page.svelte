@@ -3,13 +3,15 @@
 
 	import * as Empty from "@uilib/empty";
 	import { Separator } from "@uilib/separator";
+	import { Skeleton } from "@uilib/skeleton";
+	import * as Tooltip from "@uilib/tooltip";
+
 	import { cn } from "$lib/shadcn/utils";
 
 	import { BlogPostCard, Tag } from "@components/blog";
 
 	import dayjs from "dayjs";
 	import { formatPageTitle } from "$lib/utils";
-	import { Skeleton } from "@uilib/skeleton";
 	import { GenericIcon, Icon } from "@components/icon";
 	import { page } from "$app/state";
 	import { goto } from "$app/navigation";
@@ -144,11 +146,24 @@
 					<div
 						class="flex flex-wrap items-center justify-between gap-2"
 					>
-						<span class="text-muted-foreground text-sm"
-							>{dayjs(new Date(posts[0].timestamp * 1000)).format(
-								"MMM D, YYYY",
-							)}</span
-						>
+						<Tooltip.Root>
+							<Tooltip.Trigger>
+								{#snippet child({ props })}
+									<span
+										{...props}
+										class="text-xs text-muted-foreground"
+										>{dayjs(
+											posts[0].timestamp * 1000,
+										).format("MMM D, YYYY")}</span
+									>
+								{/snippet}
+							</Tooltip.Trigger>
+							<Tooltip.Content
+								>{dayjs(posts[0].timestamp * 1000).format(
+									"MMMM D, YYYY, h:mm a",
+								)}</Tooltip.Content
+							>
+						</Tooltip.Root>
 						<div class="flex flex-wrap gap-1">
 							{#each posts[0].tags as tag}
 								<Tag

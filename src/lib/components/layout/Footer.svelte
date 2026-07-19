@@ -1,6 +1,6 @@
 <script lang="ts">
-	import PawPrint from "$lib/assets/icons/flaticon/pawprint.svg?component";
 	import { cn } from "$lib/shadcn/utils";
+	import { GenericIcon, Icon } from "@components/icon";
 
 	const gitBaseUrl = "https://github.com/jadelily18/jadelily.dev";
 	const gitSha = __GIT_COMMIT_SHA__.slice(0, 8);
@@ -24,7 +24,7 @@
 			)}
 			aria-label="Secret paw button"
 		>
-			<PawPrint class="size-4" />
+			<Icon icon={GenericIcon.PawPrint} size="16" />
 		</button>
 		by
 		<a

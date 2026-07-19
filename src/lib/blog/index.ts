@@ -34,6 +34,7 @@ async function getPosts(): Promise<Post[]> {
 			coverAlt: data.coverAlt,
 			attribution: data.attribution,
 			attributionLink: data.attributionLink,
+			contentWarning: data.contentWarning,
 			published: data.published,
 		} satisfies Post;
 

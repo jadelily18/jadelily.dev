@@ -52,7 +52,7 @@
 		{#if showLoadingBar}
 			<div
 				transition:fade
-				class="absolute top-0 z-20 h-1 w-full bg-lavender-pink-400 dark:bg-lilac-bush-400 animate-loading-bar"
+				class="absolute top-0 z-9999 h-1 w-full bg-lavender-pink-400 dark:bg-lilac-bush-500 animate-loading-bar"
 			></div>
 		{/if}
 		<Navbar />

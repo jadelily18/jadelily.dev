@@ -9,6 +9,7 @@ interface Post {
 	coverAlt?: string;
 	attribution?: string;
 	attributionLink?: string;
+	contentWarning?: string;
 	published?: boolean;
 }
 

@@ -95,9 +95,13 @@
 				below!
 			</p>
 			<div class="flex items-center mt-2 gap-1">
-				<Button class="cursor-pointer" variant="outline"
-					>About me</Button
+				<Button
+					class="cursor-pointer"
+					variant="outline"
+					href="/blog/hi-im-jade"
 				>
+					About me
+				</Button>
 				{#each socialLinks as link}
 					<Tooltip.Root>
 						<Tooltip.Trigger>

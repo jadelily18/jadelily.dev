@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { cn } from "$lib/shadcn/utils";
+	import { MonitorIcon, MoonIcon, SunIcon } from "@lucide/svelte";
 	import { Label } from "@uilib/label";
 	import * as RadioGroup from "@uilib/radio-group";
 	import { setMode, userPrefersMode } from "mode-watcher";
@@ -23,6 +23,16 @@
 	}
 </script>
 
+{#snippet itemIcon(theme: Theme, size: number)}
+	{#if theme === "system"}
+		<MonitorIcon {size} />
+	{:else if theme === "dark"}
+		<MoonIcon {size} />
+	{:else}
+		<SunIcon {size} />
+	{/if}
+{/snippet}
+
 {#snippet groupItem(props: ItemProps)}
 	<Label for="{props.value}-mode">
 		<div
@@ -43,9 +53,11 @@
 			</div>
 			<div class="flex gap-2">
 				<span
-					class="text-muted-foreground group-data-[selected=true]/radio-item:text-foreground"
-					>{props.label}</span
+					class="inline-flex items-center gap-1.5 text-muted-foreground group-data-[selected=true]/radio-item:text-foreground"
 				>
+					{@render itemIcon(props.value, 16)}
+					{props.label}
+				</span>
 				<RadioGroup.Item id="{props.value}-mode" value={props.value} />
 			</div>
 		</div>
