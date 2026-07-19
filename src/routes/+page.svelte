@@ -13,6 +13,7 @@
 	import emImage from "$lib/assets/images/art/em-pawlaxy-icon.png";
 	import { Attribution } from "@components/image";
 	import { Meta } from "@components/app";
+	import { cn } from "$lib/shadcn/utils";
 
 	type SocialLink = {
 		tooltip: string;
@@ -72,9 +73,9 @@
 
 			{#if avatarLoadingStatus === "loaded"}
 				<Attribution>
-					{#snippet content()}
+					{#snippet content(contentStyles)}
 						<a
-							class="text-sm whitespace-nowrap hover:underline"
+							class={cn("hover:underline", contentStyles)}
 							href="https://vgen.co/painic"
 							target="_blank"
 						>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { HashIcon, ImageOffIcon } from "@lucide/svelte";
+	import { ImageOffIcon } from "@lucide/svelte";
 
 	import type { Post } from "$types/blog";
 
@@ -13,7 +13,10 @@
 </script>
 
 <div class="flex flex-col rounded-xl border border-border overflow-hidden">
-	<a class="relative w-full h-48 sm:h-60 md:h-36" href="/blog/{post.slug}">
+	<a
+		class="relative w-full h-48 sm:h-60 md:h-36 transition-[filter] hover:brightness-110"
+		href="/blog/{post.slug}"
+	>
 		{#if post.coverImg}
 			<img
 				class="w-full h-full object-cover"
@@ -22,7 +25,7 @@
 			/>
 		{:else}
 			<div
-				class="flex justify-center items-center w-full h-full bg-brand text-muted"
+				class="flex justify-center items-center w-full h-full bg-lavender-pink-400 dark:bg-lilac-bush-500 text-muted"
 			>
 				<ImageOffIcon />
 			</div>

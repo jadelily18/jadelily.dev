@@ -7,6 +7,8 @@ interface Post {
 	content: string;
 	coverImg?: string;
 	coverAlt?: string;
+	attribution?: string;
+	attributionLink?: string;
 	published?: boolean;
 }
 

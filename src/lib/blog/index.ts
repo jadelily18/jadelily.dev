@@ -32,6 +32,8 @@ async function getPosts(): Promise<Post[]> {
 			tags: data.tags,
 			coverImg: data.coverImg,
 			coverAlt: data.coverAlt,
+			attribution: data.attribution,
+			attributionLink: data.attributionLink,
 			published: data.published,
 		} satisfies Post;
 

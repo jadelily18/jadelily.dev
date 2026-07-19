@@ -15,6 +15,10 @@
 	import * as Tooltip from "@uilib/tooltip";
 
 	import { Meta } from "@components/app";
+	import { Attribution } from "@components/image";
+	import { cn } from "$lib/shadcn/utils";
+
+	import emImg from "$lib/assets/images/art/em-pawlaxy-icon.png";
 
 	const isMobile = new IsMobile();
 
@@ -95,7 +99,7 @@
 		<p class="text-lg text-muted-foreground">{data.post.summary}</p>
 		<p class="inline-flex items-center gap-1 text-sm text-muted-foreground">
 			<Avatar.Root class="size-6 mr-0.5">
-				<Avatar.Image src="/art/em-pawlaxy-icon.png" />
+				<Avatar.Image src={emImg} />
 				<Avatar.Fallback>J</Avatar.Fallback>
 			</Avatar.Root>
 			jade •
@@ -128,8 +132,27 @@
 	{#if data.post.coverImg}
 		<AspectRatio
 			ratio={16 / 9}
-			class="rounded-lg shadow-md outline outline-border overflow-hidden md:mx-4"
+			class="rounded-lg shadow-md outline outline-border overflow-hidden md:mx-4 group/attribution"
 		>
+			{#if data.post.attribution}
+				<Attribution expanded class="z-10 right-2 bottom-2">
+					{#snippet content(contentStyles)}
+						{#if data.post.attributionLink}
+							<a
+								class={cn("hover:underline", contentStyles)}
+								href={data.post.attributionLink}
+								target="_blank"
+							>
+								{data.post.attribution}
+							</a>
+						{:else}
+							<span class={contentStyles}>
+								{data.post.attribution}
+							</span>
+						{/if}
+					{/snippet}
+				</Attribution>
+			{/if}
 			<img
 				class="w-full h-full object-cover"
 				src={data.post.coverImg}

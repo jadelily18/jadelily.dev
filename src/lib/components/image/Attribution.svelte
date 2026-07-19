@@ -1,24 +1,25 @@
 <script lang="ts">
 	import { cn } from "$lib/shadcn/utils";
-	import { PaintbrushIcon } from "@lucide/svelte";
+	import { BrushIcon } from "@lucide/svelte";
 	import type { Snippet } from "svelte";
 	import { fade } from "svelte/transition";
 
 	type Props = {
+		expanded?: boolean;
 		class?: string;
-		content: Snippet;
+		content: Snippet<[className?: string]>;
 		triggerStyles?: string;
 		contentStyles?: string;
 	};
 
 	let {
+		expanded = $bindable(false),
 		class: className,
 		content,
 		triggerStyles,
-		contentStyles,
+		contentStyles = "text-sm whitespace-nowrap",
 	}: Props = $props();
 
-	let expanded = $state(false);
 	let container: HTMLDivElement;
 
 	function toggle(e: MouseEvent) {
@@ -49,27 +50,21 @@
 	tabindex="0"
 	onkeydown={(e) => e.key === "Enter" && toggle(e as any)}
 	class={cn(
-		"absolute bottom-0 right-0 h-8 w-max flex flex-row-reverse justify-center items-center text-muted-foreground bg-background border border-border shadow-md rounded-full overflow-hidden cursor-pointer",
+		"absolute bottom-0 right-0 h-8 w-max flex flex-row-reverse justify-center items-center text-muted-foreground bg-background ring-1 ring-border shadow-md rounded-full overflow-hidden cursor-pointer",
 		className,
 	)}
 >
-	<div
-		class={cn(
-			"w-8 h-8 shrink-0 flex items-center justify-center",
-			triggerStyles,
-		)}
-	>
-		<PaintbrushIcon size="18" class="shrink-0" />
+	<div class={cn("size-8 flex items-center justify-center", triggerStyles)}>
+		<BrushIcon size="18" class="" />
 	</div>
 	<div
 		class={cn(
 			"grid justify-center items-center transition-[grid-template-columns] duration-300 grid-cols-[0fr] group-hover/attribution:grid-cols-[1fr] group-hover/attribution:pl-2.5",
 			expanded && "grid-cols-[1fr] pl-2.5",
-			contentStyles,
 		)}
 	>
 		<div class="overflow-hidden">
-			{@render content()}
+			{@render content(contentStyles)}
 		</div>
 	</div>
 </div>
