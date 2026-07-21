@@ -178,6 +178,7 @@
 				markdown={data.post.content}
 				withHeaders
 				withHighlight
+				withFootnotes
 			/>
 		</article>
 	</div>

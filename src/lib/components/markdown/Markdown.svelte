@@ -6,6 +6,8 @@
 	} from "@comark/svelte";
 
 	import highlight from "@comark/svelte/plugins/highlight";
+	import footnotes from "@comark/svelte/plugins/footnotes";
+
 	import light from "@shikijs/themes/catppuccin-frappe";
 	import dark from "@shikijs/themes/catppuccin-mocha";
 
@@ -14,6 +16,7 @@
 	type Props = {
 		withHeaders?: boolean;
 		withHighlight?: boolean;
+		withFootnotes?: boolean;
 		additionalComponents?: Record<string, any>;
 		additionalPlugins?: ComarkPlugin[];
 	} & ComarkProps;
@@ -21,6 +24,7 @@
 	let {
 		withHeaders = false,
 		withHighlight = false,
+		withFootnotes = false,
 		additionalComponents = {},
 		additionalPlugins = [],
 		...restProps
@@ -29,6 +33,8 @@
 	const highlightPlugin = highlight({
 		themes: { dark: dark, light: light },
 	});
+
+	const footnotesPlugin = footnotes({});
 
 	let components = $derived.by<Record<string, any>>(() => {
 		let c: Record<string, any> = {};
@@ -48,6 +54,9 @@
 		let p: ComarkPlugin[] = [];
 		if (withHighlight) {
 			p.push(highlightPlugin);
+		}
+		if (withFootnotes) {
+			p.push(footnotesPlugin);
 		}
 		p.push(...additionalPlugins);
 		return p;

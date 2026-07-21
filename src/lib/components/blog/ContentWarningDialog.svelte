@@ -17,9 +17,7 @@
 	let hideForever = $state<boolean>(false);
 
 	function acceptWarning() {
-		if (hideForever) {
-			ignoreContentWarnings.value = true;
-		}
+		if (hideForever) ignoreContentWarnings.value = true;
 		open = false;
 	}
 </script>
