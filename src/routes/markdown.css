@@ -23,6 +23,10 @@
 
 		a {
 			@apply font-semibold text-lavender-pink-500 hover:text-lavender-pink-600 hover:underline dark:text-lilac-bush-400 dark:hover:text-lilac-bush-500;
+
+			&:has(img) {
+				@apply transition-[filter] hover:brightness-110;
+			}
 		}
 	}
 
