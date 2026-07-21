@@ -4,7 +4,7 @@
 	import { AspectRatio } from "@uilib/aspect-ratio";
 
 	import { Markdown } from "@components/markdown";
-	import { AlertTriangleIcon, ChevronUpIcon } from "@lucide/svelte";
+	import { ArrowUpIcon } from "@lucide/svelte";
 	import { IsMobile } from "$lib/shadcn/hooks/is-mobile.svelte";
 	import { fade } from "svelte/transition";
 
@@ -84,7 +84,7 @@
 				onclick={scrollToTop}
 				aria-label="Scroll to top"
 			>
-				<ChevronUpIcon />
+				<ArrowUpIcon />
 			</Button>
 		</div>
 	{/if}
