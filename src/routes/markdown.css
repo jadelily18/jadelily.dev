@@ -6,6 +6,10 @@
 		@apply mt-6 mb-4;
 	}
 
+	a:has(> h1, h2, h3, h4, h5, h6) {
+		@apply w-min text-nowrap;
+	}
+
 	p {
 		@apply mt-2 not-last:mb-4;
 
@@ -24,11 +28,11 @@
 	}
 
 	.footnote-ref a {
-		@apply font-semibold text-lavender-pink-500 hover:text-lavender-pink-600 dark:text-lilac-bush-400 dark:hover:text-lilac-bush-500;
+		@apply font-semibold text-lavender-pink-500 no-underline hover:text-lavender-pink-600 hover:underline dark:text-lilac-bush-400 dark:hover:text-lilac-bush-500;
 	}
 
 	.footnote-backref {
-		@apply text-lavender-pink-500 hover:text-lavender-pink-600 dark:text-lilac-bush-400 dark:hover:text-lilac-bush-500;
+		@apply text-lavender-pink-500 no-underline hover:text-lavender-pink-600 hover:underline dark:text-lilac-bush-400 dark:hover:text-lilac-bush-500;
 	}
 
 	pre {
