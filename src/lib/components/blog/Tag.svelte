@@ -35,7 +35,7 @@
 
 <button
 	onclick={handleClick}
-	class="flex justify-center items-center cursor-pointer gap-0 text-xs bg-foreground text-background rounded-full px-2"
+	class="flex justify-center items-center cursor-pointer gap-0 text-xs bg-foreground text-background rounded-full px-2.5 py-0.5"
 	{...restProps}
 >
 	<HashIcon size="12" />

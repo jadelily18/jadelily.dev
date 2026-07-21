@@ -20,9 +20,6 @@
 
 	let { data } = $props();
 
-	const cardImgFallbackStyles =
-		"transition-colors text-muted-foreground bg-pink-950/15 hover:bg-pink-950/5 dark:bg-pink-500/10 dark:hover:bg-pink-500/15";
-
 	let filteredTags = $derived(page.url.searchParams.getAll("tags"));
 
 	function setArrayParam(key: string, values: string[]): void {
@@ -107,7 +104,7 @@
 				class="flex flex-wrap md:flex-nowrap w-full min-h-50 rounded-2xl border-border border overflow-hidden divide-sidebar-border"
 			>
 				<a
-					class="w-full min-w-80 md:w-80 max-h-50 transition-[filter] hover:brightness-110"
+					class="w-full min-w-80 md:w-80 h-50 transition-[filter] hover:brightness-110"
 					href="/blog/{posts[0].slug}"
 				>
 					{#if posts[0].coverImg}
@@ -118,10 +115,7 @@
 						/>
 					{:else}
 						<div
-							class={cn(
-								"flex justify-center items-center h-full w-full",
-								cardImgFallbackStyles,
-							)}
+							class="flex justify-center items-center h-full transition-colors text-muted bg-lavender-pink-400 dark:bg-lilac-bush-500"
 						>
 							<ImageOffIcon />
 						</div>
