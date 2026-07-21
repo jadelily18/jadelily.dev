@@ -1,5 +1,11 @@
 .markdown,
 .prose {
+	h1,
+	h2,
+	h3 {
+		@apply mt-6 mb-4;
+	}
+
 	p {
 		@apply mt-2 not-last:mb-4;
 
