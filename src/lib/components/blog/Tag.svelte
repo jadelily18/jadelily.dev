@@ -20,19 +20,30 @@
 		...restProps
 	}: Props = $props();
 
+	function handleClick() {
+		switch (state) {
+			case "add":
+				onAdd?.();
+				break;
+			case "remove":
+				onRemove?.();
+				break;
+		}
+	}
+
 	const buttonStyles =
 		"transition-colors duration-100 bg-foreground not-disabled:hover:bg-foreground/85";
 </script>
 
 <div
-	class="inline-flex justify-center items-center overflow-hidden gap-0 text-xs text-background rounded-full"
+	class="inline-flex justify-center items-center overflow-hidden gap-0 h-5 *:h-full text-xs text-background rounded-full"
 >
 	<button
 		onclick={() => onAdd?.()}
 		disabled={state === "remove" ? true : false}
 		aria-label="Add tag to filter"
 		class={cn(
-			"flex gap-0 h-full pl-2.5 py-0.5 cursor-pointer disabled:cursor-default",
+			"flex items-center gap-0 pl-2.5 py-0.5 cursor-pointer disabled:cursor-default text-nowrap",
 			buttonStyles,
 			state === "add" ? "pr-2.5" : "pr-1",
 		)}
@@ -45,10 +56,7 @@
 		<button
 			onclick={() => onRemove?.()}
 			aria-label="Remove tag from filter"
-			class={cn(
-				"h-full pl-0.5 pr-2.5 py-0.5 cursor-pointer",
-				buttonStyles,
-			)}
+			class={cn("pl-0.5 pr-1.5 py-0.5 cursor-pointer", buttonStyles)}
 		>
 			<XIcon class="ml-1" size="14" />
 		</button>

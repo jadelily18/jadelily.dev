@@ -2,13 +2,13 @@ import type { Post } from "$types/blog";
 import matter from "gray-matter";
 
 async function getPost(slug: string): Promise<Post | undefined> {
-	let posts = await getPosts();
+	let posts = getPosts();
 	let post = posts.find((p) => p.slug === slug);
 	if (!post?.published) return undefined;
 	return post;
 }
 
-async function getPosts(): Promise<Post[]> {
+function getPosts(): Post[] {
 	const files = import.meta.glob("/src/lib/blog/data/posts/*.md", {
 		eager: true,
 		query: "?raw",
