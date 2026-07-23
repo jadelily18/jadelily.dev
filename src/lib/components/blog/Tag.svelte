@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { cn } from "$lib/shadcn/utils";
 	import { HashIcon, XIcon } from "@lucide/svelte";
-	import { Badge, type BadgeVariant } from "@uilib/badge";
 
 	import type { HTMLButtonAttributes } from "svelte/elements";
 
@@ -31,34 +30,28 @@
 		}
 	}
 
-	const buttonStyles =
-		"transition-colors duration-100 bg-foreground not-disabled:hover:bg-foreground/85";
+	const lightButtonStyles =
+		"outline-lavender-pink-600 bg-lavender-pink-200 hover:bg-lavender-pink-300/75 text-lavender-pink-900";
+	const darkButtonStyles =
+		"dark:outline-lilac-bush-500 dark:bg-lilac-bush-500/35 dark:hover:bg-lilac-bush-500/45 dark:text-lilac-bush-400";
 </script>
 
-<div
-	class="inline-flex justify-center items-center overflow-hidden gap-0 h-5 *:h-full text-xs text-background rounded-full"
+<button
+	onclick={handleClick}
+	aria-label={state === "add"
+		? "Add tag to filter"
+		: "Remove tag from filter"}
+	class={cn(
+		"inline-flex items-center gap-0 px-2.5 py-0.5 h-5 text-xs cursor-pointer disabled:cursor-default text-nowrap rounded-full transition-colors duration-100 outline",
+		lightButtonStyles,
+		darkButtonStyles,
+		state === "add" ? "pr-2.5" : "pr-1.5",
+	)}
+	{...restProps}
 >
-	<button
-		onclick={() => onAdd?.()}
-		disabled={state === "remove" ? true : false}
-		aria-label="Add tag to filter"
-		class={cn(
-			"flex items-center gap-0 pl-2.5 py-0.5 cursor-pointer disabled:cursor-default text-nowrap",
-			buttonStyles,
-			state === "add" ? "pr-2.5" : "pr-1",
-		)}
-		{...restProps}
-	>
-		<HashIcon size="12" />
-		{name}
-	</button>
+	<HashIcon size="12" />
+	{name}
 	{#if state === "remove"}
-		<button
-			onclick={() => onRemove?.()}
-			aria-label="Remove tag from filter"
-			class={cn("pl-0.5 pr-1.5 py-0.5 cursor-pointer", buttonStyles)}
-		>
-			<XIcon class="ml-1" size="14" />
-		</button>
+		<XIcon class="ml-1" size="14" />
 	{/if}
-</div>
+</button>

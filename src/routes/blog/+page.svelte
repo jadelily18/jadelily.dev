@@ -140,7 +140,7 @@
 			<div class="flex justify-between items-center">
 				<h2 class="font-semibold text-muted-foreground">More posts</h2>
 				<div class="flex items-center gap-2">
-					<div class="flex gap-1 max-w-full overflow-x-scroll">
+					<div class="flex gap-1 max-w-full p-1 overflow-x-scroll">
 						{#each Object.entries(tags).filter(([_, f]) => f) as [tag]}
 							<Tag
 								name={tag}
