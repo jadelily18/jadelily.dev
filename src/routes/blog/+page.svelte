@@ -4,6 +4,7 @@
 		ImageOffIcon,
 		StarIcon,
 		Funnel,
+		XIcon,
 	} from "@lucide/svelte";
 
 	import dayjs from "dayjs";
@@ -19,6 +20,12 @@
 	import { Meta } from "@components/app";
 	import { formatPageTitle } from "$lib/utils";
 	import type { Post } from "$types/blog";
+	import { IsMobile } from "$lib/shadcn/hooks/is-mobile.svelte";
+	import { cn } from "$lib/shadcn/utils";
+	import { ScrollArea } from "@uilib/scroll-area";
+	import { page } from "$app/state";
+
+	let isMobile = new IsMobile();
 
 	let { data } = $props();
 
@@ -33,15 +40,6 @@
 		Object.keys(tags).filter((t) => tags[t] === true),
 	);
 
-	function setTags(values: string[]): void {
-		const url = new URL(window.location.href);
-		url.searchParams.delete("tags");
-		for (const value of values) {
-			url.searchParams.append("tags", value);
-		}
-		replaceState(url, {});
-	}
-
 	function filterPosts(p: Post) {
 		if (!p.tags) return false;
 
@@ -55,13 +53,42 @@
 
 	$effect(() => {
 		if (finishedNavigation) {
-			console.log("effect triggered");
-			setTags(selectedTags);
+			const params = new URLSearchParams(page.url.searchParams);
+
+			params.delete("tags");
+			for (const [tag, active] of Object.entries(tags)) {
+				if (active) params.append("tags", tag);
+			}
+
+			const query = params.toString();
+
+			replaceState(
+				query ? `?${params.toString()}` : page.url.pathname,
+				page.state,
+			);
 		}
 	});
 </script>
 
 <Meta title={formatPageTitle("Blog")} />
+
+{#snippet tagBar()}
+	<ScrollArea
+		class="w-full overflow-hidden"
+		viewportStyles="fade-x fade-size-x-sm pb-3 sm:py-3 *:flex sm:*:justify-end"
+		orientation="horizontal"
+	>
+		<div class="flex gap-1.5 p-1 w-max justify-end">
+			{#each Object.entries(tags).filter(([_, f]) => f) as [tag]}
+				<Tag
+					name={tag}
+					state="remove"
+					onRemove={() => (tags[tag] = false)}
+				/>
+			{/each}
+		</div>
+	</ScrollArea>
+{/snippet}
 
 <div class="flex flex-col w-full h-full grow gap-6">
 	<h1 class="text-4xl font-bold">Blog</h1>
@@ -123,7 +150,7 @@
 							)}</Tooltip.Content
 						>
 					</Tooltip.Root>
-					<div class="flex flex-wrap gap-1">
+					<div class="flex flex-wrap gap-1.5">
 						{#each data.posts[0].tags as tag}
 							<Tag
 								name={tag}
@@ -137,37 +164,40 @@
 		</div>
 		{#if data.posts.length > 1}
 			<Separator />
-			<div class="flex justify-between items-center">
-				<h2 class="font-semibold text-muted-foreground">More posts</h2>
-				<div class="flex items-center gap-2">
-					<div class="flex gap-1 max-w-full p-1 overflow-x-scroll">
-						{#each Object.entries(tags).filter(([_, f]) => f) as [tag]}
-							<Tag
-								name={tag}
-								state="remove"
-								onRemove={() => (tags[tag] = false)}
-							/>
-						{/each}
-					</div>
+			<div class="flex flex-col gap-1">
+				<div class="flex max-w-full items-center gap-4 h-16">
+					<h2 class="font-semibold text-muted-foreground text-nowrap">
+						More posts
+					</h2>
+					<div
+						class="flex justify-end items-center grow gap-2 overflow-hidden"
+					>
+						{#if !isMobile.current}
+							{@render tagBar()}
+						{/if}
 
-					<Tooltip.Root>
-						<Tooltip.Trigger>
-							<FilterDropdown bind:tags>
-								{#snippet trigger({ props })}
-									<Button
-										{...props}
-										class="cursor-pointer"
-										variant="outline"
-										size="icon"
-									>
-										<Funnel />
-									</Button>
-								{/snippet}
-							</FilterDropdown>
-						</Tooltip.Trigger>
-						<Tooltip.Content>Filter posts</Tooltip.Content>
-					</Tooltip.Root>
+						<Tooltip.Root>
+							<Tooltip.Trigger>
+								<FilterDropdown bind:tags>
+									{#snippet trigger({ props })}
+										<Button
+											{...props}
+											class="cursor-pointer"
+											variant="outline"
+											size="icon"
+										>
+											<Funnel />
+										</Button>
+									{/snippet}
+								</FilterDropdown>
+							</Tooltip.Trigger>
+							<Tooltip.Content>Filter posts</Tooltip.Content>
+						</Tooltip.Root>
+					</div>
 				</div>
+				{#if isMobile.current && selectedTags.length > 0}
+					{@render tagBar()}
+				{/if}
 			</div>
 			{#if data.posts.slice(1).filter(filterPosts).length > 0}
 				<div
