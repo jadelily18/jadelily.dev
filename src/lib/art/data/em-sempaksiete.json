@@ -1,0 +1,14 @@
+{
+	"index": 2,
+	"title": "Em banner",
+	"description": "a test description",
+	"alt": "alt image",
+	"src": "/gallery/em_sempaksiete_banner.png",
+	"attribution": {
+		"label": "Drawn by @sempaksiete",
+		"url": "https://vgen.co/sempaksiete"
+	},
+	"offset": {
+		"x": 80
+	}
+}
