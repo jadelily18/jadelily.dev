@@ -44,8 +44,8 @@
 			href: "/resume",
 		},
 		{
-			title: "Art",
-			href: "/art",
+			title: "Gallery",
+			href: "/gallery",
 		},
 	];
 
