@@ -1,7 +1,7 @@
 ---
 title: Modrinth
-date: August 2023—January 2024 • March 2025—Current
-role: Content Moderation • Community Team
+date: August 2023–January 2024 • March 2025–Current
+role: Content Moderation & Community Team
 image: /brand/modrinth_discord.webp
 imageAlt: Modrinth logo
 index: 0

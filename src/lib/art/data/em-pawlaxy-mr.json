@@ -1,11 +1,11 @@
 {
 	"index": 1,
 	"title": "Em icon (Modrinth variant)",
-	"description": "a test description",
-	"alt": "alt image",
+	"description": "Em's Modrinth-themed avatar. This is what I use on Modrinth, the Modrinth Discord server, and other Modrinth-related places.",
+	"alt": "Emery, a pink and white dog-fox looking into the camera with her head tilted and a Modrinth logo in her mouth. The irises of her eyes are blue and her pupils are pink and heart-shaped. She is wearing a collar with a heart-shaped pendant that says \"Em.\"",
 	"src": "/gallery/em_pawlaxy_icon_mr.jpeg",
 	"attribution": {
-		"label": "Drawn by painic",
+		"label": "Drawn by @painic",
 		"url": "https://vgen.co/painic"
 	}
 }
