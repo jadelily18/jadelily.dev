@@ -10,10 +10,11 @@
 	import { BrandIcon, GenericIcon, Icon } from "@components/icon";
 	import type { AvatarImageLoadingStatus } from "bits-ui";
 
-	import emImage from "$lib/assets/images/art/em-pawlaxy-icon.png";
 	import { Attribution } from "@components/image";
 	import { Meta } from "@components/app";
 	import { cn } from "$lib/shadcn/utils";
+	import { getGalleryItem } from "$lib/art";
+	import { goto } from "$app/navigation";
 
 	type SocialLink = {
 		tooltip: string;
@@ -39,8 +40,7 @@
 		},
 	];
 
-	// TODO: better alt
-	const imgAlt = "Jade's fursona, Em";
+	const avatar = getGalleryItem("em-pawlaxy");
 
 	let avatarLoadingStatus = $state<AvatarImageLoadingStatus>("loading");
 </script>
@@ -51,40 +51,40 @@
 	<div
 		class="flex flex-col sm:flex-row items-center gap-4 p-4 max-w-74 sm:max-w-120"
 	>
-		<div class="relative size-28 group/attribution">
-			<Avatar.Root
-				class="size-28 shadow-md"
-				bind:loadingStatus={avatarLoadingStatus}
-			>
-				<Avatar.Image
-					class="absolute w-full h-full animate-fade-in rounded-full"
-					src={emImage}
-					alt={imgAlt}
-				/>
-				{#if avatarLoadingStatus !== "loaded"}
-					<Avatar.Fallback>
-						<Icon
-							icon={GenericIcon.PawPrint}
-							class="animate-pulse"
+		<Tooltip.Root>
+			<Tooltip.Trigger>
+				<a
+					class="inline-block relative cursor-pointer transition-[scale] duration-200 scale-100 hover:scale-105 active:scale-100"
+					href="/gallery#{avatar.id}"
+				>
+					<Avatar.Root
+						class="size-28 overflow-visible duration-200 after:border-none"
+						bind:loadingStatus={avatarLoadingStatus}
+					>
+						<Avatar.Image
+							class="absolute size-full rounded-full shadow-md outline outline-border duration-1000
+								group-data-[status=loaded]/avatar:animate-in
+								group-data-[status=loaded]/avatar:fade-in-0
+								group-data-[status=loaded]/avatar:zoom-in-65"
+							src={avatar.src}
+							alt={avatar.alt}
 						/>
-					</Avatar.Fallback>
-				{/if}
-			</Avatar.Root>
-
-			{#if avatarLoadingStatus === "loaded"}
-				<Attribution>
-					{#snippet content(contentStyles)}
-						<a
-							class={cn("hover:underline", contentStyles)}
-							href="https://vgen.co/painic"
-							target="_blank"
+						<Avatar.Fallback
+							class="absolute inset-0 flex items-center justify-center duration-1000
+								group-data-[status=loaded]/avatar:animate-out
+								group-data-[status=loaded]/avatar:fade-out-0
+								group-data-[status=loaded]/avatar:zoom-out-75"
 						>
-							Art by @painic
-						</a>
-					{/snippet}
-				</Attribution>
-			{/if}
-		</div>
+							<Icon
+								icon={GenericIcon.PawPrint}
+								class="animate-pulse"
+							/>
+						</Avatar.Fallback>
+					</Avatar.Root>
+				</a>
+			</Tooltip.Trigger>
+			<Tooltip.Content>View in gallery</Tooltip.Content>
+		</Tooltip.Root>
 		<div class="flex flex-col items-center sm:items-start">
 			<div class="flex items-center gap-2">
 				<span class="text-2xl font-semibold">Jade</span>
@@ -121,11 +121,4 @@
 			</div>
 		</div>
 	</div>
-	<!--  -->
 </div>
-
-<!-- <h1>Welcome to SvelteKit</h1>
-<p>
-	Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the
-	documentation
-</p> -->

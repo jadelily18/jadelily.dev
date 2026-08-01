@@ -1,13 +1,20 @@
 <script lang="ts">
-	import { cn } from "$lib/shadcn/utils";
 	import { formatPageTitle } from "$lib/utils";
 	import { Meta } from "@components/app";
 	import { GalleryImage, GalleryModal } from "@components/gallery";
+	import { onMount } from "svelte";
 
 	let { data } = $props();
 
-	function handleGalleryItemClick(index: number) {
-		console.log("clicked");
+	onMount(() => {
+		const pageHash = window.location.hash.slice(1);
+		const index = data.galleryItems.findIndex((i) => i.id === pageHash);
+		if (index !== -1) {
+			handleModalOpen(index);
+		}
+	});
+
+	function handleModalOpen(index: number) {
 		modalSelectedIndex = index;
 		modalOpen = true;
 	}
@@ -31,9 +38,9 @@
 			Commissioned works — click any gallery image to view in full screen!
 		</p>
 	</div>
-	<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+	<div class="grid grid-cols-1 md:grid-cols-3 gap-3">
 		{#each data.galleryItems as item, i}
-			<GalleryImage {item} onclick={() => handleGalleryItemClick(i)} />
+			<GalleryImage {item} onclick={() => handleModalOpen(i)} />
 		{/each}
 	</div>
 </div>

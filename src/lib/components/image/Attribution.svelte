@@ -2,7 +2,7 @@
 	import { cn } from "$lib/shadcn/utils";
 	import { BrushIcon } from "@lucide/svelte";
 	import type { Snippet } from "svelte";
-	import { fade } from "svelte/transition";
+	import type { HTMLAttributes } from "svelte/elements";
 
 	type Props = {
 		expanded?: boolean;
@@ -10,7 +10,7 @@
 		content: Snippet<[className?: string]>;
 		triggerStyles?: string;
 		contentStyles?: string;
-	};
+	} & HTMLAttributes<HTMLDivElement>;
 
 	let {
 		expanded = $bindable(false),
@@ -18,6 +18,7 @@
 		content,
 		triggerStyles,
 		contentStyles = "text-sm whitespace-nowrap",
+		...restProps
 	}: Props = $props();
 
 	let container: HTMLDivElement;
@@ -44,15 +45,15 @@
 
 <div
 	bind:this={container}
-	transition:fade
 	onclick={toggle}
 	role="button"
 	tabindex="0"
 	onkeydown={(e) => e.key === "Enter" && toggle(e as any)}
 	class={cn(
-		"absolute bottom-0 right-0 h-8 w-max flex flex-row-reverse justify-center items-center text-muted-foreground bg-background ring-1 ring-border shadow-md rounded-full overflow-hidden cursor-pointer",
+		"absolute bottom-0 right-0 h-8 w-max flex flex-row-reverse justify-center items-center text-muted-foreground bg-background backdrop-blur ring-1 ring-border shadow-md rounded-full overflow-hidden cursor-pointer group/attribution",
 		className,
 	)}
+	{...restProps}
 >
 	<div class={cn("size-8 flex items-center justify-center", triggerStyles)}>
 		<BrushIcon size="18" class="" />

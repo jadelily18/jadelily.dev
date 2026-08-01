@@ -1,5 +1,11 @@
 import type { GalleryItem } from "$types/art";
 
+function getGalleryItem(id: string): GalleryItem {
+	let item = getGalleryItems().find((i) => i.id === id);
+	if (!item) throw Error(`Item with id \`${id}\` not found`);
+	return item;
+}
+
 function getGalleryItems(): GalleryItem[] {
 	const files = import.meta.glob("/src/lib/art/data/*.json", {
 		eager: true,
@@ -24,4 +30,4 @@ function getGalleryItems(): GalleryItem[] {
 	return items.sort((a, b) => a.index - b.index);
 }
 
-export { getGalleryItems };
+export { getGalleryItem, getGalleryItems };
