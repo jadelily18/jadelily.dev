@@ -1,9 +1,8 @@
 <script lang="ts">
-	import { cn } from "$lib/shadcn/utils";
 	import { formatPageTitle } from "$lib/utils";
 	import { Meta } from "@components/app";
+	import { Alert } from "@components/base";
 	import { GalleryImage, GalleryModal } from "@components/gallery";
-	import { TriangleAlertIcon } from "@lucide/svelte";
 	import { onMount } from "svelte";
 
 	let { data } = $props();
@@ -23,11 +22,6 @@
 
 	let modalOpen = $state(false);
 	let modalSelectedIndex = $state(0);
-
-	let lightAlertStyles =
-		"outline-lavender-pink-600 bg-lavender-pink-200 text-lavender-pink-900";
-	let darkAlertStyles =
-		"dark:outline-lilac-bush-500 dark:bg-lilac-bush-500/35 dark:text-lilac-bush-400";
 </script>
 
 <Meta title={formatPageTitle("Gallery")} />
@@ -45,16 +39,9 @@
 			Commissioned works — click any gallery image to view in full screen!
 		</p>
 	</div>
-	<div
-		class={cn(
-			"flex gap-3 p-4 rounded-lg outline",
-			lightAlertStyles,
-			darkAlertStyles,
-		)}
-	>
-		<TriangleAlertIcon />
+	<Alert type="caution">
 		Do not copy or use any of this art without my explicit permission.
-	</div>
+	</Alert>
 	<div class="grid grid-cols-1 md:grid-cols-3 gap-3">
 		{#each data.galleryItems as item, i}
 			<GalleryImage {item} onclick={() => handleModalOpen(i)} />

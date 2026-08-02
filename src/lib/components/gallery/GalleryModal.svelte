@@ -64,7 +64,7 @@
 						<img
 							src={item.src}
 							alt={item.alt}
-							class="max-h-[65vh] w-auto max-w-full select-none rounded-lg object-contain shadow-lg sm:max-h-[55vh]"
+							class="max-h-[65vh] max-w-[calc(100vw-4rem)] w-auto select-none rounded-lg object-contain shadow-lg sm:max-h-[55vh]"
 							loading={i === startIndex ? "eager" : "lazy"}
 						/>
 					</Carousel.Item>
@@ -109,7 +109,8 @@
 					<button
 						aria-label={`Go to image ${i + 1}`}
 						onclick={() => api?.scrollTo(i)}
-						class="h-1.5 rounded-full transition-all {i === current
+						class="h-1.5 rounded-full cursor-pointer transition-all hover:bg-lavender-pink-300 dark:hover:bg-lilac-bush-400 {i ===
+						current
 							? 'w-6 bg-white'
 							: 'w-1.5 bg-white/30 hover:bg-white/50'}"
 					></button>

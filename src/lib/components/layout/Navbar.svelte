@@ -9,12 +9,11 @@
 
 	import { Button } from "@uilib/button";
 	import * as Drawer from "@uilib/drawer";
-	import * as Dropdown from "@uilib/dropdown-menu";
 	import * as Nav from "@uilib/navigation-menu";
 
 	import { Icon, GenericIcon } from "@components/icon";
 
-	import { ThemeSwitcher } from "@components/app";
+	import { SettingsDialog, ThemeSwitcher } from "@components/app";
 	import { ContentWarningSwitch } from "@components/blog";
 
 	import { page } from "$app/state";
@@ -65,11 +64,11 @@
 			<a
 				{href}
 				class={cn(
-					"py-2 px-3 rounded-md",
+					"rounded-md px-3 py-2",
 					itemBaseStyles,
 					className,
 					href === page.url.pathname
-						? "bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground focus:hover:bg-primary/80 focus:text-primary-foreground"
+						? "bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground focus:text-primary-foreground focus:hover:bg-primary/80"
 						: "",
 				)}
 				{...restProps}
@@ -77,7 +76,7 @@
 				<span class="text-sm leading-none font-medium">{title}</span>
 				{#if content}
 					<p
-						class="text-muted-foreground line-clamp-2 text-sm leading-snug"
+						class="line-clamp-2 text-sm leading-snug text-muted-foreground"
 					>
 						{content}
 					</p>
@@ -87,7 +86,7 @@
 	</Nav.Link>
 {/snippet}
 
-{#snippet overflowTrigger(props: Record<string, unknown>)}
+{#snippet overflowTrigger(props: Record<string, unknown> | undefined)}
 	<Button
 		class="cursor-pointer"
 		variant="ghost"
@@ -105,7 +104,7 @@
 {#snippet mobileNavItem(item: NavItem)}
 	<a
 		data-selected={item.href === page.url.pathname}
-		class="w-full py-2 px-4 text-lg data-[selected=true]:font-semibold rounded-md text-muted-foreground outline-border data-[selected=true]:outline data-[selected=true]:bg-accent data-[selected=true]:text-foreground active:bg-accent"
+		class="w-full rounded-md px-4 py-2 text-lg text-muted-foreground outline-border active:bg-accent data-[selected=true]:bg-accent data-[selected=true]:font-semibold data-[selected=true]:text-foreground data-[selected=true]:outline"
 		href={item.href}
 	>
 		{item.title}
@@ -115,7 +114,7 @@
 <div class="sticky top-0 z-10" transition:fade>
 	<Nav.Root
 		viewport={isMobile.current}
-		class="px-6 sm:px-20 2xl:px-80 py-4 max-w-full *:w-full backdrop-blur-sm"
+		class="max-w-full px-6 py-4 backdrop-blur-sm *:w-full sm:px-20 2xl:px-80"
 	>
 		<Nav.List class="flex justify-between">
 			<Nav.Item>
@@ -123,14 +122,14 @@
 					{#snippet child()}
 						<a
 							href="/"
-							class={cn(itemBaseStyles, "p-2 rounded-full")}
+							class={cn(itemBaseStyles, "rounded-full p-2")}
 						>
 							<Icon icon={GenericIcon.PawPrint} />
 						</a>
 					{/snippet}
 				</Nav.Link>
 			</Nav.Item>
-			<div class="flex gap-2 items-center">
+			<div class="flex items-center gap-2">
 				{#if isMobile.current}
 					<Drawer.Root direction="right">
 						<Drawer.Trigger>
@@ -142,13 +141,13 @@
 							<Drawer.Header>
 								<Drawer.Title>jadelily.dev</Drawer.Title>
 							</Drawer.Header>
-							<div class="flex flex-col h-full justify-between">
+							<div class="flex h-full flex-col justify-between">
 								<div class="flex flex-col gap-1">
 									{#each navItems as item}
 										{@render mobileNavItem(item)}
 									{/each}
 								</div>
-								<div class="flex flex-col p-2 gap-2">
+								<div class="flex flex-col gap-2 p-2">
 									<span
 										class="inline-flex items-center gap-2 text-muted-foreground"
 									>
@@ -177,7 +176,12 @@
 							{@render ListItem(item)}
 						</Nav.Item>
 					{/each}
-					<Dropdown.Root>
+					<SettingsDialog>
+						{#snippet trigger()}
+							{@render overflowTrigger(undefined)}
+						{/snippet}
+					</SettingsDialog>
+					<!-- <Dropdown.Root>
 						<Dropdown.Trigger>
 							{#snippet child({ props })}
 								{@render overflowTrigger(props)}
@@ -197,7 +201,7 @@
 								<ContentWarningSwitch class="pl-4" />
 							</Dropdown.Group>
 						</Dropdown.Content>
-					</Dropdown.Root>
+					</Dropdown.Root> -->
 				{/if}
 			</div>
 		</Nav.List>

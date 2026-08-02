@@ -11,6 +11,10 @@
 		"className",
 		"ngClass",
 		"class:list",
+		"styles",
 		".*Styles.*"
+	],
+	"tailwindCSS.experimental.classRegex": [
+		["styles:\\s*[\"'`]([^\"'`]*)[\"'`]"]
 	]
 }

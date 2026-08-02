@@ -21,6 +21,7 @@
 	import emImg from "$lib/assets/images/art/em-pawlaxy-icon.png";
 	import { ContentWarningDialog } from "@components/blog";
 	import { ignoreContentWarnings } from "$lib/state/warning.svelte";
+	import { YouTube } from "@components/markdown/components";
 
 	const isMobile = new IsMobile();
 
@@ -75,7 +76,7 @@
 	{#if showScrollUp}
 		<div
 			transition:fade={{ duration: 100 }}
-			class="fixed bottom-6 md:bottom-8 z-10"
+			class=" bottom-6 md:bottom-8 z-10 fixed"
 			style="right: {isMobile.current ? '24' : rightOffset}px"
 		>
 			<Button
@@ -176,9 +177,11 @@
 			<Markdown
 				class="prose dark:prose-invert w-full max-w-full!"
 				markdown={data.post.content}
+				withCustomAlerts
 				withHeaders
 				withHighlight
 				withFootnotes
+				additionalComponents={{ youtube: YouTube }}
 			/>
 		</article>
 	</div>

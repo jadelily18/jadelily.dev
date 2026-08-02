@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { ignoreContentWarnings } from "$lib/state/warning.svelte";
+	import { Alert } from "@components/base";
 	import { OctagonAlertIcon } from "@lucide/svelte";
 
 	import * as AlertDialog from "@uilib/alert-dialog";
@@ -36,11 +37,12 @@
 			</AlertDialog.Description>
 		</AlertDialog.Header>
 		<div class="flex flex-col gap-4">
-			<span
+			<!-- <span
 				class="text-red-700 dark:text-destructive bg-red-700/15 dark:bg-destructive/20 rounded-lg outline outline-destructive p-4"
 			>
 				{contentWarning}
-			</span>
+			</span> -->
+			<Alert type="caution" noIcon>{contentWarning}</Alert>
 			<Label
 				data-checked={hideForever}
 				class="flex gap-2 items-start p-4 rounded-lg outline outline-border transition-colors duration-100 data-checked:bg-accent"

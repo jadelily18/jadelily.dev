@@ -18,13 +18,13 @@
 	href="#{id}"
 	aria-label="Link to this section"
 >
-	<svelte:element this={tag} {id} class="group relative">
+	<svelte:element this={tag} {id} class="relative group/header">
 		{#if id}
 			<span
-				class="hidden group-hover:block absolute translate-x-[-115%] h-full"
+				class="hidden group-hover/header:block absolute translate-x-[-115%] h-full"
 				aria-hidden="true"
 			>
-				<HashIcon class="h-full w-auto py-1" />
+				<HashIcon class="h-full w-auto py-1" aria-hidden="true" />
 			</span>
 			{@render children?.()}
 		{:else}

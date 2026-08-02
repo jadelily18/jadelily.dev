@@ -30,6 +30,10 @@
 		}
 	}
 
+	/* iframe {
+		@apply mx-auto mt-4 mb-6 block aspect-video h-auto max-w-full rounded-lg border border-border shadow-lg;
+	} */
+
 	.footnote-ref a {
 		@apply font-semibold text-lavender-pink-500 no-underline hover:text-lavender-pink-600 hover:underline dark:text-lilac-bush-400 dark:hover:text-lilac-bush-500;
 	}

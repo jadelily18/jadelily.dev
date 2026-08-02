@@ -90,6 +90,7 @@
 @theme inline {
 	--color-brand: var(--color-lavender-pink-300);
 
+	/* Light Accent (Em) */
 	--color-lavender-pink-50: oklch(97.25% 0.0116 342.64);
 	--color-lavender-pink-100: oklch(94.96% 0.0259 339.37);
 	--color-lavender-pink-200: oklch(90.28% 0.0526 340.01);
@@ -102,6 +103,7 @@
 	--color-lavender-pink-900: oklch(40.33% 0.1325 357.4);
 	--color-lavender-pink-950: oklch(28.01% 0.0962 358.73);
 
+	/* Dark accent (Remy) */
 	--color-lilac-bush-50: oklch(97.4% 0.0108 297.63);
 	--color-lilac-bush-100: oklch(95.3% 0.0178 300.06);
 	--color-lilac-bush-200: oklch(91.33% 0.0332 299.05);
@@ -113,6 +115,30 @@
 	--color-lilac-bush-800: oklch(46.22% 0.1452 304.08);
 	--color-lilac-bush-900: oklch(40.79% 0.1198 304.73);
 	--color-lilac-bush-950: oklch(30.48% 0.0903 302.14);
+
+	--color-ice-cold-50: #f0fdfb;
+	--color-ice-cold-100: #cbfcf6;
+	--color-ice-cold-200: #a4f9f0;
+	--color-ice-cold-300: #5bede3;
+	--color-ice-cold-400: #29d8d1;
+	--color-ice-cold-500: #10bcb8;
+	--color-ice-cold-600: #0a9797;
+	--color-ice-cold-700: #0d7778;
+	--color-ice-cold-800: #0f5e60;
+	--color-ice-cold-900: #124e4f;
+	--color-ice-cold-950: #032d30;
+
+	--color-sandwisp-50: #fcfaea;
+	--color-sandwisp-100: #faf4c7;
+	--color-sandwisp-200: #f7eba6;
+	--color-sandwisp-300: #efd255;
+	--color-sandwisp-400: #e9bc26;
+	--color-sandwisp-500: #d9a519;
+	--color-sandwisp-600: #bb8013;
+	--color-sandwisp-700: #955c13;
+	--color-sandwisp-800: #7c4a17;
+	--color-sandwisp-900: #6a3d19;
+	--color-sandwisp-950: #3d1f0b;
 
 	--font-sans: "Inter Variable", sans-serif;
 	--color-sidebar-ring: var(--sidebar-ring);

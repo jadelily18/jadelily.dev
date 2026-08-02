@@ -11,9 +11,10 @@
 	import light from "@shikijs/themes/catppuccin-frappe";
 	import dark from "@shikijs/themes/catppuccin-mocha";
 
-	import { ProseHeader } from ".";
+	import { alerts, headers } from "./components";
 
 	type Props = {
+		withCustomAlerts?: boolean;
 		withHeaders?: boolean;
 		withHighlight?: boolean;
 		withFootnotes?: boolean;
@@ -22,6 +23,7 @@
 	} & ComarkProps;
 
 	let {
+		withCustomAlerts = false,
 		withHeaders = false,
 		withHighlight = false,
 		withFootnotes = false,
@@ -39,10 +41,10 @@
 	let components = $derived.by<Record<string, any>>(() => {
 		let c: Record<string, any> = {};
 		if (withHeaders) {
-			[1, 2, 3, 4, 5, 6].forEach((level) => {
-				c[`ProseH${level}`] = (internals: any, props: any) =>
-					ProseHeader(internals, { ...props, tag: `h${level}` });
-			});
+			c = { ...c, ...headers };
+		}
+		if (withCustomAlerts) {
+			c = { ...c, ...alerts };
 		}
 		return {
 			...c,
