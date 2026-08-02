@@ -11,12 +11,13 @@ Back in August of 2023, I was hired as a Content Moderator at Modrinth, reviewin
 user-generated content and ensuring it met the platform's rules. Unfortunately, I would
 lose this role in late January 2024 due to Modrinth's decision to
 [return $800,000 in venture capital](https://modrinth.com/news/article/capital-return/)
-to its investors. In those 6 months, I reviewed thousands of projects.
+to its investors.
 
 In March 2025, due to the success of Modrinth Hosting, Modrinth had since become much
 more sustainable and I was rehired as a Content Moderator. Since then, I have reviewed
 over 20,000 projects, helped shape crucial internal tools, and started our annual Pride
 fundraiser, resulting in
-[over $8,400 raised for The Trevor Project](https://modrinth.com/news/article/pride-campaign-2025/)
-in 2025 and
-[over $40,000 for Rainbow Railroad](https://modrinth.com/news/article/proud-of-you-2026/) in 2026.
+[over $8,400 raised](https://modrinth.com/news/article/pride-campaign-2025/) for The
+Trevor Project in 2025 and
+[over $40,000](https://modrinth.com/news/article/proud-of-you-2026/) for Rainbow Railroad
+in 2026.
