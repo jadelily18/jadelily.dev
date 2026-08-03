@@ -24,3 +24,6 @@ vite.config.ts.timestamp-*
 
 # ignore testing posts
 src/lib/blog/data/posts/**.test.md
+
+.dev.vars*
+!.dev.vars.example
