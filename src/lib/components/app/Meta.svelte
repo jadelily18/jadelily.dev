@@ -6,6 +6,8 @@
 		description?: string;
 		type?: "website" | "article.content";
 		image?: string;
+		imageAlt?: string;
+		largeImage?: boolean;
 		publishedTime?: string;
 	};
 
@@ -16,6 +18,8 @@
 		description,
 		type = "website",
 		image,
+		imageAlt,
+		largeImage = false,
 		publishedTime,
 	}: Props = $props();
 </script>
@@ -40,6 +44,13 @@
 	{#if image}
 		<meta property="og:image" content={image} />
 		<meta property="twitter:image" content={image} />
+		{#if imageAlt}
+			<meta property="og:image:alt" content={imageAlt} />
+		{/if}
+		{#if largeImage}
+			<meta name="twitter:card" content="summary_large_image" />
+				
+		{/if}
 	{/if}
 
 	{#if publishedTime}
