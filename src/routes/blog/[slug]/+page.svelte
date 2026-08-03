@@ -64,6 +64,8 @@
 	author="Jade"
 	description={data.post.summary}
 	image={data.post.coverImg}
+	imageAlt={data.post.coverAlt}
+	largeImage
 	publishedTime={dayjs(new Date(data.post.timestamp * 1000)).toISOString()}
 />
 

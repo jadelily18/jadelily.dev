@@ -24,7 +24,10 @@
 	let modalSelectedIndex = $state(0);
 </script>
 
-<Meta title={formatPageTitle("Gallery")} />
+<Meta
+	title={formatPageTitle("Gallery")}
+	description="Jade's commissioned art."
+/>
 
 <GalleryModal
 	bind:open={modalOpen}
@@ -32,7 +35,7 @@
 	startIndex={modalSelectedIndex}
 />
 
-<div class="flex flex-col w-full h-full grow gap-6">
+<div class="flex h-full w-full grow flex-col gap-6">
 	<div class="flex flex-col gap-2">
 		<h1 class="text-4xl font-bold">Gallery</h1>
 		<p class="text-muted-foreground">
@@ -42,7 +45,7 @@
 	<Alert type="caution">
 		Do not copy or use any of this art without my explicit permission.
 	</Alert>
-	<div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+	<div class="grid grid-cols-1 gap-3 md:grid-cols-3">
 		{#each data.galleryItems as item, i}
 			<GalleryImage {item} onclick={() => handleModalOpen(i)} />
 		{/each}

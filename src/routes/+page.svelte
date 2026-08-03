@@ -45,16 +45,21 @@
 	let avatarLoadingStatus = $state<AvatarImageLoadingStatus>("loading");
 </script>
 
-<Meta title={formatPageTitle("Home")} description="a gay dog thing" image={getGalleryItem("em-pawlaxy").src} />
+<Meta
+	title={formatPageTitle("Home")}
+	description="A gay dog on the internet."
+	image={avatar.src}
+	imageAlt={avatar.alt}
+/>
 
-<div class="flex justify-center items-center grow">
+<div class="flex grow items-center justify-center">
 	<div
-		class="flex flex-col sm:flex-row items-center gap-4 p-4 max-w-74 sm:max-w-120"
+		class="flex max-w-74 flex-col items-center gap-4 p-4 sm:max-w-120 sm:flex-row"
 	>
 		<Tooltip.Root>
 			<Tooltip.Trigger>
 				<a
-					class="inline-block relative cursor-pointer transition-[scale] duration-200 scale-100 hover:scale-105 active:scale-100"
+					class="relative inline-block scale-100 cursor-pointer transition-[scale] duration-200 hover:scale-105 active:scale-100"
 					href="/gallery#{avatar.id}"
 				>
 					<Avatar.Root
@@ -90,11 +95,11 @@
 				<span class="text-2xl font-semibold">Jade</span>
 				<span class="text-sm text-muted-foreground">she/her</span>
 			</div>
-			<p class="text-sm text-center sm:text-left">
+			<p class="text-center text-sm sm:text-left">
 				Hi, I'm Jade! You can find more info about me or my socials
 				below!
 			</p>
-			<div class="flex items-center mt-2 gap-1">
+			<div class="mt-2 flex items-center gap-1">
 				<Button
 					class="cursor-pointer"
 					variant="outline"

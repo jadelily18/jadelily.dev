@@ -21,7 +21,6 @@
 	import { formatPageTitle } from "$lib/utils";
 	import type { Post } from "$types/blog";
 	import { IsMobile } from "$lib/shadcn/hooks/is-mobile.svelte";
-	import { cn } from "$lib/shadcn/utils";
 	import { ScrollArea } from "@uilib/scroll-area";
 	import { page } from "$app/state";
 
@@ -70,7 +69,10 @@
 	});
 </script>
 
-<Meta title={formatPageTitle("Blog")} />
+<Meta
+	title={formatPageTitle("Blog")}
+	description="Jade's blog where she says silly things."
+/>
 
 {#snippet tagBar()}
 	<ScrollArea
@@ -78,7 +80,7 @@
 		viewportStyles="fade-x fade-size-x-sm pb-3 sm:py-3 *:flex sm:*:justify-end"
 		orientation="horizontal"
 	>
-		<div class="flex gap-1.5 p-1 w-max justify-end">
+		<div class="flex w-max justify-end gap-1.5 p-1">
 			{#each Object.entries(tags).filter(([_, f]) => f) as [tag]}
 				<Tag
 					name={tag}
@@ -90,34 +92,34 @@
 	</ScrollArea>
 {/snippet}
 
-<div class="flex flex-col w-full h-full grow gap-6">
+<div class="flex h-full w-full grow flex-col gap-6">
 	<h1 class="text-4xl font-bold">Blog</h1>
 	{#if data.posts.length > 0}
 		<div
-			class="flex flex-wrap md:flex-nowrap w-full min-h-50 rounded-2xl border-border border overflow-hidden divide-sidebar-border"
+			class="flex min-h-50 w-full flex-wrap divide-sidebar-border overflow-hidden rounded-2xl border border-border md:flex-nowrap"
 		>
 			<a
-				class="w-full min-w-80 md:w-80 h-50 transition-[filter] hover:brightness-110"
+				class="h-50 w-full min-w-80 transition-[filter] hover:brightness-110 md:w-80"
 				href="/blog/{data.posts[0].slug}"
 			>
 				{#if data.posts[0].coverImg}
 					<img
-						class="w-full h-full object-cover"
+						class="h-full w-full object-cover"
 						src={data.posts[0].coverImg}
 						alt={data.posts[0].coverAlt || ""}
 					/>
 				{:else}
 					<div
-						class="flex justify-center items-center h-full transition-colors text-muted bg-lavender-pink-400 dark:bg-lilac-bush-500"
+						class="flex h-full items-center justify-center bg-lavender-pink-400 text-muted transition-colors dark:bg-lilac-bush-500"
 					>
 						<ImageOffIcon />
 					</div>
 				{/if}
 			</a>
-			<div class="flex flex-col justify-between w-full gap-4 p-4">
-				<div class="flex flex-col w-full gap-1">
+			<div class="flex w-full flex-col justify-between gap-4 p-4">
+				<div class="flex w-full flex-col gap-1">
 					<span
-						class="inline-flex items-center font-semibold text-muted-foreground gap-1 text-sm"
+						class="inline-flex items-center gap-1 text-sm font-semibold text-muted-foreground"
 					>
 						<StarIcon size="14" />
 						Featured
@@ -127,7 +129,7 @@
 						href="/blog/{data.posts[0].slug}"
 						>{data.posts[0].title}</a
 					>
-					<span class="text-muted-foreground grow">
+					<span class="grow text-muted-foreground">
 						{data.posts[0].summary}
 					</span>
 				</div>
@@ -165,12 +167,12 @@
 		{#if data.posts.length > 1}
 			<Separator />
 			<div class="flex flex-col gap-1">
-				<div class="flex max-w-full items-center gap-4 h-16">
-					<h2 class="font-semibold text-muted-foreground text-nowrap">
+				<div class="flex h-16 max-w-full items-center gap-4">
+					<h2 class="font-semibold text-nowrap text-muted-foreground">
 						More posts
 					</h2>
 					<div
-						class="flex justify-end items-center grow gap-2 overflow-hidden"
+						class="flex grow items-center justify-end gap-2 overflow-hidden"
 					>
 						{#if !isMobile.current}
 							{@render tagBar()}
@@ -201,7 +203,7 @@
 			</div>
 			{#if data.posts.slice(1).filter(filterPosts).length > 0}
 				<div
-					class="grid grid-cols-auto md:grid-cols-2 lg:grid-cols-3 gap-4"
+					class="grid-cols-auto grid gap-4 md:grid-cols-2 lg:grid-cols-3"
 				>
 					{#each data.posts.filter(filterPosts) as post}
 						{#if post !== data.posts[0]}
@@ -222,7 +224,7 @@
 			>
 		{/if}
 	{:else}
-		<div class="flex w-full h-full grow mb-16 justify-center items-center">
+		<div class="mb-16 flex h-full w-full grow items-center justify-center">
 			<Empty.Root>
 				<Empty.Header>
 					<Empty.Media variant="icon">

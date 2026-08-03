@@ -8,14 +8,14 @@
 	let { data } = $props();
 </script>
 
-<Meta title={formatPageTitle("Resume")} />
+<Meta title={formatPageTitle("Resume")} description="Jade's resume (kinda)." />
 
-<div class="flex flex-col w-full h-full grow gap-6">
+<div class="flex h-full w-full grow flex-col gap-6">
 	<h1 class="text-4xl font-bold">Resume</h1>
 	<div class="grid grid-cols-1 gap-2">
 		{#await data.resumeItems}
 			<div
-				class="flex flex-col gap-4 p-4 rounded-lg border border-border"
+				class="flex flex-col gap-4 rounded-lg border border-border p-4"
 			>
 				<div class="flex items-center gap-4">
 					<Skeleton class="size-16 rounded-lg" />
