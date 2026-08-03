@@ -45,7 +45,7 @@
 	let avatarLoadingStatus = $state<AvatarImageLoadingStatus>("loading");
 </script>
 
-<Meta title={formatPageTitle("Home")} />
+<Meta title={formatPageTitle("Home")} description="a gay dog thing" image={getGalleryItem("em-pawlaxy").src} />
 
 <div class="flex justify-center items-center grow">
 	<div
