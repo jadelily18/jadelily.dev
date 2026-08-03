@@ -57,12 +57,12 @@
 	{#if alert.type === type}
 		<blockquote
 			class={cn(
-				"flex items-start gap-3 p-4 w-full rounded-lg border-l-0 outline not-italic font-normal",
+				"flex w-full items-start gap-3 rounded-lg border-l-0 p-4 font-normal not-italic outline",
 				alert.styles,
 			)}
 		>
 			{#if !noIcon}
-				<alert.icon class="size-10 sm:size-6 -mt-1 sm:mt-1" />
+				<alert.icon class="size-10 h-lh sm:size-6" />
 			{/if}
 			<div class="inline">
 				{@render children?.()}
