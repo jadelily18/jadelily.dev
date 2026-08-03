@@ -12,16 +12,12 @@
 		value: Theme;
 	};
 
-	function classFromTheme(theme: Theme): string {
-		switch (theme) {
-			case "system":
-				if (!systemPrefersMode.current) return "";
-				return `force-${systemPrefersMode.current}`;
-			case "dark":
-				return "force-dark";
-			case "light":
-				return "force-light";
-		}
+	function previewStyle(theme: Theme): string {
+		const resolved = theme === "system" ? systemPrefersMode.current : theme;
+		if (!resolved) return "";
+		return `--background: var(--color-background-${resolved});
+			--border: var(--color-border-${resolved});
+			--muted-foreground: var(--color-muted-foreground-${resolved});`;
 	}
 </script>
 
@@ -42,7 +38,7 @@
 				props.value}
 			class="flex justify-between items-center w-full rounded-lg border border-border p-2 group/radio-item bg-transparent data-[selected=true]:bg-accent transition-colors duration-100"
 		>
-			<div class={classFromTheme(props.value)}>
+			<div style={previewStyle(props.value)}>
 				<div
 					class="flex flex-col gap-1 w-16 p-2 bg-background rounded-sm border border-border"
 				>

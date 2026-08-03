@@ -11,18 +11,20 @@
 @custom-variant dark (&:is(.dark *));
 @plugin "@tailwindcss/typography";
 
-.force-light {
-	color-scheme: light !important;
-}
-
-.force-dark {
-	color-scheme: dark !important;
-}
-
 :root {
 	color-scheme: light;
 
-	--background: light-dark(oklch(1 0 0), oklch(0.145 0.008 326));
+	--color-background-light: oklch(1 0 0);
+	--color-background-dark: oklch(0.145 0.008 326);
+	--color-border-light: oklch(0.922 0.005 325.62);
+	--color-border-dark: oklch(1 0 0 / 10%);
+	--color-muted-foreground-light: oklch(0.542 0.034 322.5);
+	--color-muted-foreground-dark: oklch(0.711 0.019 323.02);
+
+	--background: light-dark(
+		var(--color-background-light),
+		var(--color-background-dark)
+	);
 	--foreground: light-dark(oklch(0.145 0.008 326), oklch(0.985 0 0));
 	--card: light-dark(oklch(1 0 0), oklch(0.212 0.019 322.12));
 	--card-foreground: light-dark(oklch(0.145 0.008 326), oklch(0.985 0 0));
@@ -40,8 +42,8 @@
 	);
 	--muted: light-dark(oklch(0.96 0.003 325.6), oklch(0.263 0.024 320.12));
 	--muted-foreground: light-dark(
-		oklch(0.542 0.034 322.5),
-		oklch(0.711 0.019 323.02)
+		var(--color-muted-foreground-light),
+		var(--color-muted-foreground-dark)
 	);
 	--accent: light-dark(oklch(0.96 0.003 325.6), oklch(0.263 0.024 320.12));
 	--accent-foreground: light-dark(
@@ -52,7 +54,7 @@
 		oklch(0.577 0.245 27.325),
 		oklch(0.704 0.191 22.216)
 	);
-	--border: light-dark(oklch(0.922 0.005 325.62), oklch(1 0 0 / 10%));
+	--border: light-dark(var(--color-border-light), var(--color-border-dark));
 	--input: light-dark(oklch(0.922 0.005 325.62), oklch(1 0 0 / 15%));
 	--ring: light-dark(oklch(0.711 0.019 323.02), oklch(0.542 0.034 322.5));
 	--chart-1: oklch(0.823 0.12 346.018);
