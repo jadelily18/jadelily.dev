@@ -19,7 +19,7 @@ function getPosts(): Post[] {
 
 	for (let path in files) {
 		const { data, content } = matter(files[path]);
-		// if (!data.published) continue;
+		if (!data.published) continue;
 
 		const slug = path.split("/").pop()!.replace(".md", "");
 

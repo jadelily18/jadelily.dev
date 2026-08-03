@@ -22,5 +22,5 @@ Thumbs.db
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
-# TEMP - don't want to see this cursed shit
-src/lib/blog/data/posts/*
+# ignore testing posts
+src/lib/blog/data/posts/**.test.md
