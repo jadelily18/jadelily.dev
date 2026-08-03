@@ -2,9 +2,10 @@
 	import { MonitorIcon, MoonIcon, SunIcon } from "@lucide/svelte";
 	import { Label } from "@uilib/label";
 	import * as RadioGroup from "@uilib/radio-group";
-	import { setMode, systemPrefersMode, userPrefersMode } from "mode-watcher";
+	import { systemPrefersMode, type UserPrefersMode } from "mode-watcher";
+	import { appStore } from "$lib/state/app.svelte";
 
-	type Theme = "system" | "dark" | "light";
+	type Theme = UserPrefersMode["current"];
 
 	type ItemProps = {
 		label: string;
@@ -37,7 +38,8 @@
 {#snippet groupItem(props: ItemProps)}
 	<Label for="{props.value}-mode">
 		<div
-			data-selected={userPrefersMode.current === props.value}
+			data-selected={appStore.settings.pending.general.theme ===
+				props.value}
 			class="flex justify-between items-center w-full rounded-lg border border-border p-2 group/radio-item bg-transparent data-[selected=true]:bg-accent transition-colors duration-100"
 		>
 			<div class={classFromTheme(props.value)}>
@@ -67,7 +69,7 @@
 
 <RadioGroup.Root
 	class="flex flex-col w-full gap-1"
-	bind:value={userPrefersMode.current}
+	bind:value={appStore.settings.pending.general.theme}
 >
 	{@render groupItem({ label: "System", value: "system" })}
 	{@render groupItem({ label: "Dark", value: "dark" })}

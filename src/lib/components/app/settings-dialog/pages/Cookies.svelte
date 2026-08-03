@@ -1,13 +1,9 @@
 <script lang="ts">
-	import { youtubeCookieConsent } from "$lib/state/cookieConsent.svelte";
+	import { appStore } from "$lib/state/app.svelte";
 	import { RotateCcwIcon } from "@lucide/svelte";
 	import { Button } from "@uilib/button";
 	import { Label } from "@uilib/label";
 	import { Switch } from "@uilib/switch";
-
-	function handleCheckedChange(checked: boolean) {
-		youtubeCookieConsent.value = checked;
-	}
 </script>
 
 <div class="flex flex-col">
@@ -21,14 +17,25 @@
 			</div>
 			<Switch
 				class="cursor-pointer"
-				onCheckedChange={handleCheckedChange}
+				bind:checked={
+					() =>
+						appStore.settings.pending.cookies.allowYoutubeCookies ??
+						false,
+					(checked) =>
+						(appStore.settings.pending.cookies.allowYoutubeCookies =
+							checked)
+				}
 			/>
 		</Label>
+		<!-- probably should only be here for debug purposes -->
 		<Button
 			class="cursor-pointer"
 			variant="link"
-			disabled={youtubeCookieConsent.value === undefined}
-			onclick={() => (youtubeCookieConsent.value = undefined)}
+			disabled={appStore.settings.pending.cookies.allowYoutubeCookies ===
+				undefined}
+			onclick={() =>
+				(appStore.settings.pending.cookies.allowYoutubeCookies =
+					undefined)}
 		>
 			<RotateCcwIcon />
 		</Button>

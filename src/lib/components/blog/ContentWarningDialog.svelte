@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ignoreContentWarnings } from "$lib/state/warning.svelte";
+	import { appStore } from "$lib/state/app.svelte";
 	import { Alert } from "@components/base";
 	import { OctagonAlertIcon } from "@lucide/svelte";
 
@@ -18,7 +18,7 @@
 	let hideForever = $state<boolean>(false);
 
 	function acceptWarning() {
-		if (hideForever) ignoreContentWarnings.value = true;
+		if (hideForever) appStore.settings.general.ignoreContentWarnings = true;
 		open = false;
 	}
 </script>
@@ -45,7 +45,7 @@
 			<Alert type="caution" noIcon>{contentWarning}</Alert>
 			<Label
 				data-checked={hideForever}
-				class="flex gap-2 items-start p-4 rounded-lg outline outline-border transition-colors duration-100 data-checked:bg-accent"
+				class="flex items-start gap-2 rounded-lg p-4 outline outline-border transition-colors duration-100 data-checked:bg-accent"
 			>
 				<Checkbox
 					class="bg-accent shadow-lg"
@@ -65,7 +65,7 @@
 				>Go back</Button
 			>
 			<AlertDialog.Action
-				class="text-red-700 dark:text-destructive not-dark:bg-red-700/15 not-dark:hover:bg-red-600/20 dark:bg-destructive/20"
+				class="text-red-700 not-dark:bg-red-700/15 not-dark:hover:bg-red-600/20 dark:bg-destructive/20 dark:text-destructive"
 				variant="destructive"
 				onclick={acceptWarning}
 			>

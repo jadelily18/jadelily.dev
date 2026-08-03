@@ -1,5 +1,6 @@
 import * as Page from "./pages";
 import SettingsDialog from "./SettingsDialog.svelte";
+import SettingsDrawer from "./SettingsDrawer.svelte";
 import type { SettingsPageId, SettingsPageType } from "./types";
 
 import { CookieIcon, InfoIcon } from "@lucide/svelte";
@@ -9,4 +10,4 @@ const pages: Record<SettingsPageId, SettingsPageType> = {
 	cookies: { label: "Cookies", content: Page.Cookies, icon: CookieIcon },
 };
 
-export { SettingsDialog, Page, pages };
+export { SettingsDialog, SettingsDrawer, Page, pages };

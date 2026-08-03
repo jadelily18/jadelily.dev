@@ -1,6 +1,12 @@
 <script lang="ts">
-	import { youtubeCookieConsent } from "$lib/state/cookieConsent.svelte";
-	import { CheckIcon, CookieIcon, XIcon } from "@lucide/svelte";
+	import { appStore, openSettingsPage } from "$lib/state/app.svelte";
+	import {
+		CheckIcon,
+		CircleAlertIcon,
+		CookieIcon,
+		SettingsIcon,
+		XIcon,
+	} from "@lucide/svelte";
 	import { Button } from "@uilib/button";
 
 	type Props = {
@@ -11,7 +17,7 @@
 </script>
 
 <div class="overflow-hidden rounded-lg border border-border md:mx-16">
-	{#if youtubeCookieConsent.value}
+	{#if appStore.settings.cookies.allowYoutubeCookies}
 		<iframe
 			class="aspect-video size-full"
 			src={`https://www.youtube-nocookie.com/embed/${id}`}
@@ -21,12 +27,35 @@
 		></iframe>
 	{:else}
 		<div
-			class="flex aspect-video items-center justify-center bg-accent p-4"
+			class="flex aspect-video items-center justify-center bg-accent p-4 *:md:max-w-lg"
 		>
-			{#if youtubeCookieConsent.value === false}
-				you opted out of yt cookies
-			{:else if youtubeCookieConsent.value === undefined}
-				<div class="flex flex-col items-center gap-3 md:max-w-lg">
+			{#if appStore.settings.cookies.allowYoutubeCookies === false}
+				<div class="flex flex-col items-center gap-3">
+					<div
+						class="flex w-full flex-col items-center justify-center gap-2"
+					>
+						<div
+							class="inline-flex items-center justify-center gap-2 text-lg font-semibold"
+						>
+							<CircleAlertIcon class="size-6" />
+							Unavailable
+						</div>
+						<span class="text-center text-sm text-muted-foreground">
+							You won't be able to view YouTube videos unless
+							enabled.
+						</span>
+					</div>
+					<Button
+						variant="outline"
+						size="sm"
+						onclick={() => openSettingsPage("cookies")}
+					>
+						<SettingsIcon />
+						Manage cookies
+					</Button>
+				</div>
+			{:else if appStore.settings.cookies.allowYoutubeCookies === undefined}
+				<div class="flex flex-col items-center gap-3">
 					<div class="flex flex-col gap-2 text-center">
 						<span
 							class="inline-flex items-center justify-center gap-2 text-lg font-semibold"
@@ -42,14 +71,14 @@
 					<div class="flex gap-2 *:cursor-pointer">
 						<Button
 							size="sm"
-							onclick={() => (youtubeCookieConsent.value = true)}
+							onclick={() => (appStore.settings.cookies.allowYoutubeCookies = true)}
 						>
 							<CheckIcon />
 							Accept</Button
 						>
 						<Button
 							size="sm"
-							onclick={() => (youtubeCookieConsent.value = false)}
+							onclick={() => (appStore.settings.cookies.allowYoutubeCookies = false)}
 						>
 							<XIcon />
 							Deny</Button

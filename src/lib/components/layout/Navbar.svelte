@@ -5,7 +5,7 @@
 	import { IsMobile } from "$lib/shadcn/hooks/is-mobile.svelte";
 	import { cn } from "$lib/shadcn/utils";
 
-	import { MenuIcon, SettingsIcon } from "@lucide/svelte";
+	import { ChevronRightIcon, MenuIcon, SettingsIcon } from "@lucide/svelte";
 
 	import { Button } from "@uilib/button";
 	import * as Drawer from "@uilib/drawer";
@@ -13,11 +13,11 @@
 
 	import { Icon, GenericIcon } from "@components/icon";
 
-	import { SettingsDialog, ThemeSwitcher } from "@components/app";
-	import { ContentWarningSwitch } from "@components/blog";
+	import { SettingsDialog, SettingsDrawer } from "@components/app";
 
 	import { page } from "$app/state";
 	import { Separator } from "@uilib/separator";
+	import { appStore } from "$lib/state/app.svelte";
 
 	const isMobile = new IsMobile();
 
@@ -148,24 +148,25 @@
 									{/each}
 								</div>
 								<div class="flex flex-col gap-2 p-2">
-									<span
-										class="inline-flex items-center gap-2 text-muted-foreground"
+									<!-- <Separator class="mb-1" /> -->
+									<SettingsDrawer
+										bind:open={appStore.settings.open}
 									>
-										<SettingsIcon size="16" />
-										Settings
-									</span>
-									<Separator class="mb-2" />
-									<div class="flex flex-col gap-2">
-										<ContentWarningSwitch
-											label="Ignore content warnings"
-										/>
-									</div>
-									<div class="flex flex-col gap-2">
-										<span class="text-muted-foreground">
-											Theme
-										</span>
-										<ThemeSwitcher />
-									</div>
+										{#snippet trigger(props)}
+											<button
+												{...props}
+												class="flex w-full items-center justify-between rounded-md px-2 py-2 text-lg text-muted-foreground outline-border active:bg-accent"
+											>
+												<span
+													class="inline-flex items-center gap-2"
+												>
+													<SettingsIcon size="18" />
+													Settings
+												</span>
+												<ChevronRightIcon size="18" />
+											</button>
+										{/snippet}
+									</SettingsDrawer>
 								</div>
 							</div>
 						</Drawer.Content>
@@ -176,32 +177,11 @@
 							{@render ListItem(item)}
 						</Nav.Item>
 					{/each}
-					<SettingsDialog>
+					<SettingsDialog bind:open={appStore.settings.open}>
 						{#snippet trigger()}
 							{@render overflowTrigger(undefined)}
 						{/snippet}
 					</SettingsDialog>
-					<!-- <Dropdown.Root>
-						<Dropdown.Trigger>
-							{#snippet child({ props })}
-								{@render overflowTrigger(props)}
-							{/snippet}
-						</Dropdown.Trigger>
-						<Dropdown.Content align="end" class="w-60 mt-2 pb-2">
-							<Dropdown.Group>
-								<Dropdown.Label>Theme</Dropdown.Label>
-								<div class="px-2 pb-2">
-									<ThemeSwitcher />
-								</div>
-							</Dropdown.Group>
-							<Dropdown.Group>
-								<Dropdown.Label>
-									Content Warnings
-								</Dropdown.Label>
-								<ContentWarningSwitch class="pl-4" />
-							</Dropdown.Group>
-						</Dropdown.Content>
-					</Dropdown.Root> -->
 				{/if}
 			</div>
 		</Nav.List>

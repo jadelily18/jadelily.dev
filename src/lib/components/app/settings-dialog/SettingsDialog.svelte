@@ -5,9 +5,11 @@
 	import type { Component, Snippet } from "svelte";
 
 	import {
+		CheckIcon,
 		CookieIcon,
 		HeartIcon,
 		InfoIcon,
+		RotateCcwIcon,
 		SettingsIcon,
 	} from "@lucide/svelte";
 
@@ -15,6 +17,8 @@
 	import type { SettingsPageId } from "./types";
 	import { pages } from ".";
 	import { GenericIcon, Icon } from "@components/icon";
+	import { appStore } from "$lib/state/app.svelte";
+	import { Button } from "@uilib/button";
 
 	type Props = {
 		open?: boolean;
@@ -23,15 +27,33 @@
 	};
 
 	let {
-		open = $bindable(true),
+		open = $bindable(false),
 		activePageId = "general",
 		trigger,
 	}: Props = $props();
 
 	let activePage = $derived(pages[activePageId]);
+
+	$effect(() => {
+		if (open) {
+			if (appStore.settings.activePage) {
+				activePageId = appStore.settings.activePage;
+				appStore.settings.activePage = undefined;
+			}
+		} else {
+			setTimeout(() => (activePageId = "general"), 200);
+		}
+	});
+
+	let showSavePrompt = $derived(appStore.settings.dirty);
 </script>
 
-<Dialog.Root bind:open>
+<Dialog.Root
+	bind:open
+	onOpenChange={(next) => {
+		if (!next && appStore.settings.dirty) open = true;
+	}}
+>
 	<Dialog.Trigger>
 		{@render trigger()}
 	</Dialog.Trigger>
@@ -39,6 +61,29 @@
 		class="overflow-hidden p-0 md:max-h-125 md:max-w-175 lg:max-w-200"
 		trapFocus={false}
 	>
+		<div
+			data-show={showSavePrompt}
+			class="
+				absolute right-0 bottom-0 left-0 z-10 m-4 flex items-center justify-between rounded-xl border border-border bg-accent
+				px-4 py-2 shadow-xl duration-200 data-[show=false]:invisible data-[show=false]:animate-out data-[show=false]:fade-out-0
+				data-[show=false]:zoom-out-95 data-[show=false]:blur-out-sm data-[show=true]:visible
+				data-[show=true]:animate-in data-[show=true]:fade-in-0 data-[show=true]:zoom-in-95
+			"
+		>
+			<span>You have unsaved changes!</span>
+			<div class="flex gap-1 *:cursor-pointer">
+				<Button
+					variant="outline"
+					size="sm"
+					onclick={() => appStore.settings.reset()}
+				>
+					<RotateCcwIcon /> Reset
+				</Button>
+				<Button size="sm" onclick={() => appStore.settings.commit()}>
+					<CheckIcon /> Save
+				</Button>
+			</div>
+		</div>
 		<Icon
 			class="absolute bottom-6 left-6 size-6 text-muted"
 			icon={GenericIcon.PawPrint}

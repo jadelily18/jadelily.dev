@@ -20,8 +20,8 @@
 
 	import emImg from "$lib/assets/images/art/em-pawlaxy-icon.png";
 	import { ContentWarningDialog } from "@components/blog";
-	import { ignoreContentWarnings } from "$lib/state/warning.svelte";
 	import { YouTube } from "@components/markdown/components";
+	import { appStore } from "$lib/state/app.svelte";
 
 	const isMobile = new IsMobile();
 
@@ -67,7 +67,7 @@
 	publishedTime={dayjs(new Date(data.post.timestamp * 1000)).toISOString()}
 />
 
-{#if !ignoreContentWarnings.value && data.post.contentWarning && showContentWarning}
+{#if !appStore.settings.general.ignoreContentWarnings && data.post.contentWarning && showContentWarning}
 	<ContentWarningDialog
 		bind:open={showContentWarning}
 		contentWarning={data.post.contentWarning}
@@ -76,7 +76,7 @@
 	{#if showScrollUp}
 		<div
 			transition:fade={{ duration: 100 }}
-			class=" bottom-6 md:bottom-8 z-10 fixed"
+			class=" fixed bottom-6 z-10 md:bottom-8"
 			style="right: {isMobile.current ? '24' : rightOffset}px"
 		>
 			<Button
@@ -111,7 +111,7 @@
 			<p
 				class="inline-flex items-center gap-1 text-sm text-muted-foreground"
 			>
-				<Avatar.Root class="size-6 mr-0.5">
+				<Avatar.Root class="mr-0.5 size-6">
 					<Avatar.Image src={emImg} />
 					<Avatar.Fallback>J</Avatar.Fallback>
 				</Avatar.Root>
@@ -145,10 +145,10 @@
 		{#if data.post.coverImg}
 			<AspectRatio
 				ratio={16 / 9}
-				class="rounded-lg shadow-md outline outline-border overflow-hidden md:mx-4 group/attribution"
+				class="group/attribution overflow-hidden rounded-lg shadow-md outline outline-border md:mx-4"
 			>
 				{#if data.post.attribution}
-					<Attribution expanded class="z-10 right-2 bottom-2">
+					<Attribution expanded class="right-2 bottom-2 z-10">
 						{#snippet content(contentStyles)}
 							{#if data.post.attributionLink}
 								<a
@@ -167,7 +167,7 @@
 					</Attribution>
 				{/if}
 				<img
-					class="w-full h-full object-cover"
+					class="h-full w-full object-cover"
 					src={data.post.coverImg}
 					alt={data.post.coverAlt || ""}
 				/>
@@ -175,7 +175,7 @@
 		{/if}
 		<article class="flex justify-center">
 			<Markdown
-				class="prose dark:prose-invert w-full max-w-full!"
+				class="prose w-full max-w-full! dark:prose-invert"
 				markdown={data.post.content}
 				withCustomAlerts
 				withHeaders
