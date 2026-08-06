@@ -23,7 +23,7 @@
 	type Props = {
 		open?: boolean;
 		activePageId?: SettingsPageId;
-		trigger: Snippet;
+		trigger: Snippet<[Record<string, unknown>]>;
 	};
 
 	let {
@@ -55,7 +55,9 @@
 	}}
 >
 	<Dialog.Trigger>
-		{@render trigger()}
+		{#snippet child({ props })}
+			{@render trigger(props)}
+		{/snippet}
 	</Dialog.Trigger>
 	<Dialog.Content
 		class="overflow-hidden p-0 md:max-h-125 md:max-w-175 lg:max-w-200"

@@ -16,7 +16,6 @@
 	import { SettingsDialog, SettingsDrawer } from "@components/app";
 
 	import { page } from "$app/state";
-	import { Separator } from "@uilib/separator";
 	import { appStore } from "$lib/state/app.svelte";
 
 	const isMobile = new IsMobile();
@@ -178,8 +177,8 @@
 						</Nav.Item>
 					{/each}
 					<SettingsDialog bind:open={appStore.settings.open}>
-						{#snippet trigger()}
-							{@render overflowTrigger(undefined)}
+						{#snippet trigger(props)}
+							{@render overflowTrigger(props)}
 						{/snippet}
 					</SettingsDialog>
 				{/if}
