@@ -92,6 +92,9 @@
 @theme inline {
 	--color-brand: var(--color-lavender-pink-300);
 
+	--color-modrinth: light-dark(#30b27b, #1bd96a);
+	--color-bluesky: #0085ff;
+
 	/* Light Accent (Em) */
 	--color-lavender-pink-50: oklch(97.25% 0.0116 342.64);
 	--color-lavender-pink-100: oklch(94.96% 0.0259 339.37);

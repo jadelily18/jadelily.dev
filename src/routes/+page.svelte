@@ -112,7 +112,13 @@
 						<Tooltip.Trigger>
 							{#snippet child({ props })}
 								<Button
-									class="cursor-pointer"
+									data-modrinth={link.tooltip === "Modrinth"}
+									data-bluesky={link.tooltip === "BlueSky"}
+									class={cn(
+										"cursor-pointer",
+										"data-[modrinth=true]:hover:text-modrinth data-[modrinth=true]:active:text-modrinth",
+										"data-[bluesky=true]:hover:text-bluesky data-[bluesky=true]:active:text-bluesky",
+									)}
 									size="icon"
 									variant="outline"
 									href={link.url}
