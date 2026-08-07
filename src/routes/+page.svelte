@@ -10,15 +10,14 @@
 	import { BrandIcon, GenericIcon, Icon } from "@components/icon";
 	import type { AvatarImageLoadingStatus } from "bits-ui";
 
-	import { Attribution } from "@components/image";
 	import { Meta } from "@components/app";
-	import { cn } from "$lib/shadcn/utils";
 	import { getGalleryItem } from "$lib/art";
-	import { goto } from "$app/navigation";
+	import { cn } from "$lib/shadcn/utils";
 
 	type SocialLink = {
 		tooltip: string;
 		url: string;
+		styles?: string;
 		icon: Component;
 	};
 
@@ -26,6 +25,7 @@
 		{
 			tooltip: "Modrinth",
 			url: "https://modrinth.com/@jade",
+			styles: "hactive:text-modrinth hactive:bg-modrinth/15 dark:hactive:border-modrinth/30 hactive:border-modrinth/35",
 			icon: BrandIcon.Modrinth,
 		},
 		{
@@ -36,6 +36,7 @@
 		{
 			tooltip: "BlueSky",
 			url: "https://bsky.app/profile/jadelily.dev",
+			styles: "hactive:text-bluesky hactive:bg-bluesky/15 dark:hactive:border-bluesky/30 hactive:border-bluesky/35",
 			icon: BrandIcon.Bluesky,
 		},
 	];
@@ -101,7 +102,7 @@
 			</p>
 			<div class="mt-2 flex items-center gap-1">
 				<Button
-					class="cursor-pointer"
+					class="cursor-pointer hactive:border-lavender-pink-300/85 hactive:bg-lavender-pink-300/25 hactive:text-lavender-pink-800 dark:hactive:border-lilac-bush-700/40 dark:hactive:bg-lilac-bush-800/25 dark:hactive:text-lilac-bush-300"
 					variant="outline"
 					href="/blog/hi-im-jade"
 				>
@@ -112,13 +113,7 @@
 						<Tooltip.Trigger>
 							{#snippet child({ props })}
 								<Button
-									data-modrinth={link.tooltip === "Modrinth"}
-									data-bluesky={link.tooltip === "BlueSky"}
-									class={cn(
-										"cursor-pointer",
-										"data-[modrinth=true]:hover:text-modrinth data-[modrinth=true]:active:text-modrinth",
-										"data-[bluesky=true]:hover:text-bluesky data-[bluesky=true]:active:text-bluesky",
-									)}
+									class={cn("cursor-pointer", link.styles)}
 									size="icon"
 									variant="outline"
 									href={link.url}

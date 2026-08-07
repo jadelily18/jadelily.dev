@@ -11,6 +11,8 @@
 @custom-variant dark (&:is(.dark *));
 @plugin "@tailwindcss/typography";
 
+@custom-variant hactive (&:hover, &:focus);
+
 :root {
 	color-scheme: light;
 
