@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { formatPageTitle } from "$lib/utils";
+	import { Comark } from "@comark/svelte";
 	import { Meta } from "@components/app";
 	import { Alert } from "@components/base";
 	import { GalleryImage, GalleryModal } from "@components/gallery";
@@ -22,6 +23,11 @@
 
 	let modalOpen = $state(false);
 	let modalSelectedIndex = $state(0);
+
+	const alertMarkdown = `
+		**Warning** — this is **commissioned work!**  
+		**Do not copy** or **use** any of this art for **anything** without explicit permission.
+	`;
 </script>
 
 <Meta
@@ -43,7 +49,7 @@
 		</p>
 	</div>
 	<Alert type="caution">
-		Do not copy or use any of this art without my explicit permission.
+		<Comark markdown={alertMarkdown} />
 	</Alert>
 	<div class="grid grid-cols-1 gap-3 md:grid-cols-3">
 		{#each data.galleryItems as item, i}
