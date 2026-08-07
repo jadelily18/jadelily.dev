@@ -5,6 +5,7 @@
 		StarIcon,
 		Funnel,
 		XIcon,
+		RssIcon,
 	} from "@lucide/svelte";
 
 	import dayjs from "dayjs";
@@ -93,7 +94,27 @@
 {/snippet}
 
 <div class="flex h-full w-full grow flex-col gap-6">
-	<h1 class="text-4xl font-bold">Blog</h1>
+	<div class="flex items-center justify-between">
+		<h1 class="text-4xl font-bold">Blog</h1>
+		<Tooltip.Root>
+			<Tooltip.Trigger>
+				{#snippet child({ props })}
+					<Button
+						href="/blog/rss.xml"
+						class="cursor-pointer"
+						variant="outline"
+						size="icon"
+						data-sveltekit-reload
+						// ⬆️ 404s otherwise
+						{...props}
+					>
+						<RssIcon />
+					</Button>
+				{/snippet}
+			</Tooltip.Trigger>
+			<Tooltip.Content>RSS feed</Tooltip.Content>
+		</Tooltip.Root>
+	</div>
 	{#if data.posts.length > 0}
 		<div
 			class="flex min-h-50 w-full flex-wrap divide-sidebar-border overflow-hidden rounded-2xl border border-border md:flex-nowrap"
