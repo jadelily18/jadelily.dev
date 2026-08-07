@@ -106,11 +106,10 @@
 			</Bread.List>
 		</Bread.Root>
 
-		<!--  -->
 		<div class="flex flex-col gap-4">
 			<h1 class="text-4xl font-bold">{data.post.title}</h1>
 			<p class="text-lg text-muted-foreground">{data.post.summary}</p>
-			<p
+			<span
 				class="inline-flex items-center gap-1 text-sm text-muted-foreground"
 			>
 				<Avatar.Root class="mr-0.5 size-6">
@@ -141,7 +140,7 @@
 						)}
 					</Tooltip.Content>
 				</Tooltip.Root>
-			</p>
+			</span>
 			<Separator />
 		</div>
 		{#if data.post.coverImg}

@@ -14,7 +14,11 @@ function gitInfo(cmd: string, fallback = "unknown") {
 }
 
 const commitSha = gitInfo("git rev-parse HEAD");
-const branch = gitInfo("git rev-parse --abbrev-ref HEAD");
+const rawBranch = gitInfo("git rev-parse --abbrev-ref HEAD");
+const branch =
+	rawBranch !== "HEAD"
+		? rawBranch
+		: (process.env.WORKERS_CI_BRANCH ?? rawBranch);
 
 export default defineConfig({
 	plugins: [
@@ -22,19 +26,22 @@ export default defineConfig({
 		sveltekit({
 			compilerOptions: {
 				// Force runes mode for the project, except for libraries. Can be removed in svelte 6.
-				runes: ({ filename }) => filename.split(/[/\\]/).includes("node_modules") ? undefined : true
+				runes: ({ filename }) =>
+					filename.split(/[/\\]/).includes("node_modules")
+						? undefined
+						: true,
 			},
 			adapter: adapter(),
 			alias: {
 				"@uilib": "src/lib/shadcn/components/ui",
 				"@components": "src/lib/components",
-				$types: "src/lib/types"
-			}
+				$types: "src/lib/types",
+			},
 		}),
-		svg({ includePaths: ["./src/lib/assets/icons"] })
+		svg({ includePaths: ["./src/lib/assets/icons"] }),
 	],
 	define: {
 		__GIT_COMMIT_SHA__: JSON.stringify(commitSha),
-		__GIT_BRANCH__: JSON.stringify(branch)
-	}
+		__GIT_BRANCH__: JSON.stringify(branch),
+	},
 });

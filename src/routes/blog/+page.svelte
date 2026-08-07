@@ -201,18 +201,21 @@
 
 						<Tooltip.Root>
 							<Tooltip.Trigger>
-								<FilterDropdown bind:tags>
-									{#snippet trigger({ props })}
-										<Button
-											{...props}
-											class="cursor-pointer"
-											variant="outline"
-											size="icon"
-										>
-											<Funnel />
-										</Button>
-									{/snippet}
-								</FilterDropdown>
+								{#snippet child({ props: tooltipProps })}
+									<FilterDropdown bind:tags>
+										{#snippet trigger({ props })}
+											<Button
+												{...tooltipProps}
+												{...props}
+												class="cursor-pointer"
+												variant="outline"
+												size="icon"
+											>
+												<Funnel />
+											</Button>
+										{/snippet}
+									</FilterDropdown>
+								{/snippet}
 							</Tooltip.Trigger>
 							<Tooltip.Content>Filter posts</Tooltip.Content>
 						</Tooltip.Root>

@@ -110,15 +110,18 @@
 				{#each socialLinks as link}
 					<Tooltip.Root>
 						<Tooltip.Trigger>
-							<Button
-								class="cursor-pointer"
-								size="icon"
-								variant="outline"
-								href={link.url}
-								target="_blank"
-							>
-								<Icon icon={link.icon} />
-							</Button>
+							{#snippet child({ props })}
+								<Button
+									class="cursor-pointer"
+									size="icon"
+									variant="outline"
+									href={link.url}
+									target="_blank"
+									{...props}
+								>
+									<Icon icon={link.icon} />
+								</Button>
+							{/snippet}
 						</Tooltip.Trigger>
 						<Tooltip.Content>{link.tooltip}</Tooltip.Content>
 					</Tooltip.Root>
