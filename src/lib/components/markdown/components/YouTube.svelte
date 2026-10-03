@@ -71,14 +71,16 @@
 					<div class="flex gap-2 *:cursor-pointer">
 						<Button
 							size="sm"
-							onclick={() => (appStore.settings.cookies.allowYoutubeCookies = true)}
+							onclick={() =>
+								(appStore.settings.cookies.allowYoutubeCookies = true)}
 						>
 							<CheckIcon />
 							Accept</Button
 						>
 						<Button
 							size="sm"
-							onclick={() => (appStore.settings.cookies.allowYoutubeCookies = false)}
+							onclick={() =>
+								(appStore.settings.cookies.allowYoutubeCookies = false)}
 						>
 							<XIcon />
 							Deny</Button

@@ -48,17 +48,17 @@
 
 <ModeWatcher />
 <Tooltip.Provider>
-	<main class="flex flex-col w-screen min-h-screen">
+	<main class="flex min-h-screen w-screen flex-col">
 		{#if showLoadingBar}
 			<div
 				transition:fade
-				class="absolute top-0 z-9999 h-1 w-full bg-lavender-pink-400 dark:bg-lilac-bush-500 animate-loading-bar"
+				class="absolute top-0 z-9999 h-1 w-full animate-loading-bar bg-lavender-pink-400 dark:bg-lilac-bush-500"
 			></div>
 		{/if}
 		<Navbar />
-		<div class="flex flex-col items-center grow w-full">
+		<div class="flex w-full grow flex-col items-center">
 			<div
-				class="flex flex-col w-full h-full grow px-6 sm:px-20 lg:px-0 md:max-w-200 py-6 sm:py-10"
+				class="flex h-full w-full grow flex-col px-6 py-6 sm:px-20 sm:py-10 md:max-w-200 lg:px-0"
 			>
 				{@render children()}
 			</div>

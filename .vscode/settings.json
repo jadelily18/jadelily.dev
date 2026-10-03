@@ -16,5 +16,8 @@
 	],
 	"tailwindCSS.experimental.classRegex": [
 		["styles:\\s*[\"'`]([^\"'`]*)[\"'`]"]
-	]
+	],
+	"editor.codeActionsOnSave": {
+		"source.fixAll.oxc": "always"
+	}
 }

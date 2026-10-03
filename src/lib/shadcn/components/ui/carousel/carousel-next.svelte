@@ -1,6 +1,9 @@
 <script lang="ts">
-	import ChevronRightIcon from '@lucide/svelte/icons/chevron-right';
-	import { Button, type Props } from "$lib/shadcn/components/ui/button/index.js";
+	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
+	import {
+		Button,
+		type Props,
+	} from "$lib/shadcn/components/ui/button/index.js";
 	import { cn } from "$lib/shadcn/utils.js";
 	import { getEmblaContext } from "./context.js";
 	import type { WithoutChildren } from "bits-ui";
@@ -23,17 +26,17 @@
 	aria-disabled={!emblaCtx.canScrollNext}
 	disabled={!emblaCtx.canScrollNext}
 	class={cn(
-		"rounded-full absolute touch-manipulation",
+		"absolute touch-manipulation rounded-full",
 		emblaCtx.orientation === "horizontal"
 			? "inset-y-0 -end-12 my-auto"
 			: "start-1/2 -bottom-12 -translate-x-1/2 rotate-90",
-		className
+		className,
 	)}
 	onclick={emblaCtx.scrollNext}
 	onkeydown={emblaCtx.handleKeyDown}
 	bind:ref
 	{...restProps}
 >
-	<ChevronRightIcon  />
+	<ChevronRightIcon />
 	<span class="sr-only">Next slide</span>
 </Button>

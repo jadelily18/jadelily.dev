@@ -15,13 +15,13 @@
 
 <button
 	class={cn(
-		"relative flex flex-col gap-2 w-full h-full rounded-lg overflow-hidden border border-border group/attribution",
+		"group/attribution relative flex h-full w-full flex-col gap-2 overflow-hidden rounded-lg border border-border",
 		buttonStyles,
 	)}
 	{onclick}
 >
 	<img
-		class="w-full h-full cursor-pointer object-cover"
+		class="h-full w-full cursor-pointer object-cover"
 		style="object-position: {item.offset?.x ?? 50}% {item.offset?.y ?? 50}%"
 		src={item.src}
 		alt={item.alt}

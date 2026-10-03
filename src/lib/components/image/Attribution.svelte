@@ -50,17 +50,17 @@
 	tabindex="0"
 	onkeydown={(e) => e.key === "Enter" && toggle(e as any)}
 	class={cn(
-		"absolute bottom-0 right-0 h-8 w-max flex flex-row-reverse justify-center items-center text-muted-foreground bg-background backdrop-blur ring-1 ring-border shadow-md rounded-full overflow-hidden cursor-pointer group/attribution",
+		"group/attribution absolute right-0 bottom-0 flex h-8 w-max cursor-pointer flex-row-reverse items-center justify-center overflow-hidden rounded-full bg-background text-muted-foreground shadow-md ring-1 ring-border backdrop-blur",
 		className,
 	)}
 	{...restProps}
 >
-	<div class={cn("size-8 flex items-center justify-center", triggerStyles)}>
+	<div class={cn("flex size-8 items-center justify-center", triggerStyles)}>
 		<BrushIcon size="18" class="" />
 	</div>
 	<div
 		class={cn(
-			"grid justify-center items-center transition-[grid-template-columns] duration-300 grid-cols-[0fr] group-hover/attribution:grid-cols-[1fr] group-hover/attribution:pl-2.5",
+			"grid grid-cols-[0fr] items-center justify-center transition-[grid-template-columns] duration-300 group-hover/attribution:grid-cols-[1fr] group-hover/attribution:pl-2.5",
 			expanded && "grid-cols-[1fr] pl-2.5",
 		)}
 	>

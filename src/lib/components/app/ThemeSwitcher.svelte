@@ -36,17 +36,17 @@
 		<div
 			data-selected={appStore.settings.pending.general.theme ===
 				props.value}
-			class="flex justify-between items-center w-full rounded-lg border border-border p-2 group/radio-item bg-transparent data-[selected=true]:bg-accent transition-colors duration-100"
+			class="group/radio-item flex w-full items-center justify-between rounded-lg border border-border bg-transparent p-2 transition-colors duration-100 data-[selected=true]:bg-accent"
 		>
 			<div style={previewStyle(props.value)}>
 				<div
-					class="flex flex-col gap-1 w-16 p-2 bg-background rounded-sm border border-border"
+					class="flex w-16 flex-col gap-1 rounded-sm border border-border bg-background p-2"
 				>
 					<div
-						class="w-[70%] h-2 rounded-full bg-muted-foreground"
+						class="h-2 w-[70%] rounded-full bg-muted-foreground"
 					></div>
 					<div
-						class="w-full h-2 rounded-full bg-muted-foreground/60"
+						class="h-2 w-full rounded-full bg-muted-foreground/60"
 					></div>
 				</div>
 			</div>
@@ -64,7 +64,7 @@
 {/snippet}
 
 <RadioGroup.Root
-	class="flex flex-col w-full gap-1"
+	class="flex w-full flex-col gap-1"
 	bind:value={appStore.settings.pending.general.theme}
 >
 	{@render groupItem({ label: "System", value: "system" })}

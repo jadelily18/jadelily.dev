@@ -14,31 +14,31 @@
 	let { post }: Props = $props();
 </script>
 
-<div class="flex flex-col rounded-xl border border-border overflow-hidden">
+<div class="flex flex-col overflow-hidden rounded-xl border border-border">
 	<a
-		class="relative w-full h-48 sm:h-60 md:h-36 transition-[filter] hover:brightness-110"
+		class="relative h-48 w-full transition-[filter] hover:brightness-110 sm:h-60 md:h-36"
 		href="/blog/{post.slug}"
 	>
 		{#if post.coverImg}
 			<img
-				class="w-full h-full object-cover"
+				class="h-full w-full object-cover"
 				src={post.coverImg}
 				alt={post.coverAlt}
 			/>
 		{:else}
 			<div
-				class="flex justify-center items-center w-full h-full bg-lavender-pink-400 dark:bg-lilac-bush-500 text-muted"
+				class="flex h-full w-full items-center justify-center bg-lavender-pink-400 text-muted dark:bg-lilac-bush-500"
 			>
 				<ImageOffIcon />
 			</div>
 		{/if}
 	</a>
-	<div class="flex flex-col w-full p-3 gap-1 grow">
+	<div class="flex w-full grow flex-col gap-1 p-3">
 		<a class="font-semibold hover:underline" href="/blog/{post.slug}">
 			{post.title}
 		</a>
-		<span class="text-muted-foreground text-sm h-full">{post.summary}</span>
-		<div class="flex flex-wrap justify-between items-center gap-1 mt-2">
+		<span class="h-full text-sm text-muted-foreground">{post.summary}</span>
+		<div class="mt-2 flex flex-wrap items-center justify-between gap-1">
 			<Tooltip.Root>
 				<Tooltip.Trigger>
 					{#snippet child({ props })}

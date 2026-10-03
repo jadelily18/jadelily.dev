@@ -14,14 +14,14 @@
 </script>
 
 <a
-	class="flex items-center no-underline hover:underline m-0 p-0"
+	class="m-0 flex items-center p-0 no-underline hover:underline"
 	href="#{id}"
 	aria-label="Link to this section"
 >
-	<svelte:element this={tag} {id} class="relative group/header">
+	<svelte:element this={tag} {id} class="group/header relative">
 		{#if id}
 			<span
-				class="hidden group-hover/header:block absolute translate-x-[-115%] h-full"
+				class="absolute hidden h-full translate-x-[-115%] group-hover/header:block"
 				aria-hidden="true"
 			>
 				<HashIcon class="h-full w-auto py-1" aria-hidden="true" />

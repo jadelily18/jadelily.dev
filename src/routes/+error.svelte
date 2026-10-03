@@ -12,10 +12,10 @@
 	>
 </svelte:head>
 
-<div class="flex flex-col justify-center items-center gap-4 grow">
+<div class="flex grow flex-col items-center justify-center gap-4">
 	<div class="flex flex-col items-center">
 		<span
-			class="inline-flex items-center text-4xl font-bold gap-1"
+			class="inline-flex items-center gap-1 text-4xl font-bold"
 			aria-label="404 error"
 		>
 			{#if page.status === 404}
@@ -28,7 +28,7 @@
 	</div>
 	<Button
 		variant="outline"
-		class="text-muted-foreground cursor-pointer"
+		class="cursor-pointer text-muted-foreground"
 		size="xs"
 		onclick={() => history.back()}
 	>

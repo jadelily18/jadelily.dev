@@ -1,0 +1,19 @@
+{
+	"$schema": "./node_modules/oxfmt/configuration_schema.json",
+	"importOrder": [
+		"<BUILTIN_MODULES>",
+		"<THIRD_PARTY_MODULES>",
+		"",
+		"^\\$lib/(.*)$",
+		"",
+		"^[./]"
+	],
+	"importOrderTypeScriptVersion": "5.0.0",
+	"printWidth": 80,
+	"sortPackageJson": false,
+	"sortTailwindcss": {
+		"stylesheet": "./src/routes/layout.css"
+	},
+	"svelte": {},
+	"ignorePatterns": []
+}

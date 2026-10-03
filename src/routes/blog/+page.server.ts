@@ -13,7 +13,9 @@ export function load({ url }) {
 		}
 	}
 
-	tags = Object.fromEntries(Object.entries(tags).sort());
+	tags = Object.fromEntries(
+		Object.entries(tags).sort((a, b) => a[0].localeCompare(b[0])),
+	);
 
 	return { posts, tags };
 }

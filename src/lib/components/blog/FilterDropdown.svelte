@@ -40,14 +40,14 @@
 	</Dropdown.Trigger>
 	<Dropdown.Content align="end">
 		<Dropdown.Group>
-			<Dropdown.Label class="flex justify-between items-center w-full">
+			<Dropdown.Label class="flex w-full items-center justify-between">
 				<div class="flex items-center gap-0.5">
 					<HashIcon size="12" />
 					Tags
 				</div>
 				<Button
 					data-can-clear={selectedTags.length > 0}
-					class="cursor-pointer transition-opacity duration-200 opacity-0 data-[can-clear=true]:opacity-100"
+					class="cursor-pointer opacity-0 transition-opacity duration-200 data-[can-clear=true]:opacity-100"
 					variant="destructive"
 					size="xs"
 					onclick={clearTags}
@@ -59,7 +59,7 @@
 			<div class="flex flex-col gap-1 px-2 pb-2">
 				{#each Object.keys(tags) as tag}
 					<div
-						class="flex items-center gap-2 w-full p-1 not-data-checked:text-muted-foreground *:cursor-pointer"
+						class="flex w-full items-center gap-2 p-1 *:cursor-pointer not-data-checked:text-muted-foreground"
 						data-checked={tags[tag]}
 					>
 						<Checkbox

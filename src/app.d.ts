@@ -8,7 +8,7 @@ declare global {
 			env: Env;
 			ctx: ExecutionContext;
 			caches: CacheStorage;
-			cf?: IncomingRequestCfProperties
+			cf?: IncomingRequestCfProperties;
 		}
 
 		// interface Error {}
@@ -17,8 +17,8 @@ declare global {
 		// interface PageState {}
 	}
 
-	declare const __GIT_COMMIT_SHA__: string;
-	declare const __GIT_BRANCH__: string;
+	const __GIT_COMMIT_SHA__: string;
+	const __GIT_BRANCH__: string;
 }
 
 export {};

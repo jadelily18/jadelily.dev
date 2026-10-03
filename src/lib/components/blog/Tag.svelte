@@ -42,7 +42,7 @@
 		? "Add tag to filter"
 		: "Remove tag from filter"}
 	class={cn(
-		"inline-flex items-center gap-0 px-2.5 py-0.5 h-5 text-xs cursor-pointer disabled:cursor-default text-nowrap rounded-full transition-colors duration-100 outline animate-in",
+		"inline-flex h-5 animate-in cursor-pointer items-center gap-0 rounded-full px-2.5 py-0.5 text-xs text-nowrap outline transition-colors duration-100 disabled:cursor-default",
 		lightButtonStyles,
 		darkButtonStyles,
 		state === "add" ? "pr-2.5" : "pr-1.5",
