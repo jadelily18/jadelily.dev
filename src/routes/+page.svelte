@@ -8,11 +8,11 @@
 	import * as Tooltip from "@uilib/tooltip";
 
 	import { BrandIcon, GenericIcon, Icon } from "@components/icon";
-	import type { AvatarImageLoadingStatus } from "bits-ui";
 
 	import { Meta } from "@components/app";
-	import { getGalleryItem } from "$lib/art";
+	import { galleryItems } from "$lib/art";
 	import { cn } from "$lib/shadcn/utils";
+	import type { GalleryItem } from "$types/art";
 
 	type SocialLink = {
 		tooltip: string;
@@ -41,16 +41,47 @@
 		},
 	];
 
-	const avatar = getGalleryItem("em-pawlaxy");
-
-	let avatarLoadingStatus = $state<AvatarImageLoadingStatus>("loading");
+	// the server can't know the theme, so render both avatars and let the `dark` class
+	// (set by mode-watcher before first paint) pick one
+	const metaAvatar = galleryItems.em_pawlaxy;
 </script>
+
+{#snippet avatarLink(id: string, item: GalleryItem, cls: string)}
+	<a
+		class={cn(
+			"relative inline-block scale-100 cursor-pointer transition-[scale] duration-200 hover:scale-105 active:scale-100",
+			cls,
+		)}
+		href="/gallery#{id}"
+	>
+		<Avatar.Root
+			class="size-28 overflow-visible duration-200 after:border-none"
+		>
+			<Avatar.Image
+				class="absolute size-full rounded-full shadow-md outline outline-border duration-1000
+					group-data-[status=loaded]/avatar:animate-in
+					group-data-[status=loaded]/avatar:fade-in-0
+					group-data-[status=loaded]/avatar:zoom-in-65"
+				src={item.src}
+				alt={item.alt}
+			/>
+			<Avatar.Fallback
+				class="absolute inset-0 flex items-center justify-center duration-1000
+					group-data-[status=loaded]/avatar:animate-out
+					group-data-[status=loaded]/avatar:fade-out-0
+					group-data-[status=loaded]/avatar:zoom-out-75"
+			>
+				<Icon icon={GenericIcon.PawPrint} class="animate-pulse" />
+			</Avatar.Fallback>
+		</Avatar.Root>
+	</a>
+{/snippet}
 
 <Meta
 	title={formatPageTitle("Home")}
 	description="A gay dog on the internet."
-	image={avatar.src}
-	imageAlt={avatar.alt}
+	image={metaAvatar.src}
+	imageAlt={metaAvatar.alt}
 />
 
 <div class="flex grow items-center justify-center">
@@ -59,35 +90,16 @@
 	>
 		<Tooltip.Root>
 			<Tooltip.Trigger>
-				<a
-					class="relative inline-block scale-100 cursor-pointer transition-[scale] duration-200 hover:scale-105 active:scale-100"
-					href="/gallery#{avatar.id}"
-				>
-					<Avatar.Root
-						class="size-28 overflow-visible duration-200 after:border-none"
-						bind:loadingStatus={avatarLoadingStatus}
-					>
-						<Avatar.Image
-							class="absolute size-full rounded-full shadow-md outline outline-border duration-1000
-								group-data-[status=loaded]/avatar:animate-in
-								group-data-[status=loaded]/avatar:fade-in-0
-								group-data-[status=loaded]/avatar:zoom-in-65"
-							src={avatar.src}
-							alt={avatar.alt}
-						/>
-						<Avatar.Fallback
-							class="absolute inset-0 flex items-center justify-center duration-1000
-								group-data-[status=loaded]/avatar:animate-out
-								group-data-[status=loaded]/avatar:fade-out-0
-								group-data-[status=loaded]/avatar:zoom-out-75"
-						>
-							<Icon
-								icon={GenericIcon.PawPrint}
-								class="animate-pulse"
-							/>
-						</Avatar.Fallback>
-					</Avatar.Root>
-				</a>
+				{@render avatarLink(
+					"em_pawlaxy",
+					galleryItems.em_pawlaxy,
+					"dark:hidden",
+				)}
+				{@render avatarLink(
+					"remy_merie_icon",
+					galleryItems.remy_merie_icon,
+					"hidden dark:inline-block",
+				)}
 			</Tooltip.Trigger>
 			<Tooltip.Content>View in gallery</Tooltip.Content>
 		</Tooltip.Root>

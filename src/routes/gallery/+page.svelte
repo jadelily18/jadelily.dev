@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { galleryItems } from "$lib/art";
 	import { formatPageTitle } from "$lib/utils";
 	import { Comark } from "@comark/svelte";
 	import { Meta } from "@components/app";
@@ -6,11 +7,15 @@
 	import { GalleryImage, GalleryModal } from "@components/gallery";
 	import { onMount } from "svelte";
 
-	let { data } = $props();
+	// let { data } = $props();
 
 	onMount(() => {
 		const pageHash = window.location.hash.slice(1);
-		const index = data.galleryItems.findIndex((i) => i.id === pageHash);
+		// const index = data.galleryItems.findIndex((i) => i.id === pageHash);
+		const index = Object.entries(galleryItems).indexOf([
+			pageHash,
+			galleryItems[pageHash],
+		]);
 		if (index !== -1) {
 			handleModalOpen(index);
 		}
@@ -37,7 +42,7 @@
 
 <GalleryModal
 	bind:open={modalOpen}
-	items={data.galleryItems}
+	items={galleryItems}
 	startIndex={modalSelectedIndex}
 />
 
@@ -52,7 +57,7 @@
 		<Comark markdown={alertMarkdown} />
 	</Alert>
 	<div class="grid grid-cols-1 gap-3 md:grid-cols-3">
-		{#each data.galleryItems as item, i}
+		{#each Object.entries(galleryItems) as [_, item], i}
 			<GalleryImage {item} onclick={() => handleModalOpen(i)} />
 		{/each}
 	</div>

@@ -1,6 +1,4 @@
 type GalleryItem = {
-	id: string;
-	index: number;
 	title: string;
 	description: string;
 	src: string;

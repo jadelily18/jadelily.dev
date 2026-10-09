@@ -6,6 +6,7 @@
 	import type { GalleryItem } from "$types/art";
 	import { ExternalLinkIcon, XIcon } from "@lucide/svelte";
 	import { IsMobile } from "$lib/shadcn/hooks/is-mobile.svelte";
+	import { galleryItems } from "$lib/art";
 
 	let {
 		open = $bindable(false),
@@ -13,7 +14,7 @@
 		startIndex = 0,
 	}: {
 		open?: boolean;
-		items: GalleryItem[];
+		items: Record<string, GalleryItem>;
 		startIndex?: number;
 	} = $props();
 
@@ -34,7 +35,9 @@
 		return () => api?.off("select", onSelect);
 	});
 
-	const activeItem = $derived(items[current]);
+	const activeItem = $derived<GalleryItem>(
+		Object.entries(items).map(([_, item]) => item)[current],
+	);
 </script>
 
 <Dialog.Root bind:open>
@@ -57,7 +60,7 @@
 			class="flex size-full flex-col items-center justify-center"
 		>
 			<Carousel.Content class="ml-0 h-full flex-1">
-				{#each items as item, i (item.src)}
+				{#each Object.entries(items) as [_, item], i (item.src)}
 					<Carousel.Item
 						class="flex h-full basis-full items-center justify-center pl-0"
 					>
@@ -105,7 +108,7 @@
 			</a>
 
 			<div class="flex items-center justify-center gap-1.5">
-				{#each items as _, i}
+				{#each Object.keys(galleryItems) as _, i}
 					<button
 						aria-label={`Go to image ${i + 1}`}
 						onclick={() => api?.scrollTo(i)}
