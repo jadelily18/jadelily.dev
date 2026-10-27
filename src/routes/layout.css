@@ -199,3 +199,28 @@
 		@apply font-sans;
 	}
 }
+
+::view-transition-group(nav-pill),
+::view-transition-group(*.nav-label),
+::view-transition-old(*.nav-label),
+::view-transition-new(*.nav-label) {
+	animation-duration: 300ms;
+	animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+::view-transition-group(nav-pill) {
+	z-index: 1;
+}
+
+/* keep nav text above the pill while it moves */
+::view-transition-group(*.nav-label) {
+	z-index: 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	::view-transition-group(*),
+	::view-transition-old(*),
+	::view-transition-new(*) {
+		animation: none !important;
+	}
+}

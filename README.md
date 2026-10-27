@@ -1,4 +1,6 @@
-# <img alt="paw print icon" src="./src/lib/assets/favicon.svg" width="32" /> jadelily.dev
+# <img alt="purple paw print icon" src="./static/favicon-dark.svg" width="32" /> jadelily.dev
+
+![remy banner](/static/gallery/remy_merie_banner.png)
 
 This is the repo for my personal website, available at <https://jadelily.dev>.
 

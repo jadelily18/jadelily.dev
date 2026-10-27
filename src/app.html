@@ -5,6 +5,36 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="text-scale" content="scale" />
 		%sveltekit.head%
+		<link rel="icon" href="/favicon-light.svg" />
+		<script>
+			// match the favicon to the site theme. runs after mode-watcher's
+			// head script has set the initial `dark` class, then follows toggles
+			(() => {
+				const root = document.documentElement;
+				let current;
+
+				const sync = () => {
+					const href = root.classList.contains("dark")
+						? "/favicon-dark.svg"
+						: "/favicon-light.svg";
+					if (href === current) return;
+					current = href;
+
+					// swap the element instead of its href, some browsers
+					// don't repaint the tab icon on an attribute change
+					const old = document.querySelector('link[rel="icon"]');
+					const icon = old.cloneNode();
+					icon.href = href;
+					old.replaceWith(icon);
+				};
+
+				sync();
+				new MutationObserver(sync).observe(root, {
+					attributes: true,
+					attributeFilter: ["class"],
+				});
+			})();
+		</script>
 	</head>
 	<body
 		class="selection:bg-lavender-pink-300 selection:text-foreground dark:selection:bg-lilac-bush-500 dark:selection:text-background"
