@@ -58,7 +58,9 @@
 	</Alert>
 	<div class="grid grid-cols-1 gap-3 md:grid-cols-3">
 		{#each Object.entries(galleryItems) as [_, item], i}
-			<GalleryImage {item} onclick={() => handleModalOpen(i)} />
+			{#if item.hide !== true}
+				<GalleryImage {item} onclick={() => handleModalOpen(i)} />
+			{/if}
 		{/each}
 	</div>
 </div>

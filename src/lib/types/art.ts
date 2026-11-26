@@ -14,6 +14,7 @@ type GalleryItem = {
 		/** Offset on the y axis (percentage; default 50				) */
 		y?: number;
 	};
+	hide?: boolean;
 };
 
 export type { GalleryItem };

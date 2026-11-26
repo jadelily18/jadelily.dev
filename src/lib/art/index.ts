@@ -59,6 +59,17 @@ const galleryItems: Record<string, GalleryItem> = {
 			x: 65,
 		},
 	},
+	"remy_merie_banner-cropped_sm": {
+		title: "Remy banner cropped",
+		description: "Remy's banner, but cropped",
+		alt: "Remy, a fluffy, gray, orange, and white fox. She is in her bed, laying on her stomach, listening to music on a laptop. Outside the window is a view of city buildings at dusk.",
+		src: "/gallery/remy_merie_banner-cropped_sm.png",
+		attribution: {
+			label: "Art by @SillyGoaty",
+			url: "https://vgen.co/SillyGoaty",
+		},
+		hide: true,
+	},
 } as const;
 
 export { galleryItems };
